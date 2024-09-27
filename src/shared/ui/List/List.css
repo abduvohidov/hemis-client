@@ -1,0 +1,38 @@
+
+form > div{
+    margin: 6px;
+    background: #f9f9f9;
+    padding: 20px;
+}
+form input[type="checkbox"]{
+    -webkit-appearance: none;
+    appearance: none;
+}
+form label{
+    position: relative;
+    margin-left: 20px;
+}
+form label::before{
+    content: "";
+    position: absolute;
+    border: 1px solid #ddd;
+    width: 17px;
+    height: 17px;
+    left: -30px;
+    background-color: white;
+    border-radius: 3px;
+}
+form input[type="checkbox"]:checked + label:after{
+    content: "";
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    background-color: blue;
+    left: -27px;
+    top: 3px;
+    border-radius: 2px;
+    transition: .5s;
+}
+form input[type="checkbox"]:checked + label{
+    text-decoration: line-through;
+}
