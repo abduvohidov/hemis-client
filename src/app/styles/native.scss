@@ -1,0 +1,34 @@
+// TEXT COLORS
+$text--dark: #1e2125;
+$text--custom: #61dafb;
+$text--light: #c3cfde;
+// BACKGROUND COLORS
+$bg--dark: #1e2125;
+$bg--custom: #61dafb;
+$bg--light: #c3cfde;
+
+// BACKGROUND STATIC
+
+.bg--dark {
+  background: $bg--dark;
+}
+.bg--light {
+  background: $bg--light;
+}
+.bg--custom {
+  background: $bg--custom;
+}
+
+// TEXT STATIC
+
+.text--dark {
+  color: $text--dark;
+}
+
+.text--light {
+  color: $text--light;
+}
+
+.text--custom {
+  color: $text--custom;
+}
