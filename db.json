@@ -1,0 +1,87 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Abudullah",
+            "lastName": "abdullayev",
+            "email": "abdullayev@gmail.com",
+            "password": "1111",
+            "role": "user"
+        }
+    ],
+    "students": [
+        {
+            "id": 1,
+            "firstName": "Abudullah",
+            "lastName": "abdullayev",
+            "middleName": "abdullayev",
+            "passportNumber": "AD123190",
+            "jshshr": "123131234",
+            "dateOfBirth": "2002-02-02",
+            "gender": "male",
+            "nationality": "Tashkent",
+            "email": "abdullayev@gmail.com",
+            "password": "1111",
+            "phoneNumber": "+998-99-999-99-99",
+            "parentPhoneNumber": "+998-99-999-99-99"
+        }
+    ],
+    "addresses": [
+        {
+            "id": 1,
+            "studentId": 1,
+            "country": "Tashkent",
+            "region": "Shayhontrohur",
+            "address": "Chorsu"
+        }
+    ],
+    "educations": [
+        {
+            "id": 1,
+            "studentId": 1,
+            "bachelorId": 1,
+            "currectSpecialization": "IT",
+            "facultyId": 1,
+            "course": 1,
+            "paymentType": "Contract",
+            "entryYear": "2022",
+            "educationForm": "educationForm",
+            "languageCertificate": "English Ielts",
+            "semester": 1,
+            "scientificSupervisor": "supervisor",
+            "scientificAdvisor": "Advisor",
+            "internshipSupervisor": "internship supervisor",
+            "internalReviewer": "kmdr",
+            "externalReviewer": "kmdr",
+            "thesisTopic": "topic",
+            "articlesId": 1,
+            "academicLeave": true
+        }
+    ],
+    "bachelors": [
+        {
+            "id": 1,
+            "previousUniversity": "univer",
+            "graduationYear": 2022,
+            "diplomaNumber": "A123123131",
+            "previousSpecialization": "specialization"
+        }
+    ],
+    "faculties": [
+        {
+            "id": 1,
+            "name": "IT Software Engineering"
+        }
+    ],
+    "articles": [
+        {
+            "id": 1,
+            "firstArticle": "firstArticle",
+            "firstArticleDate": "2022-02-02",
+            "firstArticleJournal": "Journal",
+            "secondArticle": "secondArticle",
+            "secondArticleDate": "secondArticleDate",
+            "secondArticleJournal": "secondArticleJournal"
+        }
+    ]
+}
