@@ -1,3 +1,9 @@
+import { Button } from "../../../shared";
+
 export const Home = () => {
-  return <main>App</main>;
+  return (
+    <main className="m-5">
+      <Button />
+    </main>
+  );
 };

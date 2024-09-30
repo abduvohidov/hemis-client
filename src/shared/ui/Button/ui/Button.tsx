@@ -1,13 +1,26 @@
+import React from "react";
 import "../style/index.scss";
+import { ButtonProps } from "../types/type";
 
-export const Button = ({ data }: any) => {
+export const Button: React.FC<ButtonProps> = (props) => {
+  const {
+    children = "button",
+    className,
+    color = "primary",
+    type = "button",
+    onChange,
+    onClick,
+  } = props;
   return (
     <>
-      <a href={data.link} className="text-decoration-none" target="_blank">
-        <li className="button-social d-flex justify-content-center align-items-center">
-          <i className={`${data.icon} button-social-icon`}></i>
-        </li>
-      </a>
+      <button
+        type={type}
+        className={`btn btn-${color} ${className}`}
+        onChange={onChange}
+        onClick={onClick}
+      >
+        {children}
+      </button>
     </>
   );
 };
