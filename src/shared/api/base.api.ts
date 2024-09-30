@@ -14,26 +14,38 @@ export const apiClient = axios.create({
 //  CRUD
 export const baseApi = {
 	get: async <T>(url: string, config?: AxiosRequestConfig) => {
-		const response = await apiClient.get<T>(url, config);
-		console.log("response" + response);
-		console.log("response.data" + response.data);
-		return response.data;
+		try {
+			const response = await apiClient.get<T>(url, config);
+			return response.data;
+		} catch (error: any) {
+			return error.response.data;
+		}
 	},
 
 	post: async <T, D>(url: string, data: D, config?: AxiosRequestConfig) => {
-		const response = await apiClient.post<T>(url, data, config);
-		console.log("response" + response);
-		console.log("response.data" + response.data);
-		return response.data;
+		try {
+			const response = await apiClient.post<T>(url, data, config);
+			return response.data;
+		} catch (error: any) {
+			return error.response.data;
+		}
 	},
 
 	put: async <T, D>(url: string, data: D, config?: AxiosRequestConfig) => {
-		const response = await apiClient.put<T>(url, data, config);
-		return response.data;
+		try {
+			const response = await apiClient.put<T>(url, data, config);
+			return response.data;
+		} catch (error: any) {
+			return error.response.data;
+		}
 	},
 
 	delete: async <T>(url: string, config?: AxiosRequestConfig) => {
-		const response = await apiClient.delete<T>(url, config);
-		return response.data;
+		try {
+			const response = await apiClient.delete<T>(url, config);
+			return response.data;
+		} catch (error: any) {
+			return error.response.data;
+		}
 	},
 };
