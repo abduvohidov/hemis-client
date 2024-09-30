@@ -1,0 +1,12 @@
+.table-wrapper {
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  margin: auto;
+}
+thead tr th {
+  padding: 30px !important;
+}
+
+tbody tr td {
+  padding: 10px 30px !important;
+}
