@@ -1,5 +1,5 @@
 import React from "react";
-import { Input, Label } from "../../../../shared";
+import { Button, Input, Label } from "../../../../shared";
 import { FormAuthorizationProps } from "../types/types";
 
 export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
@@ -14,8 +14,11 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
       <Label children={"Password"} />
       <Input placeholder={"Enter your email password"} />
     </div>
-    <button type="submit" className="btn btn-primary mt-4">
-      Submit
-    </button>
+    <Button
+      type="submit"
+      color={"primary"}
+      className="w-100 mt-4"
+      children="Login"
+    />
   </form>
 );
