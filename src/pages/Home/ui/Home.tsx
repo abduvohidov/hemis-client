@@ -1,9 +1,3 @@
-import { FormAuthorization } from "../../../widgets";
+import React from "react";
 
-export const Home = () => {
-  return (
-    <main className="m-5">
-      <FormAuthorization />
-    </main>
-  );
-};
+export const Home: React.FC = () => <main className={"m-5"}></main>;
