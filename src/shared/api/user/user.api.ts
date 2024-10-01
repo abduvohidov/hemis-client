@@ -6,11 +6,11 @@ export const userApi = {
 		return await baseApi.post<IUserReponse, IUser>("/users/create", data);
 	},
 
-	updateStudent: async (id: number, data: Partial<IUser>): Promise<IUserReponse> => {
+	updateUser: async (id: number, data: Partial<IUser>): Promise<IUserReponse> => {
 		return await baseApi.put<IUserReponse, Partial<IUser>>(`/users/update/${id}`, data);
 	},
 
-	deleteStudent: async (id: number): Promise<IUserReponse> => {
+	deleteUser: async (id: number): Promise<IUserReponse> => {
 		return await baseApi.delete<IUserReponse>(`/users/delete/${id}`);
 	},
 };

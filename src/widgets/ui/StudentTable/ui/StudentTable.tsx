@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import students from "../../../../shared/api/student/students.api";
-import { Table } from "../../../../entities/Table";
 import { Student } from "../types/type";
+import React, { useEffect, useState } from "react";
+import { Table } from "../../../../entities/Table";
+import { studentApi } from "../../../../shared/index.js";
 
 export const StudentTable: React.FC = () => {
   const [data, setData] = useState<Student[]>([]);
@@ -25,9 +25,10 @@ export const StudentTable: React.FC = () => {
   }
 
   async function findStudentsKeys() {
-    const response = await students.getStudents();
-    const result = await response.data.data;
-    setData(result);
+    // test
+    const response = await studentApi.getAllStudents();
+    const result = await response.data;
+    setData(result)
   }
 
   useEffect(() => {
