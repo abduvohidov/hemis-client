@@ -3,6 +3,7 @@ import { Title } from "../../../shared";
 
 export const Admin = () => {
   return (
+    
     <section>
       <div className="container mx-auto">
         <Title children={"Admin Page"} className={"my-5"} />
