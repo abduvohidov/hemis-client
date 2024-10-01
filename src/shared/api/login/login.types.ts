@@ -4,8 +4,6 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-	message: {
-		jwt: string;
-		redirectTo: string;
-	};
+	redirectTo: string;
+	jwt: string;
 }

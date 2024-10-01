@@ -1,0 +1,24 @@
+.table-wrapper {
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  margin: auto;
+}
+
+thead tr th:nth-child(1) {
+  min-width: 60px !important;
+}
+
+thead tr th:nth-child(2),
+thead tr th:nth-child(3),
+thead tr th:nth-child(4) {
+  min-width: 140px !important;
+}
+
+thead tr th {
+  min-width: 200px !important;
+  padding: 20px 10px !important;
+}
+
+tbody tr td {
+  padding: 10px !important;
+}

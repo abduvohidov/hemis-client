@@ -1,17 +1,31 @@
 import { baseApi } from "../base.api";
+import {
+	IStudentReponse,
+	IStudent,
+	IStudentDeletedResponse,
+} from "./student.types";
 
 export const studentApi = {
-    
-	createStudent: async (data: ): Promise<> => {
-		return await baseApi.post<, >("/students/create", data);
+	createStudent: async (data: IStudent): Promise<IStudentReponse> => {
+		return await baseApi.post<IStudentReponse, IStudent>(
+			"/students/create",
+			data
+		);
 	},
 
-	updateStudent: async (id: number, data: Partial<>): Promise<> => {
-		return await baseApi.put<, Partial<>>(`/students/update/${id}`, data);
+	updateStudent: async (
+		id: number,
+		data: Partial<IStudent>
+	): Promise<IStudent> => {
+		return await baseApi.put<IStudentReponse, Partial<IStudent>>(
+			`/students/update/${id}`,
+			data
+		);
 	},
 
-	deleteStudent: async (id: number): Promise<> => {
-		return await baseApi.delete<>(`/students/delete/${id}`);
+	deleteStudent: async (id: number): Promise<IStudent> => {
+		return await baseApi.delete<IStudentDeletedResponse>(
+			`/students/delete/${id}`
+		);
 	},
-
 };
