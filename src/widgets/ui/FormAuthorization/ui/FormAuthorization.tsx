@@ -3,6 +3,7 @@ import { useLoginStore } from "../model/loginModel";
 import { FormAuthorizationProps } from "../types/types";
 import { Button, Input, Label } from "../../../../shared/index";
 
+
 export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   className,
 }) => {
@@ -19,6 +20,7 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
+
     await login({ email, password });
 
     const { error } = useLoginStore.getState();
@@ -33,11 +35,11 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
 
   return (
     <form className={`w-25 ${className}`} onSubmit={handleSubmit}>
-      <div className="mb-3">
+      <div className={"mb-3"}>
         <Label children={"Email"} />
         <Input
           placeholder={"Enter your email address"}
-          type="email"
+          type={"email"}
           value={email}
           handleChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setEmail(e.target.value);

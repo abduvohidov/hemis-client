@@ -22,7 +22,7 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
 	},
 
 	logout: () => {
-		loginApi.logout();
+		// loginApi.logout();
 		set({ role: null });
 	},
 }));
