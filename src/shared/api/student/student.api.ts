@@ -28,4 +28,19 @@ export const studentApi = {
 			`/students/delete/${id}`
 		);
 	},
+
+	// gets
+	getAllStudents: async (): Promise<IStudent[]> => {
+		return await baseApi.get<IStudent[]>(`/students/all`);
+	},
+
+	getStudentById: async (id: number): Promise<IStudent[]> => {
+		return await baseApi.get<IStudent[]>(`/students/${id}`);
+	},
+	getStudentsByFilter: async (data: Partial<IStudent>): Promise<IStudent[]> => {
+		return await baseApi.post<IStudentReponse[], Partial<IStudent>>(
+			`/students/filter`,
+			data
+		);
+	},
 };
