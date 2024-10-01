@@ -2,16 +2,14 @@ import axios, { AxiosRequestConfig } from "axios";
 
 const BASE_URL = "http://localhost:9000";
 
-//  Default config
 export const apiClient = axios.create({
 	baseURL: BASE_URL,
-	withCredentials: true, // Enable cookie
+	withCredentials: true,
 	headers: {
-		"Content-Type": "application/json", // I dunno what is this
+		"Content-Type": "application/json",
 	},
 });
 
-//  CRUD
 export const baseApi = {
 	get: async <T>(url: string, config?: AxiosRequestConfig) => {
 		try {
