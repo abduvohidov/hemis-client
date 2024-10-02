@@ -1,3 +1,2 @@
-export { FormAuthorization } from "./ui/FormAuthorization";
-export { StudentTable } from "./ui/StudentTable";
-export {} from "./ui/UserTable";
+export { FormAuthorization } from "./FormAuthorization";
+export { StudentTable } from "./StudentTable";

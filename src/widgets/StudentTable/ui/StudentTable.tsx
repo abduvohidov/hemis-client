@@ -1,12 +1,13 @@
 import { Student } from "../types/type";
 import React, { useEffect, useState } from "react";
-import { Table } from "../../../../entities/Table";
-import { studentApi } from "../../../../shared/index.js";
+import { Table } from "../../../entities/Table";
+import { Button, studentApi } from "../../../shared/index.js";
 
 export const StudentTable: React.FC = () => {
   const [data, setData] = useState<Student[]>([]);
   const tableHead = [
     "#",
+    "Id",
     "Ismi",
     "Familiya",
     "Otasini ismi",
@@ -25,10 +26,9 @@ export const StudentTable: React.FC = () => {
   }
 
   async function findStudentsKeys() {
-    // test
     const response = await studentApi.getAllStudents();
     const result = await response.data;
-    setData(result)
+    setData(result);
   }
 
   useEffect(() => {
@@ -39,6 +39,17 @@ export const StudentTable: React.FC = () => {
     return data.map((item, index) => {
       return (
         <tr key={index}>
+          <td>
+            <Button
+              color={"light"}
+              children={<i className="bi bi-trash3"></i>}
+            />
+            <Button
+              color={"light"}
+              className={"mx-2"}
+              children={<i className="bi bi-pencil-fill"></i>}
+            />
+          </td>
           <td>{item.id}</td>
           <td>{item.firstName}</td>
           <td>{item.lastName}</td>

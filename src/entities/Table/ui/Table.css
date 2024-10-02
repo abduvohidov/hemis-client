@@ -5,12 +5,16 @@
 }
 
 thead tr th:nth-child(1) {
+  min-width: 120px !important;
+}
+
+thead tr th:nth-child(2) {
   min-width: 60px !important;
 }
 
-thead tr th:nth-child(2),
 thead tr th:nth-child(3),
-thead tr th:nth-child(4) {
+thead tr th:nth-child(4),
+thead tr th:nth-child(5) {
   min-width: 140px !important;
 }
 

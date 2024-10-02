@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { LoginRequest, loginApi } from "./../../../../shared";
+import { LoginRequest, loginApi } from "./../../../shared";
 
 interface ILoginState {
 	role: string | null;
@@ -22,7 +22,7 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
 	},
 
 	logout: () => {
-		// loginApi.logout();
+		// loginApi.logout();f
 		set({ role: null });
 	},
 }));

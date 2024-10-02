@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useLoginStore } from "../model/loginModel";
 import { FormAuthorizationProps } from "../types/types";
-import { Button, Input, Label } from "../../../../shared/index";
-
+import { Button, Input, Label } from "../../../shared";
 
 export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   className,
@@ -19,7 +18,6 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-
 
     await login({ email, password });
 

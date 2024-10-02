@@ -16,21 +16,21 @@ export type { LoginRequest, LoginResponse } from "./api/login/login.types";
 //student
 export { studentApi } from "./api/student/student.api";
 export type {
-	IStudent,
-	IStudentDeletedResponse,
-	IStudentReponse,
+  IStudent,
+  IStudentDeletedResponse,
+  IStudentReponse,
 } from "./api/student/student.types";
 
 //education
 export { educationApi } from "./api/education/education.api";
 export type {
-	IEdcationResponse,
-	IEducation,
+  IEdcationResponse,
+  IEducation,
 } from "./api/education/education.types";
 
 //article
 export { articleApi } from "./api/article/article.api";
-export type { IArticleResponse, IArticle } from "./api/article/article.types";
+export type { IArticle } from "./api/article/article.types";
 
 //addresses
 export { addressApi } from "./api/address/address.api";

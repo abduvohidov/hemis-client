@@ -1,19 +1,19 @@
 import React from "react";
-import { InputProps } from "../types/types";
+import { InputProps } from "../types/types.ts";
 
 export const Input: React.FC<InputProps> = (props) => {
   const {
-    value ,
+    value,
     type = "text",
     className,
     id,
     ariaDescribedby,
     placeholder = "placeholder",
-    handleChange
+    handleChange,
   } = props;
   return (
     <input
-    value={value}
+      value={value}
       type={type}
       className={`form-control ${className}`}
       id={id}
