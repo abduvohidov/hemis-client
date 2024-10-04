@@ -1,4 +1,4 @@
-const FILTER_ARTICLES_CONTENT = [
+export const FILTER_ARTICLES_CONTENT = [
     {
         value: "",
         type: "text",

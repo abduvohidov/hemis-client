@@ -1,4 +1,4 @@
-const FILTER_EDUCATION_CONTENT = [
+export const FILTER_EDUCATION_CONTENT = [
     {
         value: "",
         type: "select",

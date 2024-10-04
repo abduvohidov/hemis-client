@@ -1,4 +1,4 @@
-const FILTER_FACULTY_CONTENT = [
+export const FILTER_FACULTY_CONTENT = [
     {
         value: "",
         type: "select",

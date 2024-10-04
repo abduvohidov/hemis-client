@@ -2,6 +2,7 @@ export { Button } from "./ui/Button";
 export { Input } from "./ui/Input";
 export { Label } from "./ui/Label";
 export { Title } from "./ui/Title";
+export { Select } from "./ui/Select/select"
 
 export { baseApi } from "./api/base.api";
 

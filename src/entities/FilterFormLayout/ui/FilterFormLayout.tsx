@@ -1,4 +1,6 @@
-import "./FilterFormLayout.scss";
+import "./FilterFormLayout.css";
+import { Select } from "../../../shared";
+import { Input } from "../../../shared/ui/Input";
 import React, { FC, FormEventHandler } from "react";
 
 export interface IFilterFormLayout {
@@ -14,30 +16,20 @@ export const FilterFormLayout: FC<IFilterFormLayout> = (props) => {
   const formContent = content.map((field, index) => {
     if (field.type === "select") {
       return (
-        <div key={index}>
+        <div key={index} className="select-wrapper">
           <label htmlFor={field.name}>{field.placeholder}</label>
-          <select name={field.name} value={field.value}>
-            <option value={field.name}> Tanla</option>
-            {field.options.map((option: string, index: number) => (
-              <option key={index} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
+          <Select field={field} />
         </div>
       );
     } else {
       return (
-        <div key={index}>
-          <label htmlFor={field.name}>{field.placeholder}</label>
-          <input
+        <div key={index} className="input-wrapper">
+          <label className="fw-bold" htmlFor={field.name}>{field.placeholder}</label>
+          <Input
             type={field.type}
-            name={field.name}
             value={field.value}
             placeholder={field.placeholder}
-            onChange={(e) => {
-              handleChange(e);
-            }}
+            handleChange={handleChange}
           />
         </div>
       );
@@ -47,7 +39,7 @@ export const FilterFormLayout: FC<IFilterFormLayout> = (props) => {
   return (
     <div>
       <h3>{title}</h3>
-      <form action="#" onSubmit={submitForm}>
+      <form action="#" className="form" onSubmit={submitForm}>
         {formContent}
         <button type="submit">Qidirish</button>
       </form>

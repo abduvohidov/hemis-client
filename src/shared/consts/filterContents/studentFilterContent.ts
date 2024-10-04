@@ -1,4 +1,4 @@
-const FILTER_STUDENT_CONTENT = [
+export const FILTER_STUDENT_CONTENT = [
     {
         value: "",
         type: "text",
