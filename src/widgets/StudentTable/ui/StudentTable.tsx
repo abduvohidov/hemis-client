@@ -25,15 +25,22 @@ export const StudentTable: React.FC = () => {
     return tableHead.map((item) => <th key={item}>{item}</th>);
   }
 
-  async function findStudentsKeys() {
+  async function findStudents() {
     const response = await studentApi.getAllStudents();
     const result = await response.data;
     setData(result);
   }
 
+  async function removeStudent(id: any) {
+    await studentApi.deleteStudent(id);
+  }
+
+  async function updateStudent(id: any, data: Student) {}
+
   useEffect(() => {
-    findStudentsKeys();
-  }, []);
+    findStudents();
+    renderStudentValues();
+  }, [data]);
 
   function renderStudentValues() {
     return data.map((item, index) => {
@@ -43,6 +50,7 @@ export const StudentTable: React.FC = () => {
             <Button
               color={"light"}
               children={<i className="bi bi-trash3"></i>}
+              onClick={() => removeStudent(item.id)}
             />
             <Button
               color={"light"}

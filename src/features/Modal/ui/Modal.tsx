@@ -1,17 +1,8 @@
 import React, { useState } from "react";
-import { Input } from "../../../shared/ui/Input/index.ts";
-import { IModal } from "../type.ts";
-import { studentApi } from "../../../shared";
+import { Input, Button, studentApi } from "../../../shared";
 
-export const Modal: React.FC<IModal> = ({ id }) => {
-  const [value, setValue] = useState<string | undefined>();
-
-  async function updateData(id, data) {
-    try {
-      const response = await studentApi.updateStudent(id, data);
-      console.log(response);
-    } catch (error) {}
-  }
+export const Modal = () => {
+  const [value, setValue] = useState<string | any>();
 
   return (
     <div
@@ -25,39 +16,108 @@ export const Modal: React.FC<IModal> = ({ id }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="exampleModalLabel">
-              Update Task
+              Student Malumotini yangilash
             </h1>
-            <button
-              type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
           </div>
           <div className="modal-body">
-            <Input
-              placeholder={''}
-              value={value}
-              onChange={(e: any) => setValue(e.target.value)}
-              className={"form-control w-100"}
-            />
+            <div className="row">
+              <div className="col-lg-4">
+                <Input
+                  placeholder={"Ism"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-4">
+                <Input
+                  placeholder={"Familiy"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-4">
+                <Input
+                  placeholder={"Ota-ism"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-6 mt-3">
+                <Input
+                  placeholder={"Passport raqami"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-6 mt-3">
+                <Input
+                  placeholder={"Passport JSHSHR"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-4 mt-3">
+                <Input
+                  placeholder={"Tug'ilgan sanasi"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-4 mt-3">
+                <Input
+                  placeholder={"Jinsi"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-4 mt-3">
+                <Input
+                  placeholder={"Millati"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-4 mt-3">
+                <Input
+                  placeholder={"Email"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-4 mt-3">
+                <Input
+                  placeholder={"Telefon raqam"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+              <div className="col-lg-4 mt-3">
+                <Input
+                  placeholder={"Ota-ona raqami"}
+                  value={value}
+                  handleChange={(e: any) => setValue(e.target.value)}
+                  className={"form-control w-100"}
+                />
+              </div>
+            </div>
           </div>
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => updateData(id, { name: value })}
-              data-bs-dismiss="modal"
-            >
-              Save changes
-            </button>
+            <Button children={"Yopish"} color={"light"} toggleModal="modal" />
+            <Button
+              children={"Saqlash"}
+              color={"primary"}
+              toggleModal="modal"
+            />
           </div>
         </div>
       </div>
