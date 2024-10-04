@@ -9,7 +9,6 @@ export const Admin: React.FC = () => {
       <div className="container mx-auto">
         <Title children={"Admin Page"} className={"my-5"} />
         <DashboardButtons className={"my-5"} />
-
         <h6>Magistrlar Tablitsasi</h6>
         <StudentTable />
       </div>
