@@ -2,7 +2,7 @@ export const FILTER_STUDENT_CONTENT = [
     {
         value: "",
         type: "text",
-        name: "firsrtName",
+        name: "firstName",
         placeholder: "Ism kiriting",
     },
     {

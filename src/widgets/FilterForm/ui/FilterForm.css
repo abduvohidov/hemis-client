@@ -1,0 +1,7 @@
+.filter-form_wrapper {
+  gap: 20px;
+  display: flex;
+  overflow-y: auto;
+  max-height: 50vh;
+  flex-direction: column;
+}

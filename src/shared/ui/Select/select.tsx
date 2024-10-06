@@ -1,19 +1,22 @@
 import React, { FC } from "react";
 
 export interface ISelect {
-  readonly field: any;
-  readonly className?: string;
+  field: any;
+  className?: string;
+  handleChange(e: React.ChangeEvent<HTMLSelectElement>): void;
+  value: string;
 }
 
 export const Select: FC<ISelect> = (props) => {
-  const { field, className } = props;
+  const { field, className, handleChange, value } = props;
+
   return (
     <select
       className={`form-select ${className}`}
       name={field.name}
-      value={field.value}
+      onChange={handleChange}
     >
-      <option selected disabled>
+      <option disabled value="">
         Tanlang
       </option>
       {field.options.map((option: string, index: number) => (

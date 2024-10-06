@@ -2,9 +2,12 @@ import { Student } from "../types/type";
 import React, { useEffect, useState } from "react";
 import { Table } from "../../../entities/Table";
 import { Button, studentApi } from "../../../shared/index.js";
+import { useFormStore } from "../../FilterForm/model/formStore.js";
 
 export const StudentTable: React.FC = () => {
   const [data, setData] = useState<Student[]>([]);
+  const students = useFormStore((state) => state.students);
+  console.log("students : " + students);
   const tableHead = [
     "#",
     "Id",
@@ -25,18 +28,8 @@ export const StudentTable: React.FC = () => {
     return tableHead.map((item) => <th key={item}>{item}</th>);
   }
 
-  async function findStudentsKeys() {
-    const response = await studentApi.getAllStudents();
-    const result = await response.data;
-    setData(result);
-  }
-
-  useEffect(() => {
-    findStudentsKeys();
-  }, []);
-
   function renderStudentValues() {
-    return data.map((item, index) => {
+    return students.map((item, index) => {
       return (
         <tr key={index}>
           <td>
