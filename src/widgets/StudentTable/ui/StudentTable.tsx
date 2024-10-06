@@ -1,6 +1,6 @@
 import { Student } from "../types/type";
 import React, { useEffect, useState } from "react";
-import { Table } from "../../../entities/Table";
+import { Table } from "../../../shared/ui/Table";
 import { Button, studentApi } from "../../../shared/index.js";
 
 export const StudentTable: React.FC = () => {
