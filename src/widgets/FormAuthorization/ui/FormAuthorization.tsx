@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useLoginStore } from "../model/loginModel";
 import { FormAuthorizationProps } from "../types/types";
 import { Button, Input, Label } from "../../../shared";
+import { useNavigate } from "react-router";
 
 export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   className,
 }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const navigate = useNavigate();
 
   const login = useLoginStore((state: { login: Function }) => state.login);
 
@@ -27,6 +29,7 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
       alert(error);
     } else {
       alert("Login successful!");
+      navigate("/admin");
     }
     clearForm();
   }

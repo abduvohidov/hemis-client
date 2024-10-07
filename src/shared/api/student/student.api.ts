@@ -1,3 +1,4 @@
+import { getToken } from "../../../widgets/FormAuthorization/lib/cookie";
 import { baseApi } from "../base.api";
 import {
   IStudentReponse,
@@ -17,18 +18,36 @@ export const studentApi = {
     id: number,
     data: Partial<IStudent>
   ): Promise<IStudent> => {
-    return await baseApi.put<IStudentReponse, Partial<IStudent>>(`/students/update/${id}`, data);
-  },
-
-  deleteStudent: async (id: number): Promise<IStudent> => {
-    return await baseApi.delete<IStudentDeletedResponse>(
-      `/students/delete/${id}`
+    return await baseApi.put<IStudentReponse, Partial<IStudent>>(
+      `/students/update/${id}`,
+      data
     );
   },
 
+  deleteStudent: async (id: number): Promise<IStudentReponse> => {
+    const token = getToken();
+
+    if (!token) {
+      throw new Error("Token not found");
+    }
+
+    try {
+      return await baseApi.delete<IStudentDeletedResponse>(
+        `/students/delete/${id}`,
+        {
+          headers: {
+            token: token,
+          }
+        }
+      );
+    } catch (error) {
+      return error.message;
+    }
+  },
+
   // gets
-  getAllStudents: async (): Promise<IStudent[]> => {
-    return await baseApi.get<IStudent[]>(`/students/all`);
+  getAllStudents: async (): Promise<IStudentReponse[]> => {
+    return await baseApi.get<IStudentReponse[]>(`/students/all`);
   },
 
   getStudentById: async (id: number): Promise<IStudent[]> => {

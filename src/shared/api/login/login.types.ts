@@ -4,6 +4,7 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
+	token(token: any): unknown;
 	redirectTo: string;
 	jwt: string;
 }

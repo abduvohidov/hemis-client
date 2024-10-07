@@ -3,7 +3,7 @@ import "./Table.css";
 
 interface ITable {
   tableHead: React.ReactNode[];
-  tableBody: React.ReactNode[];
+  tableBody: React.ReactNode[] | React.ReactNode | string;
 }
 
 export const Table: React.FC<ITable> = (props) => {

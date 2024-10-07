@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Input, Button, studentApi } from "../../../shared";
+import { Input, Button } from "../../../shared";
 
 export const Modal = () => {
   const [value, setValue] = useState<string | any>();

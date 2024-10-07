@@ -1,3 +1,4 @@
+import React from "react";
 import { Title } from "../../../shared";
 import { FormAuthorization } from "../../../widgets";
 import "./Login.css";
