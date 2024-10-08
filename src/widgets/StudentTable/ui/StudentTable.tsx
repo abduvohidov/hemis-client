@@ -8,21 +8,10 @@ import { removeStudent, findStudents, downloadXlsxFile } from "../lib";
 export const StudentTable: React.FC = () => {
   const [data, setData] = useState<IStudentReponse[] | null>(null);
 
-  useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        await findStudents({ setData });
-      } catch (err) {
-        console.error("Error fetching students:", err.message);
-      }
-    };
-    fetchStudents();
-  }, []);
-
   async function createStudent(studentData: any): Promise<void> {
     try {
       const res = await studentApi.createStudent(studentData);
-      console.log(res)
+      console.log(res);
       await findStudents({ setData });
     } catch (err) {
       console.error("Error creating student:", err.message);
@@ -73,6 +62,18 @@ export const StudentTable: React.FC = () => {
       );
     }
   }
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        await findStudents({ setData });
+      } catch (err) {
+        console.error("Error fetching students:", err.message);
+      }
+    };
+    fetchStudents();
+    renderStudentValues();
+  }, [data]);
 
   return (
     <>
