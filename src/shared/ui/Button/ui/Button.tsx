@@ -9,8 +9,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
     type = "button",
     onChange,
     onClick,
-    toggleModal,
-    targetModal
+    toggleStudentModal,
+    targetStudentModal
   } = props;
   return (
     <>
@@ -19,8 +19,8 @@ export const Button: React.FC<ButtonProps> = (props) => {
         className={`btn btn-${color} ${className}`}
         onChange={onChange}
         onClick={onClick}
-        data-bs-toggle={toggleModal}
-        data-bs-target={targetModal}
+        data-bs-toggle={toggleStudentModal}
+        data-bs-target={targetStudentModal}
       >
         {children}
       </button>

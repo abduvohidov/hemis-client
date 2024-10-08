@@ -26,7 +26,7 @@ export const baseApi = {
       const response = await apiClient.post<T>(url, data, config);
       return response?.data;
     } catch (error: any) {
-      return error.response?.data || { error: "Unknown error" };
+      return error.response?.data || error.message;
     }
   },
 

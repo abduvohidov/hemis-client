@@ -7,9 +7,10 @@ import {
 } from "./student.types";
 
 export const studentApi = {
+  
   createStudent: async (data: IStudent): Promise<IStudentReponse> => {
     return await baseApi.post<IStudentReponse, IStudent>(
-      "/students/create",
+      "/students/register",
       data
     );
   },
@@ -37,7 +38,7 @@ export const studentApi = {
         {
           headers: {
             token: token,
-          }
+          },
         }
       );
     } catch (error) {

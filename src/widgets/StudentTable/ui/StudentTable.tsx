@@ -1,13 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "../../../shared/ui/Table";
-import { Button, IStudentReponse } from "../../../shared/index.ts";
-import { findStudents } from "../lib/findStudents.ts";
-import { removeStudent } from "../lib/removeStudent.ts";
+import { Button, IStudentReponse, studentApi } from "../../../shared/index.ts";
 import { tableHead } from "../model/tableHead.ts";
+import { StudentModal } from "../../../features/StudentModal";
+import { removeStudent, findStudents, downloadXlsxFile } from "../lib";
 
 export const StudentTable: React.FC = () => {
-  const [data, setData] = useState<IStudentReponse[]>([]);
-  
+  const [data, setData] = useState<IStudentReponse[] | null>(null);
+
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        await findStudents({ setData });
+      } catch (err) {
+        console.error("Error fetching students:", err.message);
+      }
+    };
+    fetchStudents();
+  }, []);
+
+  async function createStudent(studentData: any): Promise<void> {
+    try {
+      const res = await studentApi.createStudent(studentData);
+      console.log(res)
+      await findStudents({ setData });
+    } catch (err) {
+      console.error("Error creating student:", err.message);
+    }
+  }
 
   function renderStudentHead() {
     return tableHead.map((item) => <th key={item}>{item}</th>);
@@ -15,43 +35,13 @@ export const StudentTable: React.FC = () => {
 
   function renderStudentValues() {
     if (data) {
-      return data?.map((item, index) => {
-        return (
-          <tr key={index}>
-            <td>
-              <Button
-                color={"light"}
-                children={<i className="bi bi-trash3"></i>}
-                onClick={() => removeStudent(item.id)}
-              />
-              <Button
-                color={"light"}
-                className={"mx-2"}
-                children={<i className="bi bi-pencil-fill"></i>}
-              />
-            </td>
-            <td>{item?.id}</td>
-            <td>{item?.firstName}</td>
-            <td>{item?.lastName}</td>
-            <td>{item?.middleName}</td>
-            <td>{item?.passportNumber}</td>
-            <td>{item?.jshshr}</td>
-            <td>{item?.dateOfBirth}</td>
-            <td>{item?.gender}</td>
-            <td>{item?.nationality}</td>
-            <td>{item?.email}</td>
-            <td>{item?.phoneNumber}</td>
-            <td>{item?.parentPhoneNumber}</td>
-          </tr>
-        );
-      });
-    } else {
-      return (
-        <tr>
+      return data.map((item, index) => (
+        <tr key={index}>
           <td>
             <Button
               color={"light"}
               children={<i className="bi bi-trash3"></i>}
+              onClick={() => removeStudent(item.id)}
             />
             <Button
               color={"light"}
@@ -59,29 +49,55 @@ export const StudentTable: React.FC = () => {
               children={<i className="bi bi-pencil-fill"></i>}
             />
           </td>
-          <td>0</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
-          <td>Not Found !</td>
+          <td>{item?.id}</td>
+          <td>{item?.firstName}</td>
+          <td>{item?.lastName}</td>
+          <td>{item?.middleName}</td>
+          <td>{item?.passportNumber}</td>
+          <td>{item?.jshshr}</td>
+          <td>{item?.dateOfBirth}</td>
+          <td>{item?.gender}</td>
+          <td>{item?.nationality}</td>
+          <td>{item?.email}</td>
+          <td>{item?.phoneNumber}</td>
+          <td>{item?.parentPhoneNumber}</td>
+        </tr>
+      ));
+    } else {
+      return (
+        <tr>
+          <td colSpan={13} className="text-center">
+            No data found!
+          </td>
         </tr>
       );
     }
   }
 
-  useEffect(() => {
-    renderStudentValues();
-    findStudents({ setData });
-  }, [data]);
-
   return (
-    <Table tableHead={renderStudentHead()} tableBody={renderStudentValues()} />
+    <>
+      <div className={"my-3"}>
+        <Button
+          color={"light"}
+          className={"mx-2"}
+          toggleStudentModal="modal"
+          targetStudentModal="#exampleStudentModal"
+          children={"Yaratish"}
+        />
+        <Button
+          color={"light"}
+          className={"mx-2"}
+          onClick={downloadXlsxFile}
+          children={<i className="bi bi-download"></i>}
+        />
+      </div>
+
+      <Table
+        tableHead={renderStudentHead()}
+        tableBody={renderStudentValues()}
+      />
+
+      <StudentModal onSubmit={createStudent} />
+    </>
   );
 };
