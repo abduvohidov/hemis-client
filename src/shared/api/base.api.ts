@@ -44,7 +44,8 @@ export const baseApi = {
       const response = await apiClient.delete<T>(url, config);
       return response?.data;
     } catch (error: any) {
-      return error.response?.data || { error: "Unknown error" };
+      console.error("Ошибка DELETE запроса:", error);
+      return error.response?.data || error.message;
     }
   },
 };

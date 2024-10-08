@@ -6,7 +6,8 @@ import { removeStudent } from "../lib/removeStudent.ts";
 import { tableHead } from "../model/tableHead.ts";
 
 export const StudentTable: React.FC = () => {
-  const [data, setData] = useState<IStudentReponse[] | []>([]);
+  const [data, setData] = useState<IStudentReponse[]>([]);
+  
 
   function renderStudentHead() {
     return tableHead.map((item) => <th key={item}>{item}</th>);
@@ -45,7 +46,6 @@ export const StudentTable: React.FC = () => {
         );
       });
     } else {
-      console.log("Проверь Сервер!");
       return (
         <tr>
           <td>
@@ -77,8 +77,8 @@ export const StudentTable: React.FC = () => {
   }
 
   useEffect(() => {
-    findStudents({ setData });
     renderStudentValues();
+    findStudents({ setData });
   }, [data]);
 
   return (

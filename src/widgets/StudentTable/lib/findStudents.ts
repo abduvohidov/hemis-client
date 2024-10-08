@@ -7,8 +7,12 @@ interface FindStudentsProps {
 export async function findStudents({ setData }: FindStudentsProps) {
   try {
     const result: any = await studentApi.getAllStudents();
-    setData(result.data);
+    if (result && result.data) {
+      setData(result.data as IStudentReponse[]);
+    } else {
+      console.warn("Неожиданный формат ответа:", result);
+    }
   } catch (error) {
-    console.error("Error fetching students:", error);
+    console.error("Ошибка при загрузке студентов:", error);
   }
 }
