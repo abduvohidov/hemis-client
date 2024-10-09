@@ -32,13 +32,14 @@ export const useFormStore = create<FormState>((set, get) => ({
         [name]: value,
       },
     })),
-
+  //done
   filterByStudent: async (formData: Record<string, string>) => {
     const result: any = await studentApi.getStudentsByFilter(
       formData as Partial<IStudent>
     );
     return result.data;
   },
+  //done
   filterByEducation: async (formData: Record<string, string>) => {
     const result: any = await educationApi.filter(formData);
     return result.data;
@@ -52,9 +53,12 @@ export const useFormStore = create<FormState>((set, get) => ({
     return result.data;
   },
   filterByAddress: async (formData: Record<string, string>) => {
+    console.log(formData);
     const result: any = await addressApi.filter(formData);
+    console.log(result.data);
     return result.data;
   },
+  //done
   filterByArticle: async (formData: Record<string, string>) => {
     const result: any = await articleApi.filter(formData);
     return result.data;

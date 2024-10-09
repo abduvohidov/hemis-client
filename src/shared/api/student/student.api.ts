@@ -35,7 +35,6 @@ export const studentApi = {
     return await baseApi.get<IStudent[]>(`/students/${id}`);
   },
   getStudentsByFilter: async (data: Partial<IStudent>): Promise<IStudent[]> => {
-    console.log(data)
     return await baseApi.post<IStudentReponse[], Partial<IStudent>>(
       `/students/filter`,
       data
