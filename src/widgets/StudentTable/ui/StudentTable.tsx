@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "../../../entities/Table";
 import { Button } from "../../../shared/index.js";
 import { useFormStore } from "../../FilterForm/model/formStore.js";
