@@ -37,32 +37,26 @@ export const useFormStore = create<FormState>((set, get) => ({
     const result: any = await studentApi.getStudentsByFilter(
       formData as Partial<IStudent>
     );
-    console.log("student : " + JSON.stringify(result.data));
     return result.data;
   },
   filterByEducation: async (formData: Record<string, string>) => {
     const result: any = await educationApi.filter(formData);
-    console.log("education : " + JSON.stringify(result.data));
     return result.data;
   },
   filterByBachelor: async (formData: Record<string, string>) => {
     const result: any = await bachelorApi.filter(formData);
-    console.log("bachelor : " + JSON.stringify(result.data));
     return result.data;
   },
   filterByFaculty: async (formData: Record<string, string>) => {
-    const result: any = await facultyApi.getByName(formData["facultyName"]);
-    console.log("faculty : " + JSON.stringify(result.data));
+    const result: any = await facultyApi.getByName(formData.name);
     return result.data;
   },
   filterByAddress: async (formData: Record<string, string>) => {
     const result: any = await addressApi.filter(formData);
-    console.log("address : " + JSON.stringify(result.data));
     return result.data;
   },
   filterByArticle: async (formData: Record<string, string>) => {
     const result: any = await articleApi.filter(formData);
-    console.log("article : " + JSON.stringify(result.data));
     return result.data;
   },
 
@@ -95,10 +89,9 @@ export const useFormStore = create<FormState>((set, get) => ({
         ...addressResults,
         ...articleResults,
       ];
-      console.log("formData : " + formData);
       // Update the state with the merged results
       set((state) => ({
-        students: [...studentResults],
+        students: [...allResults],
       }));
     } catch (error) {
       console.error("Error filtering data", error);

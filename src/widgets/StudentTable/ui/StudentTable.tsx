@@ -1,13 +1,10 @@
-import { Student } from "../types/type";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "../../../entities/Table";
-import { Button, studentApi } from "../../../shared/index.js";
+import { Button } from "../../../shared/index.js";
 import { useFormStore } from "../../FilterForm/model/formStore.js";
 
 export const StudentTable: React.FC = () => {
-  const [data, setData] = useState<Student[]>([]);
   const students = useFormStore((state) => state.students);
-  console.log("students : " + students);
   const tableHead = [
     "#",
     "Id",

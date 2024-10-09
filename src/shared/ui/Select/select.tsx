@@ -15,10 +15,9 @@ export const Select: FC<ISelect> = (props) => {
       className={`form-select ${className}`}
       name={field.name}
       onChange={handleChange}
+      defaultValue="Tanlang"
     >
-      <option disabled value="">
-        Tanlang
-      </option>
+      <option disabled>Tanlang</option>
       {field.options.map((option: string, index: number) => (
         <option key={index} value={option}>
           {option}

@@ -1,6 +1,6 @@
 import "./FilterFormLayout.css";
-import React, { FC, FormEventHandler } from "react";
 import { Select } from "../../../shared";
+import React, { FC, FormEventHandler } from "react";
 
 export interface IFilterFormLayout {
   title: string;

@@ -36,14 +36,14 @@ export const FILTER_STUDENT_CONTENT = [
         placeholder: "KUN/OY/YIL",
     },
     {
-        value: "",
+        value: "Jins tanlnang",
         type: "select",
         name: "gender",
         placeholder: "Jins tanlnang",
         options: ["Erkak", "Ayol"]
     },
     {
-        value: "uzbek",
+        value: "",
         type: "text",
         name: "nationality",
         placeholder: "Millatini kiriting (uzbek)",
