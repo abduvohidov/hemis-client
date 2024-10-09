@@ -1,0 +1,18 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.form-title {
+margin-bottom: 30px;
+}
+
+.select-wrapper,
+.input-wrapper {
+  gap: 10px;
+  display: flex;
+  max-width: 400px;
+  flex-direction: column;
+  align-items: center;
+}

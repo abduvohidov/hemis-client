@@ -2,6 +2,7 @@ export { Button } from "./ui/Button";
 export { Input } from "./ui/Input";
 export { Label } from "./ui/Label";
 export { Title } from "./ui/Title";
+export { Select } from "./ui/Select/select";
 
 export { baseApi } from "./api/base.api";
 
@@ -35,3 +36,11 @@ export type { IArticle } from "./api/article/article.types";
 //addresses
 export { addressApi } from "./api/address/address.api";
 export type { IAddressResponse, IAddress } from "./api/address/address.types";
+
+//bachelor
+export { bachelorApi } from "./api/bachelor/bachelor.api";
+export type { IBachelor, IBachelorResponse } from "./api/bachelor/bachelor.types";
+
+//faculty
+export { facultyApi } from "./api/faculty/faculty.api";
+export type { IFaculty, IFacultyReponse } from "./api/faculty/faculty.types";
