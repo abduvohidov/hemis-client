@@ -3,9 +3,10 @@ import { InputProps } from "../types/types.ts";
 
 export const Input: React.FC<InputProps> = (props) => {
   const {
-    value,
+    value = "",
     type = "text",
     className,
+    name,
     id,
     ariaDescribedby,
     placeholder = "placeholder",
@@ -17,6 +18,7 @@ export const Input: React.FC<InputProps> = (props) => {
       type={type}
       className={`form-control ${className}`}
       id={id}
+      name={name}
       aria-describedby={ariaDescribedby}
       placeholder={placeholder}
       onChange={handleChange}
