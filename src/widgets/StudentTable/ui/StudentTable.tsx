@@ -1,7 +1,7 @@
 import React from "react";
-import { Table } from "../../../entities/Table";
 import { Button } from "../../../shared/index.js";
 import { useFormStore } from "../../FilterForm/model/formStore.js";
+import { Table } from "../../../shared/ui/Table/ui/Table.js";
 
 export const StudentTable: React.FC = () => {
   const students = useFormStore((state) => state.students);

@@ -79,7 +79,7 @@ export const FilterForm = () => {
           content={FILTER_FACULTY_CONTENT}
         />
       </div>
-      <Button children="Qidirish" className="mx-auto" onClick={handleClick} />
+      <Button children="Qidirish" className="me-auto w-100 my-4 cursor-pointer" onClick={handleClick} />
     </>
   );
 };
