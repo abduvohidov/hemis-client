@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
 import { Table } from "../../../shared/ui/Table";
-import { Button, IStudentReponse, studentApi } from "../../../shared/index.ts";
 import { tableHead } from "../model/tableHead.ts";
+import React, { useEffect, useState } from "react";
 import { StudentModal } from "../../../features/StudentModal";
+import { useFormStore } from "../../FilterForm/model/formStore.ts";
 import { removeStudent, findStudents, downloadXlsxFile } from "../lib";
+import { Button, IStudentReponse, studentApi } from "../../../shared/index.ts";
 
 export const StudentTable: React.FC = () => {
   const [data, setData] = useState<IStudentReponse[] | null>(null);
-
+  const students = useFormStore((state) => state.students);
   async function createStudent(studentData: any): Promise<void> {
     try {
       const res = await studentApi.createStudent(studentData);
@@ -64,16 +65,9 @@ export const StudentTable: React.FC = () => {
   }
 
   useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        await findStudents({ setData });
-      } catch (err) {
-        console.error("Error fetching students:", err.message);
-      }
-    };
-    fetchStudents();
+    setData(students);
     renderStudentValues();
-  }, [data]);
+  }, [students]);
 
   return (
     <>

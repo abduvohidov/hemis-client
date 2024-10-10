@@ -47,7 +47,8 @@ export const studentApi = {
 
   // gets
   getAllStudents: async (): Promise<IStudentReponse[]> => {
-    return await baseApi.get<IStudentReponse[]>(`/students/all`);
+    const result = await baseApi.get<IStudentReponse[]>(`/students/all`);
+    return result.data;
   },
 
   getStudentById: async (id: number): Promise<IStudent[]> => {
