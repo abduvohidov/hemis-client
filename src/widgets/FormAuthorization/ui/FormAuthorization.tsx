@@ -12,7 +12,6 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   const navigate = useNavigate();
 
   const login = useLoginStore((state: { login: Function }) => state.login);
-
   function clearForm() {
     setEmail("");
     setPassword("");
@@ -21,15 +20,15 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    await login({ email, password });
-
+    const role = await login({ email, password });
     const { error } = useLoginStore.getState();
 
     if (error) {
       alert(error);
     } else {
       alert("Login successful!");
-      navigate("/admin");
+      if (role === "student") navigate("/user");
+      else navigate("/admin");
     }
     clearForm();
   }

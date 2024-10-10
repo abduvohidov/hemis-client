@@ -1,0 +1,15 @@
+.profile-wrapper{
+    width: 50%;
+    display: flex;
+    margin: 50px auto;
+    align-items: start;
+    justify-content: space-between;
+}
+
+
+.profile-image {
+  width: 138px;
+  height: 177px;
+  padding: 5px;
+  border: 2px dotted gray;
+}
