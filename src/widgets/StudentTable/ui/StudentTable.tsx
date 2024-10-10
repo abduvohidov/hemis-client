@@ -7,15 +7,30 @@ import { removeStudent, findStudents, downloadXlsxFile } from "../lib";
 import { Button, IStudentReponse, studentApi } from "../../../shared/index.ts";
 
 export const StudentTable: React.FC = () => {
-  const [data, setData] = useState<IStudentReponse[] | null>(null);
   const students = useFormStore((state) => state.students);
+  const [data, setData] = useState<IStudentReponse[]>([]);
+
+  const fetchStudents = async () => {
+    await findStudents({ setData });
+  };
+
   async function createStudent(studentData: any): Promise<void> {
     try {
-      const res = await studentApi.createStudent(studentData);
-      console.log(res);
-      await findStudents({ setData });
+      await studentApi.createStudent(studentData);
+      await fetchStudents();
     } catch (err) {
       console.error("Error creating student:", err.message);
+    }
+  }
+
+  async function handleDelete(item: IStudentReponse) {
+    try {
+      await removeStudent(item.id);
+      setData((prevData) =>
+        prevData.filter((student) => student.id !== item.id)
+      );
+    } catch (err) {
+      console.error("Error deleting student:", err.message);
     }
   }
 
@@ -24,14 +39,14 @@ export const StudentTable: React.FC = () => {
   }
 
   function renderStudentValues() {
-    if (data) {
+    if (data.length > 0) {
       return data.map((item, index) => (
         <tr key={index}>
           <td>
             <Button
               color={"light"}
               children={<i className="bi bi-trash3"></i>}
-              onClick={() => removeStudent(item.id)}
+              onClick={() => handleDelete(item)}
             />
             <Button
               color={"light"}
@@ -66,7 +81,6 @@ export const StudentTable: React.FC = () => {
 
   useEffect(() => {
     setData(students);
-    renderStudentValues();
   }, [students]);
 
   return (

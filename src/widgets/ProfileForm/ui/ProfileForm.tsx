@@ -24,38 +24,50 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
   // update function
 
   async function handleLogout() {
-    navigate("/login");
+    navigate("/");
     await logout();
   }
 
   async function handleClick() {
-    try {
-      setIsUpdating(!isUpdating);
-      const data = {
+    if (isUpdating) {
+      // Check if new password is provided
+      if (newPassword && password !== newPassword) {
+        alert("Parollar mos emas!");
+        return;
+      }
+
+      // Prepare data for update
+      const data: any = {
         id: student.id,
         email,
-        password,
         phoneNumber,
       };
-      if (btnContent === "Saqlash" && password === newPassword) {
+
+      // Only include password if it is being updated
+      if (password) {
+        data.password = password; // Only set password if it's provided
+      }
+
+      try {
         const updatedStudent: any = await studentApi.updateStudent(
           student.id,
           data
         );
         if (typeof updatedStudent !== "string") {
           alert("Malumotlar yangilandi");
-          setPassword("");
-          setNewPassword("");
+          setPassword(""); // Clear password field
+          setNewPassword(""); // Clear new password field
           localStorage.setItem("student", JSON.stringify(updatedStudent.data));
         } else {
           alert(updatedStudent);
         }
+      } catch (error) {
+        console.log("Error in update student: " + error);
       }
-    } catch (error) {
-      console.log("Error in update student :  " + error);
     }
-  }
 
+    setIsUpdating(!isUpdating);
+  }
   return (
     <form className="profile-form">
       <ProfileInput
