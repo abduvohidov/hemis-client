@@ -7,7 +7,6 @@ import {
 } from "./student.types";
 
 export const studentApi = {
-  
   createStudent: async (data: IStudent): Promise<IStudentReponse> => {
     return await baseApi.post<IStudentReponse, IStudent>(
       "/students/register",

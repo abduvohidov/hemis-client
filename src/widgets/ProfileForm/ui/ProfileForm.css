@@ -1,0 +1,6 @@
+.profile-form {
+  gap: 20px;
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+}
