@@ -4,3 +4,8 @@
   width: 400px;
   flex-direction: column;
 }
+.logut-btn {
+  border: none;
+  text-decoration: underline;
+  background: none;
+}

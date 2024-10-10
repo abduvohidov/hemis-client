@@ -12,13 +12,16 @@ interface ILoginState {
 export const useLoginStore = create<ILoginState>((set: Function) => ({
   role: null,
   error: null,
-  studentInfo: JSON.parse(localStorage.getItem("student") as string) as IStudentReponse || null,
+  studentInfo:
+    (JSON.parse(
+      localStorage.getItem("student") as string
+    ) as IStudentReponse) || null,
   login: async (data: LoginRequest): Promise<String | null> => {
     const result = await loginApi.login(data);
     if (typeof result !== "string") {
       setToken(result.jwt);
       set({ error: null, studentInfo: result.result });
-      localStorage.setItem('student', JSON.stringify(result.result))
+      localStorage.setItem("student", JSON.stringify(result.result));
       return result.redirectTo as string;
     } else {
       set({ error: result });
@@ -29,6 +32,6 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
   logout: () => {
     removeToken("token");
     localStorage.removeItem("student");
-    // loginApi.logout();
+    loginApi.logout();
   },
 }));

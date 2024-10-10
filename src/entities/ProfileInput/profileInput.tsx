@@ -1,28 +1,63 @@
 import React, { FC } from "react";
 import "./profileInput.css";
+import InputMask from "react-input-mask";
 
-export interface IProfiInput {
+export interface IProfileInput {
   name: string;
   type?: "text" | "number" | "password" | "email";
   disabled: boolean;
   placeholder: string;
   value?: string;
+  isPhoneInput?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const ProfileInput: FC<IProfiInput> = (props) => {
-  const { name, type = "text", disabled, placeholder, value } = props;
+export const ProfileInput: FC<IProfileInput> = (props) => {
+  const {
+    name,
+    type = "text",
+    disabled,
+    placeholder,
+    value,
+    isPhoneInput = false,
+    onChange,
+  } = props;
+
+  const input = isPhoneInput ? (
+    <InputMask
+      mask="+\9\98 999 99 99"
+      placeholder={value}
+      maskChar="_"
+      value={value}
+      onChange={onChange}
+      disabled={disabled}
+    >
+      {(inputProps) => (
+        <input
+          {...inputProps}
+          name={name}
+          type="text"
+          className="form-control"
+        />
+      )}
+    </InputMask>
+  ) : (
+    <input
+      name={name}
+      type={type}
+      disabled={disabled}
+      value={value}
+      onChange={onChange}
+      className="form-control"
+    />
+  );
+
   return (
     <div>
       <label className="fw-bold" htmlFor={name}>
         {placeholder}
       </label>
-      <input
-        name={name}
-        type={type}
-        disabled={disabled}
-        value={value}
-        className={`${disabled && "disabled-input"} form-control`}
-      />
+      {input}
     </div>
   );
 };
