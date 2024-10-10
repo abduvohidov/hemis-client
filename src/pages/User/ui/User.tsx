@@ -1,15 +1,16 @@
 import "./User.css";
 import React from "react";
-import { IStudentReponse } from "../../../shared";
+import { Button, IStudentReponse } from "../../../shared";
 import { ProfileForm } from "../../../widgets/ProfileForm/ui/ProfileForm";
 import { useLoginStore } from "../../../widgets/FormAuthorization/model/loginModel";
 
 export const User = () => {
   const student = useLoginStore((state) => state.studentInfo);
+  const logout = useLoginStore((state) => state.logout);
   return (
     <div className="container">
       <div className="profile-wrapper">
-        <ProfileForm student={student as IStudentReponse} />
+        <ProfileForm student={student as IStudentReponse} logout={logout} />
         <div>
           <img
             className="profile-image"
