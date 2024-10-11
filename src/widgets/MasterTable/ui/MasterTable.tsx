@@ -1,8 +1,8 @@
-import { Table } from "../../../shared/ui/Table/index.ts";
 import { tableHead } from "../model/tableHead.ts";
 import React, { useEffect, useState } from "react";
-import { MasterModal } from "../../../features/MasterModal/index.ts";
+import { Table } from "../../../shared/ui/Table/index.ts";
 import { useFormStore } from "../../FilterForm/model/formStore.ts";
+import { MasterModal } from "../../../features/MasterModal/index.ts";
 import { removeMaster, findMasters, downloadXlsxFile } from "../lib/index.ts";
 import { Button, IMasterReponse, MasterApi } from "../../../shared/index.ts";
 

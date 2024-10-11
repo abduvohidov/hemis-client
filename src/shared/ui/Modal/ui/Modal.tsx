@@ -19,9 +19,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
             </h1>
           </div>
 
-            <div className="modal-body">
-                {children}
-            </div>
+          <div className="modal-body">{children}</div>
 
           <div className="modal-footer">
             <Button color="light" toggleMasterModal="modal">
