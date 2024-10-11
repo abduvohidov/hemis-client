@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface MasterState {
+export interface MasterState {
   lastName: string;
   firstName: string;
   middleName: string;

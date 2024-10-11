@@ -1,6 +1,6 @@
 import React from "react";
-import { ModalProps } from "../types";
 import { Button } from "../../Button";
+import { ModalProps } from "../type";
 
 export const Modal: React.FC<ModalProps> = (props) => {
   const { title, children, modalId, onSave, className } = props;
@@ -18,7 +18,11 @@ export const Modal: React.FC<ModalProps> = (props) => {
               {title}
             </h1>
           </div>
-          <div className="modal-body">{children}</div>
+
+            <div className="modal-body">
+                {children}
+            </div>
+
           <div className="modal-footer">
             <Button color="light" toggleMasterModal="modal">
               Yopish

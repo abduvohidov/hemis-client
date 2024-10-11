@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal } from "../../../shared/ui/Modal";
+import { Modal } from "../../../entities/ModalFormLayout";
 
 interface MasterModalProps {}
 

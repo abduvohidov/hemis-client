@@ -22,6 +22,7 @@ export const Input: React.FC<InputProps> = (props) => {
       aria-describedby={ariaDescribedby}
       placeholder={placeholder}
       onChange={handleChange}
+      required
     />
   );
 };

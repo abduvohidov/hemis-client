@@ -22,6 +22,7 @@ export const MasterTable: React.FC = () => {
   }
 
   async function createMaster(MasterData: any): Promise<void> {
+    console.log(MasterData);
     try {
       await MasterApi.createMaster(MasterData);
       await fetchMasters();

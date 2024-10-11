@@ -4,3 +4,4 @@ export { FILTER_FACULTY_CONTENT } from "./filterContents/facultyFilterContent";
 export { FILTER_ARTICLES_CONTENT } from "./filterContents/articleFilterContent";
 export { FILTER_BACHELOR_CONTENT } from "./filterContents/bachelorFilterContent";
 export { FILTER_EDUCATION_CONTENT } from "./filterContents/educationFilterContent";
+export { mastersModalContent } from "./masterContents/mastersModalContent";
