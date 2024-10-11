@@ -1,5 +1,5 @@
 export interface IEducation {
-	studentId: number;
+	MasterId: number;
 	bachelorId: number;
 	currentSpecialization: string;
 	facultyId: number;

@@ -1,4 +1,4 @@
-export { FILTER_STUDENT_CONTENT } from "./filterContents/studentFilterContent";
+export { FILTER_Master_CONTENT } from "./filterContents/masterFilterContent";
 export { FILTER_ADDRESS_CONTENT } from "./filterContents/addressFilterContent";
 export { FILTER_FACULTY_CONTENT } from "./filterContents/facultyFilterContent";
 export { FILTER_ARTICLES_CONTENT } from "./filterContents/articleFilterContent";

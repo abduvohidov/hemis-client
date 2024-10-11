@@ -5,8 +5,8 @@ export interface ButtonProps {
   children?: string | ReactNode;
   color?: string;
   type?: "submit" | "reset" | "button" | undefined;
-  toggleStudentModal?: string;
-  targetStudentModal?: string;
+  toggleMasterModal?: string;
+  targetMasterModal?: string;
   onChange?: () => void;
   onClick?: () => void;
 }

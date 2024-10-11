@@ -14,13 +14,14 @@ export type { IUser, IUserReponse } from "./api/user/user.types";
 export { loginApi } from "./api/login/login.api";
 export type { LoginRequest, LoginResponse } from "./api/login/login.types";
 
-//student
-export { studentApi } from "./api/student/student.api";
+//Master
+
+export { MasterApi } from "./api/master/master.api";
 export type {
-  IStudent,
-  IStudentDeletedResponse,
-  IStudentReponse,
-} from "./api/student/student.types";
+  IMaster,
+  IMasterDeletedResponse,
+  IMasterReponse,
+} from "./api/master/master.types";
 
 //education
 export { educationApi } from "./api/education/education.api";
@@ -39,7 +40,10 @@ export type { IAddressResponse, IAddress } from "./api/address/address.types";
 
 //bachelor
 export { bachelorApi } from "./api/bachelor/bachelor.api";
-export type { IBachelor, IBachelorResponse } from "./api/bachelor/bachelor.types";
+export type {
+  IBachelor,
+  IBachelorResponse,
+} from "./api/bachelor/bachelor.types";
 
 //faculty
 export { facultyApi } from "./api/faculty/faculty.api";

@@ -2,7 +2,7 @@ export interface IAddress {
 	country: string;
 	region: string;
 	address: string;
-	studentId: number;
+	MasterId: number;
 }
 
 export interface IAddressResponse extends IAddress {

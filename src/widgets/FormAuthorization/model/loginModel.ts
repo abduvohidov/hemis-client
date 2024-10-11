@@ -1,27 +1,27 @@
 import { create } from "zustand";
 import { removeToken, setToken } from "../lib/cookie";
-import { IStudentReponse, LoginRequest, loginApi } from "./../../../shared";
+import { IMasterReponse, LoginRequest, loginApi } from "./../../../shared";
 
 interface ILoginState {
   error: string | null;
   login: (credentials: LoginRequest) => Promise<String | null>;
-  studentInfo: IStudentReponse | null;
+  MasterInfo: IMasterReponse | null;
   logout: () => void;
 }
 
 export const useLoginStore = create<ILoginState>((set: Function) => ({
   role: null,
   error: null,
-  studentInfo:
+  MasterInfo:
     (JSON.parse(
-      localStorage.getItem("student") as string
-    ) as IStudentReponse) || null,
+      localStorage.getItem("Master") as string
+    ) as IMasterReponse) || null,
   login: async (data: LoginRequest): Promise<String | null> => {
     const result = await loginApi.login(data);
     if (typeof result !== "string") {
       setToken(result.jwt);
-      set({ error: null, studentInfo: result.result });
-      localStorage.setItem("student", JSON.stringify(result.result));
+      set({ error: null, MasterInfo: result.result });
+      localStorage.setItem("Master", JSON.stringify(result.result));
       return result.redirectTo as string;
     } else {
       set({ error: result });
@@ -31,7 +31,7 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
 
   logout: () => {
     removeToken("token");
-    localStorage.removeItem("student");
+    localStorage.removeItem("Master");
     loginApi.logout();
   },
 }));

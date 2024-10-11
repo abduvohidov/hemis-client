@@ -9,19 +9,17 @@ import { getToken } from "../widgets/FormAuthorization/lib/cookie";
 export const Routing = () => {
   const isProtected = getToken();
   const navigate = useNavigate();
-  console.log(isProtected);
 
   return (
     <>
       <Routes>
-        {/* Public route */}
         <Route path="/" element={<Login />} />
 
-        {/* Protected routes */}
         <Route
-          path="/admin"
+          path={"/admin"}
           element={typeof isProtected === "string" ? <Admin /> : <Login />}
         />
+
         <Route
           path="/user"
           element={typeof isProtected === "string" ? <User /> : <Login />}

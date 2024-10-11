@@ -12,4 +12,7 @@ export const tableHead: Array<string> = [
   "Email",
   "Telefon raqami",
   "Ota-ona raqami",
+  "Shahri",
+  "Region",
+  "Manzil",
 ];

@@ -1,2 +1,2 @@
 export { FormAuthorization } from "./FormAuthorization";
-export { StudentTable } from "./StudentTable";
+export { MasterTable } from "./MasterTable";

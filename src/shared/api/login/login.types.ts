@@ -1,4 +1,4 @@
-import { IStudentReponse } from "../student/student.types";
+import { IMasterReponse } from "../Master/Master.types";
 import { IUserReponse } from "../user/user.types";
 
 export interface LoginRequest {
@@ -10,5 +10,5 @@ export interface LoginResponse {
   token(token: any): unknown;
   redirectTo: string;
   jwt: string;
-  result: IStudentReponse | IUserReponse;
+  result: IMasterReponse | IUserReponse;
 }

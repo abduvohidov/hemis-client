@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface StudentState {
+interface MasterState {
   lastName: string;
   firstName: string;
   middleName: string;
@@ -13,11 +13,11 @@ interface StudentState {
   phoneNumber: string;
   parentPhoneNumber: string;
   password: string;
-  setStudentField: (field: keyof StudentState, value: string) => void;
-  resetStudentData: () => void;
+  setMasterField: (field: keyof MasterState | string, value: string) => void;
+  resetMasterData: () => void;
 }
 
-export const useStudentStore = create<StudentState>((set) => ({
+export const useMasterStore = create<MasterState>((set) => ({
   lastName: "",
   firstName: "",
   middleName: "",
@@ -30,9 +30,9 @@ export const useStudentStore = create<StudentState>((set) => ({
   phoneNumber: "",
   parentPhoneNumber: "",
   password: "",
-  setStudentField: (field, value) =>
+  setMasterField: (field, value) =>
     set((state) => ({ ...state, [field]: value })),
-  resetStudentData: () =>
+  resetMasterData: () =>
     set({
       lastName: "",
       firstName: "",

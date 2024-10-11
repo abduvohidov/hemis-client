@@ -5,16 +5,16 @@ import {
   bachelorApi,
   educationApi,
   facultyApi,
-  IStudent,
-  studentApi,
+  IMaster,
+  MasterApi,
 } from "../../../shared";
 
 interface FormState {
-  students: any[];
+  Masters: any[];
   formData: Record<string, string>;
-  getAllStudents: () => Promise<void>;
+  getAllMasters: () => Promise<void>;
   setInputValue: (name: string, value: string) => void;
-  filterByStudent: (formData: any) => any;
+  filterByMaster: (formData: any) => any;
   filterByEducation: (formData: any) => any;
   filterByBachelor: (formData: any) => any;
   filterByFaculty: (formData: any) => any;
@@ -24,16 +24,16 @@ interface FormState {
 }
 
 export const useFormStore = create<FormState>((set, get) => {
-  const getAllStudents = async () => {
-    const students = await studentApi.getAllStudents();
-    set({ students });
+  const getAllMasters = async () => {
+    const Masters = await MasterApi.getAllMasters();
+    set({ Masters });
   };
 
-  // Call getAllStudents immediately after defining it to initialize students
-  getAllStudents();
+  // Call getAllMasters immediately after defining it to initialize Masters
+  getAllMasters();
 
   return {
-    students: [],
+    Masters: [],
     formData: {},
     setInputValue: (name, value) =>
       set((state) => ({
@@ -42,10 +42,10 @@ export const useFormStore = create<FormState>((set, get) => {
           [name]: value,
         },
       })),
-    getAllStudents,
-    filterByStudent: async (formData: Record<string, string>) => {
-      const result: any = await studentApi.getStudentsByFilter(
-        formData as Partial<IStudent>
+    getAllMasters,
+    filterByMaster: async (formData: Record<string, string>) => {
+      const result: any = await MasterApi.getMastersByFilter(
+        formData as Partial<IMaster>
       );
       return result.data;
     },
@@ -75,14 +75,14 @@ export const useFormStore = create<FormState>((set, get) => {
       try {
         // Run all filters concurrently
         const [
-          studentResults,
+          MasterResults,
           educationResults,
           bachelorResults,
           facultyResults,
           addressResults,
           articleResults,
         ] = await Promise.all([
-          get().filterByStudent(formData),
+          get().filterByMaster(formData),
           get().filterByEducation(formData),
           get().filterByBachelor(formData),
           get().filterByFaculty(formData),
@@ -90,9 +90,9 @@ export const useFormStore = create<FormState>((set, get) => {
           get().filterByArticle(formData),
         ]);
 
-        // Merge all student results into one array
+        // Merge all Master results into one array
         const allResults = [
-          ...studentResults,
+          ...MasterResults,
           ...educationResults,
           ...bachelorResults,
           ...facultyResults,
@@ -101,7 +101,7 @@ export const useFormStore = create<FormState>((set, get) => {
         ];
         // Update the state with the merged results
         set((state) => ({
-          students: [...allResults],
+          Masters: [...allResults],
         }));
       } catch (error) {
         console.error("Error filtering data", error);

@@ -1,25 +1,22 @@
 import "./ProfileForm.css";
 import React, { FC, useState } from "react";
 import { ProfileInput } from "../../../entities/ProfileInput";
-import { Button, IStudentReponse, studentApi } from "../../../shared";
+import { Button, IMasterReponse, MasterApi } from "../../../shared";
 import { useNavigate } from "react-router";
 
 export interface IProfileForm {
-  student: IStudentReponse;
+  Master: IMasterReponse;
   logout: Function;
 }
 
 export const ProfileForm: FC<IProfileForm> = (props) => {
-  //props
-  const { student, logout } = props;
-  //use States
+  const { Master, logout } = props;
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>(student.email);
+  const [email, setEmail] = useState<string>(Master.email);
   const [password, setPassword] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
-  const [phoneNumber, setPhoneNumber] = useState<string>(student.phoneNumber);
-  // imports && contents
+  const [phoneNumber, setPhoneNumber] = useState<string>(Master.phoneNumber);
   const btnContent = isUpdating ? "Saqlash" : "O'zgartirish";
   // update function
 
@@ -38,7 +35,7 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
 
       // Prepare data for update
       const data: any = {
-        id: student.id,
+        id: Master.id,
         email,
         phoneNumber,
       };
@@ -49,20 +46,20 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
       }
 
       try {
-        const updatedStudent: any = await studentApi.updateStudent(
-          student.id,
+        const updatedMaster: any = await MasterApi.updateMaster(
+          Master.id,
           data
         );
-        if (typeof updatedStudent !== "string") {
+        if (typeof updatedMaster !== "string") {
           alert("Malumotlar yangilandi");
           setPassword(""); // Clear password field
           setNewPassword(""); // Clear new password field
-          localStorage.setItem("student", JSON.stringify(updatedStudent.data));
+          localStorage.setItem("Master", JSON.stringify(updatedMaster.data));
         } else {
-          alert(updatedStudent);
+          alert(updatedMaster);
         }
       } catch (error) {
-        console.log("Error in update student: " + error);
+        console.log("Error in update Master: " + error);
       }
     }
 
@@ -72,19 +69,19 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
     <form className="profile-form">
       <ProfileInput
         disabled={true}
-        value={student?.firstName}
+        value={Master?.firstName}
         name="firstName"
         placeholder="Ismi"
       />
       <ProfileInput
         disabled={true}
-        value={student?.firstName}
+        value={Master?.firstName}
         name="lastName"
         placeholder="Familiya"
       />
       <ProfileInput
         disabled={true}
-        value={student.passportNumber}
+        value={Master.passportNumber}
         name="passportNumber"
         placeholder="Passport raqami"
       />

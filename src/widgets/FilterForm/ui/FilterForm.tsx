@@ -4,7 +4,7 @@ import { useFormStore } from "../model/formStore";
 import {
   FILTER_BACHELOR_CONTENT,
   FILTER_EDUCATION_CONTENT,
-  FILTER_STUDENT_CONTENT,
+  FILTER_Master_CONTENT,
   FILTER_ARTICLES_CONTENT,
   FILTER_FACULTY_CONTENT,
   FILTER_ADDRESS_CONTENT,
@@ -46,7 +46,7 @@ export const FilterForm = () => {
           title="Shaxsiy ma'lumotlar bo'yicha izlash"
           submitForm={submitForm}
           handleChange={handleChange}
-          content={FILTER_STUDENT_CONTENT}
+          content={FILTER_Master_CONTENT}
         />
         <FilterFormLayout
           title="OTM bo'yicha izlash"

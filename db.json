@@ -9,7 +9,7 @@
             "role": "user"
         }
     ],
-    "students": [
+    "Masters": [
         {
             "id": 1,
             "firstName": "Abudullah",
@@ -89,7 +89,7 @@
     "addresses": [
         {
             "id": 1,
-            "studentId": 1,
+            "MasterId": 1,
             "country": "Tashkent",
             "region": "Shayhontrohur",
             "address": "Chorsu"
@@ -98,7 +98,7 @@
     "educations": [
         {
             "id": 1,
-            "studentId": 1,
+            "MasterId": 1,
             "bachelorId": 1,
             "currectSpecialization": "IT",
             "facultyId": 1,

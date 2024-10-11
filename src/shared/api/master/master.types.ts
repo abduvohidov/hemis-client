@@ -1,4 +1,4 @@
-export interface IStudent {
+export interface IMaster {
   lastName: string;
   firstName: string;
   middleName: string;
@@ -11,13 +11,12 @@ export interface IStudent {
   phoneNumber: string;
   parentPhoneNumber: string;
   password: string;
-  addresses?: any[];
   education?: any[];
 }
-export interface IStudentReponse extends IStudent {
+export interface IMasterReponse extends IMaster {
   [x: string]: any;
   id: number;
 }
-export interface IStudentDeletedResponse extends IStudent {
+export interface IMasterDeletedResponse extends IMaster {
   message: string;
 }
