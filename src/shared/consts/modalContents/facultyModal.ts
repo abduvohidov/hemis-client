@@ -11,7 +11,7 @@ export const Faculty_Modal_Content: Array<FacultyModalContentProps> = [
     value: "",
     isSelect: true,
     name: "name",
-    placeholder: "Facultet",
+    placeholder: "Fakultet",
     options: ["IT", "Bussines"],
   },
 ];

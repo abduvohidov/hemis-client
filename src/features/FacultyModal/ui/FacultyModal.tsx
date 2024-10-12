@@ -2,7 +2,6 @@ import React from "react";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
 import { Faculty_Modal_Content } from "../../../shared/consts";
 import { useFormStore } from "../../../widgets/FilterForm/model/formStore";
-
 import {
   ModalFormLayout,
   useModalStore,
@@ -21,18 +20,13 @@ export const FacultyModal = () => {
   }
   async function handleSave() {
     try {
-      console.log(modalData);
       await createFaculty(modalData as any);
     } catch (error) {
       console.error("Error submitting form", error);
     }
   }
   return (
-    <Modal
-      modalId={"facultyModal"}
-      title={"Fakultet yaratish"}
-      onSave={handleSave}
-    >
+    <Modal modalId="facultyModal" title="Fakultet yaratish" onSave={handleSave}>
       <ModalFormLayout
         handleChange={handleChange}
         masters={masters}

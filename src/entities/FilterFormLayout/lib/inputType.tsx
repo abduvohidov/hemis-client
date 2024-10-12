@@ -2,7 +2,7 @@ import React from "react";
 import { Select } from "../../../shared";
 import { DateInput } from "../../DateInput/ui/DateInput";
 import { ProfileInput } from "../../../entities/ProfileInput";
-import { MastersModalContentProps } from "../../../shared/consts/masterContents/mastersModalContent";
+import { MastersModalContentProps } from "../../../shared/consts/modalContents/mastersModalContent";
 
 export function inputType(
   item: MastersModalContentProps,
@@ -30,7 +30,7 @@ export function inputType(
     inputType === "firstArticleDate"
   ) {
     return (
-      <DateInput value={item.value} onChange={handleChange} name={item.name} />
+      <DateInput value={item.value} onChange={handleChange} name={item.name} placeholder={item.placeholder} />
     );
   } else if (item.isSelect) {
     return (

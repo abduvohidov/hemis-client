@@ -11,7 +11,7 @@ export const educationApi = {
     id: number,
     data: Partial<IEducation>
   ): Promise<IEdcationResponse> => {
-    return await baseApi.post<IEdcationResponse, Partial<IEducation>>(
+    return await baseApi.put<IEdcationResponse, Partial<IEducation>>(
       `/educations/update/${id}`,
       data
     );
@@ -25,10 +25,11 @@ export const educationApi = {
     return await baseApi.get<IEdcationResponse>(`/educations/${id}`);
   },
   getByMasterId: async (id: number): Promise<IEdcationResponse> => {
-    return await baseApi.post<IEdcationResponse, any>(
-      `/educations/filterByMaster`,
-      id
+    const result = await baseApi.post<any, { id: number }>(
+      `/educations/findByMaster`,
+      { id }
     );
+    return result.data;
   },
   filter: async (data: Partial<IEducation>): Promise<IEdcationResponse[]> => {
     return await baseApi.post<IEdcationResponse, Partial<IEducation>>(

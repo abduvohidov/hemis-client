@@ -3,6 +3,7 @@ import { IFacultyReponse, IFaculty } from "./faculty.types";
 
 export const facultyApi = {
   create: async (data: IFaculty): Promise<IFacultyReponse> => {
+    console.log("data : ", data);
     return await baseApi.post<IFacultyReponse, IFaculty>(
       "/faculties/create",
       data
@@ -27,6 +28,13 @@ export const facultyApi = {
     return await baseApi.get<IFacultyReponse>(`/faculties/${id}`);
   },
   getByName: async (name: string): Promise<IFacultyReponse[]> => {
-    return await baseApi.post<IFacultyReponse, any>("/faculties/filter", name);
+    return await baseApi.post<IFacultyReponse, any>("/faculties/filter", {
+      name,
+    });
+  },
+  findByName: async (name: string): Promise<any> => {
+    return await baseApi.post<any, any>("/faculties/findByName", {
+      name,
+    });
   },
 };

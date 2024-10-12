@@ -3,10 +3,11 @@ import { IBachelor, IBachelorResponse } from "./bachelor.types";
 
 export const bachelorApi = {
   create: async (data: IBachelor): Promise<IBachelorResponse> => {
-    return await baseApi.post<IBachelorResponse, IBachelor>(
+    const result = await baseApi.post<IBachelorResponse, IBachelor>(
       "/bachelors/create",
       data
     );
+    return result.data;
   },
   udpate: async (
     id: number,

@@ -1,7 +1,6 @@
 import React from "react";
-import { IMasterReponse, Select } from "../../../shared";
-import { DateInput } from "../../DateInput/ui/DateInput";
-import { ProfileInput } from "../../../entities/ProfileInput";
+import { IMasterReponse } from "../../../shared";
+import { inputType } from "../../FilterFormLayout/lib/inputType";
 import { MastersModalContentProps } from "../../../shared/consts/modalContents/mastersModalContent";
 
 export interface ModalLayoutFormProps {
@@ -19,54 +18,10 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
     </option>
   ));
 
-  function inputType(item: MastersModalContentProps, inputType: string) {
-    if (inputType === "parentPhoneNumber" || inputType === "phoneNumber") {
-      return (
-        <ProfileInput
-          isPlaceholder={false}
-          isPhoneInput={true}
-          name={item.name}
-          disabled={false}
-          onChange={handleChange}
-          placeholder={
-            inputType === "parentPhoneNumber"
-              ? "Uydagilarning raqami"
-              : "Shaxsiy telefon raqam"
-          }
-        />
-      );
-    } else if (inputType === "dateOfBirth") {
-      return (
-        <DateInput
-          value={item.value}
-          onChange={handleChange}
-          name={item.name}
-        />
-      );
-    } else if (item.isSelect) {
-      return (
-        <Select
-          handleChange={handleChange}
-          field={item}
-          defaultValue={item.placeholder}
-        />
-      );
-    } else {
-      return (
-        <input
-          placeholder={item.placeholder}
-          name={item.name}
-          onChange={handleChange}
-          className="form-control w-100"
-        />
-      );
-    }
-  }
-
   function renderFormInputs() {
     return content.map((item: MastersModalContentProps, index) => (
       <div className={"col-lg-4 my-1"} key={index}>
-        {inputType(item, item.name)}
+        {inputType(item, item.name, handleChange)}
       </div>
     ));
   }

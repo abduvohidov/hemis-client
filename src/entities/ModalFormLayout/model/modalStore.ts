@@ -92,11 +92,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
     },
     createFaculty: async (data: any) => {
       try {
-        const faculty = await facultyApi.create(data);
-        const masterId = { masterId: Number(data?.masterId) };
-        // get get education by masterId
-        const updatedData = { facultyId: Number(faculty.id) };
-        // await educationApi.udpate(2 add educationID here, updatedData);
+        let faculty = await facultyApi.findByName(data.name);
         if (typeof faculty === "string") {
           alert(faculty);
           return;
@@ -104,7 +100,14 @@ export const useModalStore = create<IModalStore>((set, _) => {
           alert("Some error");
           return;
         }
-        console.log(faculty);
+        const education = await educationApi.getByMasterId(
+          Number(data?.masterId)
+        );
+        if (typeof education === "string") alert(education);
+        const updatedData = { facultyId: Number(faculty.data.id) };
+
+        await educationApi.udpate(education.id, updatedData);
+        alert("Fakultet Qoshildi");
       } catch (error) {
         alert(error);
       }
@@ -112,35 +115,33 @@ export const useModalStore = create<IModalStore>((set, _) => {
     createArticle: async (data: any) => {
       try {
         const article = await articleApi.create(data);
-        const masterId = { masterId: Number(data?.masterId) };
-        // get get article by masterId
-        const updatedData = { articleId: Number(article.id) };
-        // await educationApi.udpate(2 add educationID here, updatedData);
-        if (typeof article === "string") {
-          alert(article);
-          return;
-        } else if (!article) {
-          alert("Some error");
-          return;
-        }
+        const education = await educationApi.getByMasterId(
+          Number(data?.masterId)
+        );
+        console.log(Number(article.id));
+
+        if (typeof education === "string") alert(education);
+        const updatedData = { articlesId: Number(article.id) };
+
+        await educationApi.udpate(education.id, updatedData);
+        alert("Article Qoshildi");
       } catch (error) {
+        console.log(error);
+
         alert(error);
       }
     },
     createBachelor: async (data: any) => {
       try {
         const bachelor = await bachelorApi.create(data);
-        const masterId = { masterId: Number(data?.masterId) };
-        // get get bachelor by masterId
+        const education = await educationApi.getByMasterId(
+          Number(data?.masterId)
+        );
+        if (typeof education === "string") alert(education);
         const updatedData = { bachelorId: Number(bachelor.id) };
-        // await educationApi.udpate(2 add educationID here, updatedData);
-        if (typeof bachelor === "string") {
-          alert(bachelor);
-          return;
-        } else if (!bachelor) {
-          alert("Some error");
-          return;
-        }
+
+        await educationApi.udpate(education.id, updatedData);
+        alert("Article Qoshildi");
       } catch (error) {
         alert(error);
       }
