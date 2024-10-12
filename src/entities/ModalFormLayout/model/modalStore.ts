@@ -1,5 +1,12 @@
 import { create } from "zustand";
-import { addressApi, IAddress, IMaster, MasterApi } from "../../../shared";
+import {
+  addressApi,
+  educationApi,
+  IAddress,
+  IEducation,
+  IMaster,
+  MasterApi,
+} from "../../../shared";
 
 export interface IModalMaster {
   id: number;
@@ -11,6 +18,7 @@ export interface IModalStore {
   modalData: Record<string, string>;
   createMaster: (data: IMaster) => Promise<void>;
   createAddress: (data: IAddress) => Promise<void>;
+  createEducation: (data: IEducation) => Promise<void>;
   setInputValue: (name: string, value: string) => void;
 }
 
@@ -44,6 +52,23 @@ export const useModalStore = create<IModalStore>((set, _) => {
       try {
         data = { ...data, masterId: Number(data.masterId) };
         const address = await addressApi.createUser(data);
+        if (typeof address === "string") {
+          alert(address);
+          return;
+        } else if (!address) {
+          alert("Some error");
+          return;
+        }
+        console.log(address);
+      } catch (error) {
+        alert(error);
+      }
+    },
+    createEducation: async (data: IEducation) => {
+      try {
+        data = { ...data, masterId: Number(data.masterId) };
+        console.log(data);
+        const address = await educationApi.create(data);
         if (typeof address === "string") {
           alert(address);
           return;

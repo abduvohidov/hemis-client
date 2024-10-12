@@ -7,6 +7,7 @@ import { MasterModal } from "../../../features/MasterModal/index.ts";
 import { removeMaster, findMasters, downloadXlsxFile } from "../lib/index.ts";
 import { Button, IMasterReponse, MasterApi } from "../../../shared/index.ts";
 import { AddressModal } from "../../../features/AddressModal/index.ts";
+import { EducationModal } from "../../../features/EducationModal";
 
 export const MasterTable: React.FC = () => {
   const masters = useFormStore((state) => state.Masters);
@@ -140,7 +141,8 @@ export const MasterTable: React.FC = () => {
 
       <MasterModal onSubmit={createMaster} />
       <ButtonModal />
-      <AddressModal/>
+      <AddressModal />
+      <EducationModal />
     </>
   );
 };
