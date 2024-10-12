@@ -19,4 +19,8 @@ export const Button_Modal_Contents = [
     targetMasterModal: "#articleModal",
     content: "Maqola qo'shish",
   },
+  {
+    targetMasterModal: "#facultyModal",
+    content: "Fakultet qo'shish",
+  },
 ];

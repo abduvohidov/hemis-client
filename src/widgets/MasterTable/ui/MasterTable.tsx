@@ -4,10 +4,13 @@ import { Table } from "../../../shared/ui/Table/index.ts";
 import { ButtonModal } from "../../../entities/ButtonsModal";
 import { useFormStore } from "../../FilterForm/model/formStore.ts";
 import { MasterModal } from "../../../features/MasterModal/index.ts";
-import { removeMaster, findMasters, downloadXlsxFile } from "../lib/index.ts";
 import { Button, IMasterReponse, MasterApi } from "../../../shared/index.ts";
+import { removeMaster, findMasters, downloadXlsxFile } from "../lib/index.ts";
 import { AddressModal } from "../../../features/AddressModal/index.ts";
 import { EducationModal } from "../../../features/EducationModal";
+import { FacultyModal } from "../../../features/FacultyModal";
+import { ArticleModal } from "../../../features/ArticleModal";
+import { BachelorModal } from "../../../features/BachelorModal";
 
 export const MasterTable: React.FC = () => {
   const masters = useFormStore((state) => state.Masters);
@@ -143,6 +146,9 @@ export const MasterTable: React.FC = () => {
       <ButtonModal />
       <AddressModal />
       <EducationModal />
+      <FacultyModal />
+      <ArticleModal />
+      <BachelorModal />
     </>
   );
 };

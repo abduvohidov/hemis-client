@@ -1,6 +1,9 @@
 export { Button_Modal_Contents } from "./buttonModalContents";
+export { Faculty_Modal_Content } from "./modalContents/facultyModal";
 export { mastersModalContent } from "./modalContents/mastersModalContent";
 export { Address_Modal_Content } from "./modalContents/addressModalContent";
+export { Article_Modal_Content } from "./modalContents/articleModalContent";
+export { Bachelor_Modal_Content } from "./modalContents/bachelorModalContent";
 export { FILTER_Master_CONTENT } from "./filterContents/masterFilterContent";
 export { FILTER_ADDRESS_CONTENT } from "./filterContents/addressFilterContent";
 export { Education_Modal_Content } from "./modalContents/educationModalContent";
