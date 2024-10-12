@@ -1,16 +1,23 @@
 import React from "react";
-import { Select } from "../../../shared";
+import { IMasterReponse, Select } from "../../../shared";
 import { DateInput } from "../../DateInput/ui/DateInput";
 import { ProfileInput } from "../../../entities/ProfileInput";
-import { MastersModalContentProps } from "../../../shared/consts/masterContents/mastersModalContent";
+import { MastersModalContentProps } from "../../../shared/consts/modalContents/mastersModalContent";
 
 export interface ModalLayoutFormProps {
   content: Array<any>;
+  masters?: IMasterReponse[];
   handleChange(e: React.FormEvent): void;
 }
 
 export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
-  const { content, handleChange } = props;
+  const { content, masters, handleChange } = props;
+
+  const mastersContent = masters?.map((master, index) => (
+    <option key={index} value={master.id}>
+      {master.firstName} {master.lastName}
+    </option>
+  ));
 
   function inputType(item: MastersModalContentProps, inputType: string) {
     if (inputType === "parentPhoneNumber" || inputType === "phoneNumber") {
@@ -64,5 +71,20 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
     ));
   }
 
-  return <form className="row">{renderFormInputs()}</form>;
+  return (
+    <form className="row">
+      {masters && (
+        <select
+          defaultValue="Student tanlang"
+          name="masterId"
+          className="form-control mt-2 mb-2 mx-2"
+          onChange={handleChange}
+        >
+          <option disabled>Student tanlang</option>
+          {mastersContent}
+        </select>
+      )}
+      {renderFormInputs()}
+    </form>
+  );
 };

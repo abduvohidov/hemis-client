@@ -1,5 +1,5 @@
 import { baseApi } from "../base.api";
-import { IAddress, IAddressResponse } from "./user.types";
+import { IAddress, IAddressResponse } from "./address.types";
 
 export const addressApi = {
 	createUser: async (data: IAddress): Promise<IAddressResponse> => {

@@ -1,10 +1,12 @@
 import { tableHead } from "../model/tableHead.ts";
 import React, { useEffect, useState } from "react";
 import { Table } from "../../../shared/ui/Table/index.ts";
+import { ButtonModal } from "../../../entities/ButtonsModal";
 import { useFormStore } from "../../FilterForm/model/formStore.ts";
 import { MasterModal } from "../../../features/MasterModal/index.ts";
 import { removeMaster, findMasters, downloadXlsxFile } from "../lib/index.ts";
 import { Button, IMasterReponse, MasterApi } from "../../../shared/index.ts";
+import { AddressModal } from "../../../features/AddressModal/index.ts";
 
 export const MasterTable: React.FC = () => {
   const masters = useFormStore((state) => state.Masters);
@@ -71,13 +73,13 @@ export const MasterTable: React.FC = () => {
           <tr key={index}>
             <td>
               <Button
-                color={"light"}
+                color="light"
                 children={<i className="bi bi-trash3"></i>}
                 onClick={() => handleDelete(item)}
               />
               <Button
-                color={"light"}
-                className={"mx-2"}
+                color="light"
+                className="mx-2"
                 children={<i className="bi bi-pencil-fill"></i>}
               />
             </td>
@@ -117,18 +119,18 @@ export const MasterTable: React.FC = () => {
   return (
     <>
       <h6>Magistrlar Tablitsasi</h6>
-      <div className={"my-3"}>
+      <div className="my-3">
         <Button
-          color={"light"}
-          className={"mx-2"}
+          color="light"
+          className="mx-2"
           toggleMasterModal="modal"
-          targetMasterModal="#exampleMasterModal"
-          children={"Yaratish"}
+          targetMasterModal="#triggerCreateButtons"
+          children="Yaratish"
         />
 
         <Button
-          color={"light"}
-          className={"mx-2"}
+          color="light"
+          className="mx-2"
           onClick={downloadXlsxFile}
           children={<i className="bi bi-download"></i>}
         />
@@ -137,6 +139,8 @@ export const MasterTable: React.FC = () => {
       <Table tableHead={renderMasterHead()} tableBody={renderMasterValues()} />
 
       <MasterModal onSubmit={createMaster} />
+      <ButtonModal />
+      <AddressModal/>
     </>
   );
 };

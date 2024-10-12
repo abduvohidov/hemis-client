@@ -33,7 +33,7 @@ export const MasterModal: React.FC<MasterModalProps> = () => {
 
   return (
     <Modal
-      modalId={"exampleMasterModal"}
+      modalId={"masterModal"}
       title={"Magistr yaratish"}
       onSave={handleSave}
     >

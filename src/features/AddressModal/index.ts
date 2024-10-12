@@ -1,1 +1,1 @@
-export * from "./ui/AddressModal";
+export { AddressModal } from "./ui/AddressModal";
