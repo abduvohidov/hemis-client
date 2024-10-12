@@ -1,6 +1,7 @@
 import "./FilterFormLayout.css";
 import { Select } from "../../../shared";
 import React, { FC, FormEventHandler } from "react";
+import { inputType } from "../lib/inputType";
 
 export interface IFilterFormLayout {
   title: string;
@@ -38,13 +39,7 @@ export const FilterFormLayout: FC<IFilterFormLayout> = (props) => {
           <label className="fw-bold" htmlFor={field.name}>
             {field.placeholder}
           </label>
-          <input
-            className="form-control"
-            type={field.type}
-            name={field.name}
-            placeholder={field.placeholder}
-            onChange={handleChange}
-          />
+          {inputType(field, field.name, handleChange)}
         </div>
       );
     }

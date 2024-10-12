@@ -6,9 +6,10 @@ export interface IProfileInput {
   name: string;
   type?: "text" | "number" | "password" | "email";
   disabled: boolean;
-  placeholder: string;
+  placeholder?: string;
   value?: string;
   isPhoneInput?: boolean;
+  isPlaceholder?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -20,13 +21,14 @@ export const ProfileInput: FC<IProfileInput> = (props) => {
     placeholder,
     value,
     isPhoneInput = false,
+    isPlaceholder = true,
     onChange,
   } = props;
 
   const input = isPhoneInput ? (
     <InputMask
       mask="+\9\98 999 99 99"
-      placeholder={value}
+      placeholder={placeholder || value}
       maskChar="_"
       value={value}
       onChange={onChange}
@@ -54,9 +56,11 @@ export const ProfileInput: FC<IProfileInput> = (props) => {
 
   return (
     <div>
-      <label className="fw-bold" htmlFor={name}>
-        {placeholder}
-      </label>
+      {isPlaceholder && (
+        <label className="fw-bold" htmlFor={name}>
+          {placeholder}
+        </label>
+      )}
       {input}
     </div>
   );

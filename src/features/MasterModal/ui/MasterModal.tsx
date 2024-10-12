@@ -11,33 +11,11 @@ interface MasterModalProps {
   onSubmit: (MasterData: IMaster) => Promise<void>;
 }
 
-export const MasterModal: React.FC<MasterModalProps> = ({ onSubmit }) => {
+export const MasterModal: React.FC<MasterModalProps> = () => {
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createMaster = useModalStore((state) => state.createMaster);
   const modalData = useModalStore((state) => state.modalData);
-  // const {
-  //   lastName,
-  //   firstName,
-  //   middleName,
-  //   passportNumber,
-  //   jshshr,
-  //   dateOfBirth,
-  //   gender,
-  //   nationality,
-  //   email,
-  //   phoneNumber,
-  //   parentPhoneNumber,
-  //   password,
-  //   setMasterField,
-  //   resetMasterData,
-  // } = useMasterStore();
 
-  const fieldData = {
-    name: "gender",
-    options: ["Male", "Female", "Other"],
-  };
-
-  //
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
@@ -46,8 +24,8 @@ export const MasterModal: React.FC<MasterModalProps> = ({ onSubmit }) => {
   }
   async function handleSave() {
     try {
-      console.log("modalData : " + JSON.stringify(modalData));
       await createMaster(modalData as unknown as IMaster);
+      window.location.reload();
     } catch (error) {
       console.error("Error submitting form", error);
     }

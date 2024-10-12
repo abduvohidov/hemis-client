@@ -1,68 +1,84 @@
-interface MastersModalContentProps {
+export interface MastersModalContentProps {
   placeholder: string;
   value: string;
-  fieldName: string;
+  name: string;
+  isSelect: boolean;
+  options?: string[];
 }
 
 export const mastersModalContent: Array<MastersModalContentProps> = [
   {
     value: "",
-    placeholder: "Familiya",
-    fieldName: "lastName",
-  },
-  {
-    value: "",
     placeholder: "Ism",
-    fieldName: "firstName",
+    name: "firstName",
+    isSelect: false,
   },
   {
     value: "",
-    placeholder: "Ism sharif",
-    fieldName: "middleName",
+    placeholder: "Familiya",
+    name: "lastName",
+    isSelect: false,
+  },
+  {
+    value: "",
+    placeholder: "Otasining ismi",
+    name: "middleName",
+    isSelect: false,
   },
   {
     value: "",
     placeholder: "Passport Raqam",
-    fieldName: "passportNumber",
+    name: "passportNumber",
+    isSelect: false,
   },
   {
     value: "",
     placeholder: "Jshshr",
-    fieldName: "jshshr",
+    name: "jshshr",
+    isSelect: false,
   },
   {
     value: "",
     placeholder: "Tugilgan sanasi",
-    fieldName: "dateOfBirth",
+    name: "dateOfBirth",
+    isSelect: false,
   },
   {
-    value: "",
-    placeholder: "gender",
-    fieldName: "gender",
+    value: "Jins tanlnang",
+    name: "gender",
+    placeholder: "Jins tanlnang",
+    isSelect: true,
+    options: ["Erkak", "Ayol"],
   },
   {
-    value: "",
+    value: "Millatini tanlang",
     placeholder: "Millati",
-    fieldName: "nationality",
+    name: "nationality",
+    isSelect: true,
+    options: ["uzbek", "qozoq", "russ"],
   },
   {
     value: "",
     placeholder: "Email",
-    fieldName: "email",
+    name: "email",
+    isSelect: false,
   },
   {
     value: "",
     placeholder: "Telefon Raqami",
-    fieldName: "phoneNumber",
+    name: "phoneNumber",
+    isSelect: false,
   },
   {
     value: "",
     placeholder: "Ota-ona Telefon Raqami",
-    fieldName: "parentPhoneNumber",
+    name: "parentPhoneNumber",
+    isSelect: false,
   },
   {
     value: "",
     placeholder: "Parol",
-    fieldName: "password",
+    name: "password",
+    isSelect: false,
   },
 ];

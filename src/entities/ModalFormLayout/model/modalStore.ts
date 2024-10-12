@@ -20,13 +20,17 @@ export const useModalStore = create<IModalStore>((set, get) => {
     createMaster: async (data: IMaster) => {
       try {
         const master = await MasterApi.createMaster(data);
-        if (!master) {
-          alert("Bu magistrant uje bor");
+        if (typeof master === "string") {
+          alert(master);
+          return;
+        } else if (!master) {
+          alert("Some error");
+          console.log(master);
           return;
         }
         console.log(master);
       } catch (error) {
-        alert("Bu magistrant uje bor");
+        alert(error);
       }
     },
   };

@@ -87,7 +87,7 @@ export const MasterTable: React.FC = () => {
             <td>{item?.middleName}</td>
             <td>{item?.passportNumber}</td>
             <td>{item?.jshshr}</td>
-            <td>{item?.dateOfBirth}</td>
+            <td>{item?.dateOfBirth?.slice(0, 10)}</td>
             <td>{item?.gender}</td>
             <td>{item?.nationality}</td>
             <td>{item?.email}</td>
