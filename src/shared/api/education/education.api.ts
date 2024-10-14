@@ -24,6 +24,10 @@ export const educationApi = {
   getById: async (id: number): Promise<IEdcationResponse> => {
     return await baseApi.get<IEdcationResponse>(`/educations/${id}`);
   },
+  getAll: async (): Promise<IEdcationResponse[]> => {
+    const result = await baseApi.get<IEdcationResponse[]>(`/educations/all`);
+    return result.data;
+  },
   getByMasterId: async (id: number): Promise<IEdcationResponse> => {
     const result = await baseApi.post<any, { id: number }>(
       `/educations/findByMaster`,

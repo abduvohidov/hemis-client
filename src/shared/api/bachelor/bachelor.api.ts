@@ -23,6 +23,10 @@ export const bachelorApi = {
   },
 
   // gets
+  getAll: async (): Promise<IBachelorResponse[]> => {
+    const result = await baseApi.get<IBachelorResponse[]>(`/bachelors/all`);
+    return result.data;
+  },
   getById: async (id: number): Promise<IBachelorResponse> => {
     return await baseApi.get<IBachelorResponse>(`/bachelors/${id}`);
   },

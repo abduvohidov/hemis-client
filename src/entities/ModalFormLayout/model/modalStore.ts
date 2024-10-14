@@ -44,6 +44,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
     createMaster: async (data: IMaster) => {
       try {
         const master = await MasterApi.createMaster(data);
+
         if (typeof master === "string") {
           alert(master);
           return;
@@ -52,7 +53,6 @@ export const useModalStore = create<IModalStore>((set, _) => {
           console.log(master);
           return;
         }
-        console.log(master);
       } catch (error) {
         alert(error);
       }

@@ -26,14 +26,20 @@ interface FormState {
 export const useFormStore = create<FormState>((set, get) => {
   const getAllMasters = async () => {
     const Masters = await MasterApi.getAllMasters();
-    set({ Masters });
+
+    set({
+      Masters,
+    });
   };
 
-  // Call getAllMasters immediately after defining it to initialize Masters
   getAllMasters();
 
   return {
     Masters: [],
+    Bachelor: [],
+    Education: [],
+    Faculty: [],
+    Article: [],
     formData: {},
     setInputValue: (name, value) =>
       set((state) => ({

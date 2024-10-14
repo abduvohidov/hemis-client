@@ -26,6 +26,11 @@ export const articleApi = {
   getById: async (id: number): Promise<IArticleReponse> => {
     return await baseApi.get<IArticleReponse>(`/articles/${id}`);
   },
+  getAll: async (): Promise<IArticleReponse[]> => {
+    const result = await baseApi.get<IArticleReponse[]>(`/articles/all`);
+
+    return result.articles;
+  },
   filter: async (data: Partial<IArticle>): Promise<IArticleReponse[]> => {
     return await baseApi.post<IArticleReponse, Partial<IArticle>>(
       `/articles/filter`,

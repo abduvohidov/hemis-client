@@ -15,4 +15,33 @@ export const tableHead: Array<string> = [
   "Shahri",
   "Region",
   "Manzil",
+  // education
+  "Akademik Ta'titl",
+  "Kursni tanlang",
+  "Sohani tanlang",
+  "Ta'lim",
+  "Kirgan yil",
+  "Tashqi taqsischi",
+  "Ichiki taqsischi",
+  "Amaliyot rahbar ",
+  "Til sertificat",
+  "Tolov turini",
+  "Ilmiy rahbar ",
+  "Ilmiy maslahatchi ",
+  "Oqiyotgan semestr",
+  "Thesis Topic",
+  // bachelor
+  "Tugatgan OTM nomi",
+  "Tugatgan yili",
+  "Diplom raqami",
+  "Tugatgan mutaxasisligi",
+  // article
+  "Birinchi maqolani",
+  "Birinchi maqolaning sanasini",
+  "Birinchi maqolani tzs",
+  "Ikkinchi maqolani",
+  "Ikkinchi maqolani tzs",
+  "Ikkinchi maqolaning sanasini",
+  // fakultet
+  "Fakultet nomi",
 ];

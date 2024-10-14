@@ -27,6 +27,10 @@ export const facultyApi = {
   getById: async (id: number): Promise<IFacultyReponse> => {
     return await baseApi.get<IFacultyReponse>(`/faculties/${id}`);
   },
+  getAll: async (): Promise<IFacultyReponse[]> => {
+    const result = await baseApi.get<IFacultyReponse[]>(`/faculties/all`);
+    return result.data;
+  },
   getByName: async (name: string): Promise<IFacultyReponse[]> => {
     return await baseApi.post<IFacultyReponse, any>("/faculties/filter", {
       name,

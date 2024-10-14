@@ -21,4 +21,7 @@ export interface IEducation {
 
 export interface IEdcationResponse extends IEducation {
   id: number;
+  bachelor?: any[];
+  articles?: any[];
+  faculty?: any[];
 }

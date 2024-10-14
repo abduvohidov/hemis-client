@@ -11,6 +11,12 @@ import { EducationModal } from "../../../features/EducationModal";
 import { FacultyModal } from "../../../features/FacultyModal";
 import { ArticleModal } from "../../../features/ArticleModal";
 import { BachelorModal } from "../../../features/BachelorModal";
+import {
+  renderMasterArticle,
+  renderMasterBachelor,
+  renderMasterEducation,
+  renderMasterFaculty,
+} from "../lib/renderData.tsx";
 
 export const MasterTable: React.FC = () => {
   const masters = useFormStore((state) => state.Masters);
@@ -62,18 +68,20 @@ export const MasterTable: React.FC = () => {
     } else {
       return (
         <React.Fragment>
-          <td>Country not available</td>
-          <td>Region not available</td>
-          <td>Address not available</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         </React.Fragment>
       );
     }
   }
-  
 
   function renderMasterValues() {
     if (data.length > 0) {
       return data?.map((item, index) => {
+        const bachelor = item?.education?.map((edu) => edu.bachelor);
+        const article = item?.education?.map((edu) => edu.articles);
+        const faculty = item?.education?.map((edu) => edu.faculty);
         return (
           <tr key={index}>
             <td>
@@ -100,7 +108,12 @@ export const MasterTable: React.FC = () => {
             <td>{item?.email}</td>
             <td>{item?.phoneNumber}</td>
             <td>{item?.parentPhoneNumber}</td>
+            {console.log(item)}
             {renderMasterAddress(item?.addresses)}
+            {renderMasterEducation(item?.education)}
+            {renderMasterBachelor(bachelor)}
+            {renderMasterArticle(article)}
+            {renderMasterFaculty(faculty)}
           </tr>
         );
       });
