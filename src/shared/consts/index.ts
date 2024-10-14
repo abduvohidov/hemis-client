@@ -1,4 +1,3 @@
-export { Button_Modal_Contents } from "./buttonModalContents";
 export { Faculty_Modal_Content } from "./modalContents/facultyModal";
 export { mastersModalContent } from "./modalContents/mastersModalContent";
 export { Address_Modal_Content } from "./modalContents/addressModalContent";

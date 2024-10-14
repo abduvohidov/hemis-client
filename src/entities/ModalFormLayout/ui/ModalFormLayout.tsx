@@ -4,26 +4,40 @@ import { inputType } from "../../FilterFormLayout/lib/inputType";
 import { MastersModalContentProps } from "../../../shared/consts/modalContents/mastersModalContent";
 
 export interface ModalLayoutFormProps {
-  content: Array<any>;
+  content: any;
+  isUpdate: boolean;
   masters?: IMasterReponse[];
   handleChange(e: React.FormEvent): void;
 }
 
 export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
-  const { content, masters, handleChange } = props;
+  const { content, masters, handleChange, isUpdate } = props;
+  console.log(content);
 
   const mastersContent = masters?.map((master, index) => (
     <option key={index} value={master.id}>
       {master.firstName} {master.lastName}
     </option>
   ));
-
+  // needs to be copiyed
   function renderFormInputs() {
-    return content.map((item: MastersModalContentProps, index) => (
-      <div className={"col-lg-4 my-1"} key={index}>
-        {inputType(item, item.name, handleChange)}
-      </div>
-    ));
+    if (isUpdate && typeof content === "object") {
+      return Object.keys(content).map((key, index) => (
+        <div className="col-lg-4 my-1" key={index}>
+          {inputType(
+            { ...content[key], name: key, value: content[key] },
+            key,
+            handleChange
+          )}
+        </div>
+      ));
+    } else {
+      return content.map((item: MastersModalContentProps, index) => (
+        <div className="col-lg-4 my-1" key={index}>
+          {inputType(item, item.name, handleChange)}
+        </div>
+      ));
+    }
   }
 
   return (

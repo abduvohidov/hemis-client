@@ -17,10 +17,12 @@ import {
   renderMasterEducation,
   renderMasterFaculty,
 } from "../lib/renderData.tsx";
+import { Modal } from "bootstrap";
 
 export const MasterTable: React.FC = () => {
   const masters = useFormStore((state) => state.Masters);
   const [data, setData] = useState<IMasterReponse[]>([]);
+  const [selectedStudent, setSelectedStudent] = useState<IMasterReponse | null>(null);
 
   async function fetchMasters() {
     try {
@@ -33,14 +35,10 @@ export const MasterTable: React.FC = () => {
     }
   }
 
-  async function createMaster(MasterData: any): Promise<void> {
-    console.log(MasterData);
-    try {
-      await MasterApi.createMaster(MasterData);
-      await fetchMasters();
-    } catch (err) {
-      console.error(err.message);
-    }
+  function openUpdateModal(student, modalId) {
+    setSelectedStudent(student);
+    const modal = new Modal(document.getElementById(modalId));
+    modal.show();
   }
 
   async function handleDelete(item: IMasterReponse) {
@@ -93,6 +91,7 @@ export const MasterTable: React.FC = () => {
               <Button
                 color="light"
                 className="mx-2"
+                onClick={() => openUpdateModal(item, "triggerUpdateButtons")}
                 children={<i className="bi bi-pencil-fill"></i>}
               />
             </td>
@@ -108,7 +107,6 @@ export const MasterTable: React.FC = () => {
             <td>{item?.email}</td>
             <td>{item?.phoneNumber}</td>
             <td>{item?.parentPhoneNumber}</td>
-            {console.log(item)}
             {renderMasterAddress(item?.addresses)}
             {renderMasterEducation(item?.education)}
             {renderMasterBachelor(bachelor)}
@@ -156,8 +154,9 @@ export const MasterTable: React.FC = () => {
 
       <Table tableHead={renderMasterHead()} tableBody={renderMasterValues()} />
 
-      <MasterModal onSubmit={createMaster} />
-      <ButtonModal />
+      <MasterModal master={selectedStudent} />
+      <ButtonModal type="create" />
+      <ButtonModal type="update" />
       <AddressModal />
       <EducationModal />
       <FacultyModal />

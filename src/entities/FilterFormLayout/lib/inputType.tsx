@@ -9,12 +9,14 @@ export function inputType(
   inputType: string,
   handleChange: any
 ) {
+  const { value, name, placeholder, isSelect } = item;
   if (inputType === "parentPhoneNumber" || inputType === "phoneNumber") {
     return (
       <ProfileInput
+        value={value || ""}
         isPlaceholder={false}
         isPhoneInput={true}
-        name={item.name}
+        name={name}
         disabled={false}
         onChange={handleChange}
         placeholder={
@@ -30,23 +32,29 @@ export function inputType(
     inputType === "firstArticleDate"
   ) {
     return (
-      <DateInput value={item.value} onChange={handleChange} name={item.name} placeholder={item.placeholder} />
+      <DateInput
+        value={value || ""}
+        onChange={handleChange}
+        name={name}
+        placeholder={placeholder}
+      />
     );
-  } else if (item.isSelect) {
+  } else if (isSelect) {
     return (
       <Select
         handleChange={handleChange}
         field={item}
-        defaultValue={item.placeholder}
+        defaultValue={placeholder}
       />
     );
   } else {
     return (
       <input
-        placeholder={item.placeholder}
-        name={item.name}
+        placeholder={placeholder}
+        name={name}
         onChange={handleChange}
         className="form-control"
+        value={value || ""}
       />
     );
   }

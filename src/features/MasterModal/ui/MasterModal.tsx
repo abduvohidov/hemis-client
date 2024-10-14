@@ -1,17 +1,19 @@
 import React from "react";
-import { IMaster } from "../../../shared";
+import { IMaster, IMasterReponse, MasterApi } from "../../../shared";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
 import { mastersModalContent } from "../../../shared/consts";
 import {
   ModalFormLayout,
   useModalStore,
 } from "../../../entities/ModalFormLayout";
+import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
 
 interface MasterModalProps {
-  onSubmit: (MasterData: IMaster) => Promise<void>;
+  master: IMasterReponse | null;
 }
 
-export const MasterModal: React.FC<MasterModalProps> = () => {
+export const MasterModal: React.FC<MasterModalProps> = (props) => {
+  const { master } = props;
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createMaster = useModalStore((state) => state.createMaster);
   const modalData = useModalStore((state) => state.modalData);
@@ -21,6 +23,20 @@ export const MasterModal: React.FC<MasterModalProps> = () => {
   ) {
     const { name, value } = e.target;
     setInputValue(name, value);
+  }
+
+  async function handleUpdate() {
+    try {
+      if (master) {
+        console.log(modalData);
+
+        await MasterApi.updateMaster(master.id, modalData);
+        window.location.reload();
+        alert("Masgistr o'zgartirildi");
+      }
+    } catch (error) {
+      console.error("Error submitting form", error);
+    }
   }
   async function handleSave() {
     try {
@@ -34,14 +50,19 @@ export const MasterModal: React.FC<MasterModalProps> = () => {
 
   return (
     <Modal
-      modalId={"masterModal"}
-      title={"Magistr yaratish"}
-      onSave={handleSave}
+      modalId={master ? "masterUpdateModal" : "masterModal"}
+      title={master ? "Magistr o'zgartirish" : "Magistr yaratish"}
+      onSave={master ? handleUpdate : handleSave}
     >
-      <ModalFormLayout
-        handleChange={handleChange}
-        content={mastersModalContent}
-      />
+      {master ? (
+        <ModalUpdateLayout content={master} handleChange={handleChange} />
+      ) : (
+        <ModalFormLayout
+          handleChange={handleChange}
+          content={master ? master : mastersModalContent}
+          isUpdate={master ? true : false}
+        />
+      )}
     </Modal>
   );
 };
