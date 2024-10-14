@@ -3,13 +3,11 @@ import { User } from "./User";
 import { Login } from "./Login";
 import { Admin } from "./Admin";
 import { Error } from "./Error/Error";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { getToken } from "../widgets/FormAuthorization/lib/cookie";
 
 export const Routing = () => {
   const isProtected = getToken();
-  const navigate = useNavigate();
-
   return (
     <>
       <Routes>
