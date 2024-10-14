@@ -107,7 +107,6 @@ export const useModalStore = create<IModalStore>((set, _) => {
         const updatedData = { facultyId: Number(faculty.data.id) };
 
         await educationApi.udpate(education.id, updatedData);
-        alert("Fakultet Qoshildi");
       } catch (error) {
         alert(error);
       }
@@ -124,7 +123,6 @@ export const useModalStore = create<IModalStore>((set, _) => {
         const updatedData = { articlesId: Number(article.id) };
 
         await educationApi.udpate(education.id, updatedData);
-        alert("Article Qoshildi");
       } catch (error) {
         console.log(error);
 
@@ -141,7 +139,6 @@ export const useModalStore = create<IModalStore>((set, _) => {
         const updatedData = { bachelorId: Number(bachelor.id) };
 
         await educationApi.udpate(education.id, updatedData);
-        alert("Article Qoshildi");
       } catch (error) {
         alert(error);
       }

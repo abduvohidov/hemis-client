@@ -21,6 +21,8 @@ export const FacultyModal = () => {
   async function handleSave() {
     try {
       await createFaculty(modalData as any);
+      window.location.reload()
+      alert("Masgistrga fakultet qo'shildi")
     } catch (error) {
       console.error("Error submitting form", error);
     }

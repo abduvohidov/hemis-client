@@ -20,8 +20,9 @@ export const BachelorModal = () => {
   }
   async function handleSave() {
     try {
-      console.log(modalData);
       await createBachelor(modalData as any);
+      window.location.reload()
+      alert("Masgistrga Tugatgan OTM malumotlari qo'shildi")
     } catch (error) {
       console.error("Error submitting form", error);
     }

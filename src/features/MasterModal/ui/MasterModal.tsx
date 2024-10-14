@@ -26,6 +26,7 @@ export const MasterModal: React.FC<MasterModalProps> = () => {
     try {
       await createMaster(modalData as unknown as IMaster);
       window.location.reload();
+      alert("Masgistr qo'shilid")
     } catch (error) {
       console.error("Error submitting form", error);
     }

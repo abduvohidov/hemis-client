@@ -3,10 +3,18 @@ import { LoginRequest, LoginResponse } from "./login.types.js";
 
 export const loginApi = {
   login: async (data: LoginRequest): Promise<LoginResponse> => {
-    return await baseApi.post<LoginResponse, LoginRequest>(
+    const response = await baseApi.post<LoginResponse, LoginRequest>(
       "/users/login",
       data
     );
+
+    if (response) {
+      const { jwt, redirectTo } = response;
+      localStorage.setItem("redirectTo", redirectTo);
+      window.location.href = `/${redirectTo}`;
+    }
+
+    return response;
   },
 
   logout: (): Promise<void> => {

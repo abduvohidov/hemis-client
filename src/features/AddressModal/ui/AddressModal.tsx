@@ -21,11 +21,13 @@ export const AddressModal: React.FC<MasterModalProps> = () => {
   ) {
     const { name, value } = e.target;
     setInputValue(name, value);
+    
   }
   async function handleSave() {
     try {
       await createAddress(modalData as unknown as IAddress);
       window.location.reload();
+      alert("Masgistrga yashash manzili qo'shildi")
     } catch (error) {
       console.error("Error submitting form", error);
     }

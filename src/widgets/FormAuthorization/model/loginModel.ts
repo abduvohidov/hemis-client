@@ -13,13 +13,13 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
   role: null,
   error: null,
   MasterInfo:
-    (JSON.parse(
-      localStorage.getItem("Master") as string
-    ) as IMasterReponse) || null,
+    (JSON.parse(localStorage.getItem("Master") as string) as IMasterReponse) ||
+    null,
   login: async (data: LoginRequest): Promise<String | null> => {
     const result = await loginApi.login(data);
     if (typeof result !== "string") {
       setToken(result.jwt);
+      localStorage.setItem("role", result.redirectTo);
       set({ error: null, MasterInfo: result.result });
       localStorage.setItem("Master", JSON.stringify(result.result));
       return result.redirectTo as string;
@@ -31,7 +31,7 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
 
   logout: () => {
     removeToken("token");
-    localStorage.removeItem("Master");
+    localStorage.clear();
     loginApi.logout();
   },
 }));

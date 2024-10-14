@@ -23,6 +23,8 @@ export const ArticleModal = () => {
     try {
       console.log(modalData);
       await createArticle(modalData as any);
+      window.location.reload()
+      alert("Masgistrga maqola qo'shildi")
     } catch (error) {
       console.error("Error submitting form", error);
     }

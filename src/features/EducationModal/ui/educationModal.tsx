@@ -25,6 +25,8 @@ export const EducationModal: React.FC<MasterModalProps> = () => {
   async function handleSave() {
     try {
       await createEducation(modalData as unknown as IEducation);
+      window.location.reload()
+      alert("Masgistrga OTM malumotlari qo'shildi")
     } catch (error) {
       console.error("Error submitting form", error);
     }

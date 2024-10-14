@@ -69,6 +69,7 @@ export const MasterTable: React.FC = () => {
       );
     }
   }
+  
 
   function renderMasterValues() {
     if (data.length > 0) {

@@ -33,14 +33,12 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
         return;
       }
 
-      // Prepare data for update
       const data: any = {
         id: Master.id,
         email,
         phoneNumber,
       };
 
-      // Only include password if it is being updated
       if (password) {
         data.password = password; // Only set password if it's provided
       }
