@@ -1,6 +1,5 @@
 import "./User.css";
-import React from "react";
-import { Button, IMasterReponse } from "../../../shared";
+import { IMasterReponse } from "../../../shared";
 import { ProfileForm } from "../../../widgets/ProfileForm/ui/ProfileForm";
 import { useLoginStore } from "../../../widgets/FormAuthorization/model/loginModel";
 
@@ -14,7 +13,7 @@ export const User = () => {
         <div>
           <img
             className="profile-image"
-            src="https://cdn.vectorstock.com/i/1000v/23/70/man-avatar-icon-flat-vector-19152370.jpg"
+            src={Master.avatarUrl}
             alt="img"
           />
         </div>

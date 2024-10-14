@@ -10,6 +10,7 @@ export interface IMaster {
   email: string;
   phoneNumber: string;
   parentPhoneNumber: string;
+  avatarUrl: string;
   password: string;
   education?: any[];
 }

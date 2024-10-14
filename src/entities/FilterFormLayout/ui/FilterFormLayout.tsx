@@ -1,6 +1,6 @@
 import "./FilterFormLayout.css";
 import { Select } from "../../../shared";
-import React, { FC, FormEventHandler } from "react";
+import { FC, FormEventHandler } from "react";
 import { inputType } from "../lib/inputType";
 
 export interface IFilterFormLayout {
