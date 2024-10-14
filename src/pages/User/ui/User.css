@@ -9,7 +9,8 @@
 
 .profile-image {
   width: 138px;
-  height: 177px;
+  height: auto;
+  max-height: 177px;
   padding: 5px;
   border: 2px dotted gray;
 }

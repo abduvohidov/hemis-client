@@ -1,4 +1,3 @@
-import React from "react";
 import { IMasterReponse } from "../../../shared";
 import { inputType } from "../../FilterFormLayout/lib/inputType";
 import { MastersModalContentProps } from "../../../shared/consts/modalContents/mastersModalContent";
@@ -20,7 +19,7 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
 
   function renderFormInputs() {
     return content.map((item: MastersModalContentProps, index) => (
-      <div className={"col-lg-4 my-1"} key={index}>
+      <div className={`col-lg-${item.col} my-1`} key={index}>
         {inputType(item, item.name, handleChange)}
       </div>
     ));
@@ -39,7 +38,11 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
           {mastersContent}
         </select>
       )}
-      {renderFormInputs()}
+      <div className="container">
+        <div className="row">
+          {renderFormInputs()}
+        </div>
+      </div>
     </form>
   );
 };
