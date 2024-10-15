@@ -15,7 +15,7 @@ interface MasterModalProps {
 export const MasterModal: React.FC<MasterModalProps> = (props) => {
   const { master } = props;
   const setInputValue = useModalStore((state) => state.setInputValue);
-const createMaster = useModalStore((state) => state.createMaster);
+  const createMaster = useModalStore((state) => state.createMaster);
   const modalData = useModalStore((state) => state.modalData);
   const [formUpdateData, setFormUpdateData] = useState({});
 
@@ -42,6 +42,7 @@ const createMaster = useModalStore((state) => state.createMaster);
   async function handleSave() {
     try {
       await createMaster(modalData as unknown as IMaster);
+      window.location.reload()
       alert("Masgistr qo'shilid");
     } catch (error) {
       console.error("Error submitting form", error);
@@ -65,7 +66,6 @@ const createMaster = useModalStore((state) => state.createMaster);
   async function handleUpdate() {
     try {
       if (master) {
-
         const updatedResult = await MasterApi.updateMaster(
           master.id,
           modalData as any

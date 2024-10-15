@@ -1,8 +1,8 @@
 import "./ProfileForm.css";
+import { useNavigate } from "react-router";
 import React, { FC, useState } from "react";
 import { ProfileInput } from "../../../entities/ProfileInput";
 import { Button, IMasterReponse, MasterApi } from "../../../shared";
-import { useNavigate } from "react-router";
 
 export interface IProfileForm {
   Master: IMasterReponse;
@@ -12,23 +12,40 @@ export interface IProfileForm {
 export const ProfileForm: FC<IProfileForm> = (props) => {
   const { Master, logout } = props;
   const navigate = useNavigate();
-  const [email, setEmail] = useState<string>(Master.email);
   const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>(Master.email);
   const [newPassword, setNewPassword] = useState<string>("");
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
+  const [firstName, setFirstName] = useState<string>(Master.firstName);
+  const [lastName, setLastName] = useState<string>(Master.lastName); // Corrected here
   const [phoneNumber, setPhoneNumber] = useState<string>(Master.phoneNumber);
+  const [avatarUrl, setAvatarUrl] = useState<string | File>(Master.avatarUrl);
   const btnContent = isUpdating ? "Saqlash" : "O'zgartirish";
-  // update function
 
-  async function handleLogout() {
+  const convertBase64 = (file: File) => {
+    return new Promise<string>((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result as string);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  async function handleLogout(event: React.MouseEvent) {
+    event.preventDefault(); // Prevent default behavior
     navigate("/");
     await logout();
   }
 
-  async function handleClick() {
+  async function handleClick(event: React.MouseEvent) {
+    event.preventDefault(); // Prevent default form submission
+
     if (isUpdating) {
-      // Check if new password is provided
-      if (newPassword && password !== newPassword) {
+      if (password && password !== newPassword) {
         alert("Parollar mos emas!");
         return;
       }
@@ -37,10 +54,23 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
         id: Master.id,
         email,
         phoneNumber,
+        lastName,
+        firstName,
+        avatarUrl: typeof avatarUrl === "string" ? avatarUrl : undefined,
       };
 
       if (password) {
-        data.password = password; // Only set password if it's provided
+        data.password = password;
+      }
+
+      if (avatarUrl && typeof avatarUrl !== "string") {
+        try {
+          const base64Avatar = await convertBase64(avatarUrl);
+          data.avatarUrl = base64Avatar;
+        } catch (error) {
+          console.error("Error converting image to base64: ", error);
+          return;
+        }
       }
 
       try {
@@ -50,32 +80,35 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
         );
         if (typeof updatedMaster !== "string") {
           alert("Malumotlar yangilandi");
-          setPassword(""); // Clear password field
-          setNewPassword(""); // Clear new password field
+          setPassword("");
+          setNewPassword("");
           localStorage.setItem("Master", JSON.stringify(updatedMaster.data));
+          window.location.reload()
         } else {
           alert(updatedMaster);
         }
       } catch (error) {
-        console.log("Error in update Master: " + error);
+        console.error("Error in update Master: ", error);
       }
     }
-
     setIsUpdating(!isUpdating);
   }
+
   return (
     <form className="profile-form">
       <ProfileInput
-        disabled={true}
-        value={Master?.firstName}
+        disabled={!isUpdating}
+        value={firstName}
         name="firstName"
         placeholder="Ismi"
+        onChange={(e) => setFirstName(e.target.value)}
       />
       <ProfileInput
-        disabled={true}
-        value={Master?.firstName}
+        disabled={!isUpdating}
+        value={lastName}
         name="lastName"
         placeholder="Familiya"
+        onChange={(e) => setLastName(e.target.value)}
       />
       <ProfileInput
         disabled={true}
@@ -88,9 +121,7 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
         value={email}
         name="email"
         placeholder="Email"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <ProfileInput
         disabled={!isUpdating}
@@ -98,30 +129,37 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
         value={phoneNumber}
         name="phoneNumber"
         placeholder="Telefon raqam"
-        onChange={(e) => {
-          setPhoneNumber(e.target.value);
-        }}
+        onChange={(e) => setPhoneNumber(e.target.value)}
       />
       <ProfileInput
         disabled={!isUpdating}
         value={password}
         name="password"
         placeholder="Yangi parol"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
+        onChange={(e) => setPassword(e.target.value)}
       />
       <ProfileInput
         disabled={!isUpdating}
         value={newPassword}
         name="newPassword"
-        placeholder="Parolni tasdiqlang"
-        onChange={(e) => {
-          setNewPassword(e.target.value);
-        }}
+        placeholder="Yangi parolni qayta kiriting"
+        onChange={(e) => setNewPassword(e.target.value)}
       />
-      <Button children={btnContent} onClick={handleClick} />
-      <button className="logut-btn" onClick={handleLogout}>
+      <div className="input-group mb-3">
+        <label className="input-group-text" htmlFor="avatarUrl">
+          Rasm qo'ying
+        </label>
+        <input
+          name="avatarUrl"
+          type="file"
+          className="form-control"
+          id="avatarUrl"
+          onChange={(e) => setAvatarUrl(e.target.files[0])}
+          disabled={!isUpdating}
+        />
+      </div>
+      <Button onClick={handleClick}>{btnContent}</Button>
+      <button className="logout-btn" onClick={handleLogout}>
         Profildan chiqish
       </button>
     </form>

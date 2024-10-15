@@ -1,4 +1,5 @@
 import "./User.css";
+import React from "react";
 import { IMasterReponse } from "../../../shared";
 import { ProfileForm } from "../../../widgets/ProfileForm/ui/ProfileForm";
 import { useLoginStore } from "../../../widgets/FormAuthorization/model/loginModel";
