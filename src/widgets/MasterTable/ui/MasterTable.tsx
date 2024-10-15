@@ -149,7 +149,7 @@ export const MasterTable: React.FC = () => {
         <Button
           color="light"
           className="mx-2"
-          onClick={() => downloadXlsxFile(data)}
+          onClick={downloadXlsxFile}
           children={<i className="bi bi-download"></i>}
         />
       </div>
