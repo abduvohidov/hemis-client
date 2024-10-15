@@ -21,23 +21,11 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
   ));
   // needs to be copiyed
   function renderFormInputs() {
-    if (isUpdate && typeof content === "object") {
-      return Object.keys(content).map((key, index) => (
-        <div className="col-lg-4 my-1" key={index}>
-          {inputType(
-            { ...content[key], name: key, value: content[key] },
-            key,
-            handleChange
-          )}
-        </div>
-      ));
-    } else {
-      return content.map((item: MastersModalContentProps, index) => (
-        <div className="col-lg-4 my-1" key={index}>
-          {inputType(item, item.name, handleChange)}
-        </div>
-      ));
-    }
+    return content.map((item: MastersModalContentProps, index) => (
+      <div className={`col-lg-${item.col} my-1`} key={index}>
+        {inputType(item, item.name, handleChange)}
+      </div>
+    ));
   }
 
   return (
@@ -53,7 +41,9 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
           {mastersContent}
         </select>
       )}
-      {renderFormInputs()}
+      <div className="container">
+        <div className="row">{renderFormInputs()}</div>
+      </div>
     </form>
   );
 };
