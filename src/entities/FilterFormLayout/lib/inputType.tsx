@@ -13,7 +13,6 @@ export function inputType(
   if (inputType === "parentPhoneNumber" || inputType === "phoneNumber") {
     return (
       <ProfileInput
-        value={value || ""}
         isPlaceholder={false}
         isPhoneInput={true}
         name={name}

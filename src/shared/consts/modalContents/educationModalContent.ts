@@ -85,4 +85,9 @@ export const Education_Modal_Content: Array<EducationModalContentProps> = [
     placeholder: "Akademik dam",
     options: ["Olgan", "Olmagan"],
   },
+  {
+    isSelect: false,
+    name: "scientificInternshipPlace",
+    placeholder: "Ilmit amaliyot o'tash joyi",
+  },
 ];

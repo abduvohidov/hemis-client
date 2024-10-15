@@ -1,3 +1,7 @@
+import { IArticleReponse } from "../article/article.types";
+import { IBachelorResponse } from "../bachelor/bachelor.types";
+import { IFacultyReponse } from "../faculty/faculty.types";
+
 export interface IMaster {
   lastName: string;
   firstName: string;

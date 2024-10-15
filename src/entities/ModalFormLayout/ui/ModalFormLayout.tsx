@@ -5,21 +5,18 @@ import { MastersModalContentProps } from "../../../shared/consts/modalContents/m
 
 export interface ModalLayoutFormProps {
   content: any;
-  isUpdate: boolean;
   masters?: IMasterReponse[];
   handleChange(e: React.FormEvent): void;
 }
 
 export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
-  const { content, masters, handleChange, isUpdate } = props;
-  console.log(content);
+  const { content, masters, handleChange } = props;
 
   const mastersContent = masters?.map((master, index) => (
     <option key={index} value={master.id}>
       {master.firstName} {master.lastName}
     </option>
   ));
-  // needs to be copiyed
   function renderFormInputs() {
     return content.map((item: MastersModalContentProps, index) => (
       <div className={`col-lg-${item.col} my-1`} key={index}>
