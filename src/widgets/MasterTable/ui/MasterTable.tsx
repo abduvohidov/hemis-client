@@ -4,14 +4,7 @@ import { Table } from "../../../shared/ui/Table/index.ts";
 import { ButtonModal } from "../../../entities/ButtonsModal";
 import { useFormStore } from "../../FilterForm/model/formStore.ts";
 import { MasterModal } from "../../../features/MasterModal/index.ts";
-import {
-  Button,
-  IBachelorResponse,
-  IFaculty,
-  IFacultyReponse,
-  IMasterReponse,
-  MasterApi,
-} from "../../../shared/index.ts";
+import { Button, IMasterReponse } from "../../../shared/index.ts";
 import { removeMaster, findMasters, downloadXlsxFile } from "../lib/index.ts";
 import { AddressModal } from "../../../features/AddressModal/index.ts";
 import { EducationModal } from "../../../features/EducationModal";
@@ -156,7 +149,7 @@ export const MasterTable: React.FC = () => {
         <Button
           color="light"
           className="mx-2"
-          onClick={downloadXlsxFile}
+          onClick={() => downloadXlsxFile(data)}
           children={<i className="bi bi-download"></i>}
         />
       </div>
