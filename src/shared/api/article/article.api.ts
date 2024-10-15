@@ -9,11 +9,11 @@ export const articleApi = {
     );
     return result.article;
   },
-  udpate: async (
+  update: async (
     id: number,
     data: Partial<IArticle>
   ): Promise<IArticleReponse> => {
-    return await baseApi.post<IArticleReponse, Partial<IArticle>>(
+    return await baseApi.put<IArticleReponse, Partial<IArticle>>(
       `/articles/update/${id}`,
       data
     );

@@ -1,6 +1,5 @@
 export interface FacultyModalContentProps {
   placeholder: string;
-  value: string;
   name: string;
   isSelect: boolean;
   options?: string[];
@@ -8,7 +7,6 @@ export interface FacultyModalContentProps {
 
 export const Faculty_Modal_Content: Array<FacultyModalContentProps> = [
   {
-    value: "",
     isSelect: true,
     name: "name",
     placeholder: "Fakultet",

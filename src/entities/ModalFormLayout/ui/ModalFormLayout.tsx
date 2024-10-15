@@ -1,9 +1,10 @@
+import React from "react";
 import { IMasterReponse } from "../../../shared";
 import { inputType } from "../../FilterFormLayout/lib/inputType";
 import { MastersModalContentProps } from "../../../shared/consts/modalContents/mastersModalContent";
 
 export interface ModalLayoutFormProps {
-  content: Array<any>;
+  content: any;
   masters?: IMasterReponse[];
   handleChange(e: React.FormEvent): void;
 }
@@ -16,7 +17,6 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
       {master.firstName} {master.lastName}
     </option>
   ));
-
   function renderFormInputs() {
     return content.map((item: MastersModalContentProps, index) => (
       <div className={`col-lg-${item.col} my-1`} key={index}>
@@ -39,9 +39,7 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
         </select>
       )}
       <div className="container">
-        <div className="row">
-          {renderFormInputs()}
-        </div>
+        <div className="row">{renderFormInputs()}</div>
       </div>
     </form>
   );

@@ -11,8 +11,9 @@
     "json": "json-server db.json"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.8",
     "axios": "^1.7.7",
-    "bootstrap": "^5.3.2",
+    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "compose-function": "^3.0.3",
     "js-cookie": "^3.0.5",

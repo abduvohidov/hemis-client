@@ -9,7 +9,7 @@ export const addressApi = {
 		);
 	},
 
-	updateUser: async (
+	updateAddress: async (
 		id: number,
 		data: Partial<IAddress>
 	): Promise<IAddressResponse> => {

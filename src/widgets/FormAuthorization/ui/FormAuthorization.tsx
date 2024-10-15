@@ -27,7 +27,7 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
       alert(error);
     } else {
       alert("Login successful!");
-      if (role === "Master") navigate("/user");
+      if (role === "Master") navigate("/master");
       else navigate("/admin");
     }
     clearForm();

@@ -9,11 +9,11 @@ export const bachelorApi = {
     );
     return result.data;
   },
-  udpate: async (
+  update: async (
     id: number,
     data: Partial<IBachelor>
   ): Promise<IBachelorResponse> => {
-    return await baseApi.post<IBachelorResponse, Partial<IBachelor>>(
+    return await baseApi.put<IBachelorResponse, Partial<IBachelor>>(
       `/bachelors/update/${id}`,
       data
     );

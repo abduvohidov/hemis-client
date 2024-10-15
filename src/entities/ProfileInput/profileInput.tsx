@@ -27,7 +27,7 @@ export const ProfileInput: FC<IProfileInput> = (props) => {
 
   const input = isPhoneInput ? (
     <InputMask
-      mask="+\9\98 999 99 99"
+      mask="+\9\98 99 999 99 99"
       placeholder={placeholder || value}
       maskChar="_"
       value={value}

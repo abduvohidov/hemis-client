@@ -1,3 +1,4 @@
+import React from "react";
 import { Select } from "../../../shared";
 import { DateInput } from "../../DateInput";
 import { ProfileInput } from "../../ProfileInput";
@@ -8,12 +9,13 @@ export function inputType(
   inputType: string,
   handleChange: any
 ) {
+  const { value, name, placeholder, isSelect } = item;
   if (inputType === "parentPhoneNumber" || inputType === "phoneNumber") {
     return (
       <ProfileInput
         isPlaceholder={false}
         isPhoneInput={true}
-        name={item.name}
+        name={name}
         disabled={false}
         onChange={handleChange}
         placeholder={
@@ -29,29 +31,44 @@ export function inputType(
     inputType === "firstArticleDate"
   ) {
     return (
-      <DateInput value={item.value} onChange={handleChange} name={item.name} placeholder={item.placeholder} />
+      <DateInput
+        value={value || ""}
+        onChange={handleChange}
+        name={name}
+        placeholder={placeholder}
+      />
     );
-  } else if (item.isSelect) {
+  } else if (isSelect) {
     return (
       <Select
         handleChange={handleChange}
         field={item}
-        defaultValue={item.placeholder}
+        defaultValue={placeholder}
       />
     );
   } else if (item.isFileUpload) {
-    return <div className="input-group mb-3">
-      <label className="input-group-text" htmlFor={item.name}>{item.placeholder}</label>
-      <input name={item.name} type="file" className="form-control" id={item.name} onChange={handleChange} />
-    </div>
+    return (
+      <div className="input-group mb-3">
+        <label className="input-group-text" htmlFor={item.name}>
+          {item.placeholder}
+        </label>
+        <input
+          name={item.name}
+          type="file"
+          className="form-control"
+          id={item.name}
+          onChange={handleChange}
+        />
+      </div>
+    );
   } else {
     return (
-        <input
-            placeholder={item.placeholder}
-            name={item.name}
-            onChange={handleChange}
-            className="form-control"
-        />
+      <input
+        placeholder={item.placeholder}
+        name={item.name}
+        onChange={handleChange}
+        className="form-control"
+      />
     );
   }
 }
