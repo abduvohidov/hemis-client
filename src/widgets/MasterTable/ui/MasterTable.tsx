@@ -5,7 +5,7 @@ import { ButtonModal } from "../../../entities/ButtonsModal";
 import { useFormStore } from "../../FilterForm/model/formStore.ts";
 import { MasterModal } from "../../../features/MasterModal/index.ts";
 import { Button, IMasterReponse } from "../../../shared/index.ts";
-import { removeMaster, findMasters, downloadXlsxFile } from "../lib/index.ts";
+import { removeMaster, findMasters, generateXlsxFile } from "../lib/index.ts";
 import { AddressModal } from "../../../features/AddressModal/index.ts";
 import { EducationModal } from "../../../features/EducationModal";
 import { FacultyModal } from "../../../features/FacultyModal";
@@ -128,6 +128,11 @@ export const MasterTable: React.FC = () => {
     }
   }
 
+  async function downloadReport() {
+    const filename = await generateXlsxFile(data)
+    window.open(`http://localhost:9000/Masters/download/sheets/${filename}`, "_blank")?.focus()
+  }
+
   useEffect(() => {
     fetchMasters();
     setData(masters);
@@ -149,7 +154,7 @@ export const MasterTable: React.FC = () => {
         <Button
           color="light"
           className="mx-2"
-          onClick={() => downloadXlsxFile(data)}
+          onClick={downloadReport}
           children={<i className="bi bi-download"></i>}
         />
       </div>

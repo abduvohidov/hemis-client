@@ -1,31 +1,11 @@
-import { baseApi } from "../../../shared";
+import { baseApi, IMasterReponse } from "../../../shared";
 
-export async function downloadXlsxFile(data) {
-  const educations = data.map((item, indx) => {
-    return item.education[0];
-  });
-  const bachelors = educations.map((item) => {
-    return item.bachelor;
-  });
-  const addresses = data.map((item) => {
-    return item.addresses[0];
-  });
-  const faculties = educations.map((item) => {
-    return item.faculty;
-  });
-  const articles = educations.map((item) => {
-    return item.article;
-  });
-
-  const responseData = {
-    masters: data,
-    educations,
-    addresses,
-    bachelors,
-    faculties,
-    articles,
-  };
-  await baseApi.post("/Masters/download/sheets", responseData);
+export async function generateXlsxFile(data) {
+  const dataWithoutAvatarUrl = data.map(({ avatarUrl, ...student }) => student);
+  const response = await baseApi.post("/Masters/download/sheets", dataWithoutAvatarUrl);
+  console.log(response.data);
+  
+  return response.data.filename
 }
 
 // await window.location.href = "http://localhost:9000/Masters/download/sheets";
