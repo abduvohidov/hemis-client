@@ -1,5 +1,6 @@
 import React from "react";
 import { Select } from "../../../shared";
+import InputMask from "react-input-mask";
 import { DateInput } from "../../DateInput";
 import { ProfileInput } from "../../ProfileInput";
 import { MastersModalContentProps } from "../../../shared/consts/modalContents/mastersModalContent";
@@ -58,8 +59,22 @@ export function inputType(
           className="form-control"
           id={item.name}
           onChange={handleChange}
+          required
         />
       </div>
+    );
+  } else if (inputType === "jshshr") {
+    return (
+      <InputMask
+        name={name}
+        mask="999 999 999 999"
+        maskChar="_"
+        className="form-control"
+        onChange={(e) => {
+          handleChange(e);
+        }}
+        placeholder={placeholder || value}
+      />
     );
   } else {
     return (
@@ -68,6 +83,7 @@ export function inputType(
         name={item.name}
         onChange={handleChange}
         className="form-control"
+        required
       />
     );
   }

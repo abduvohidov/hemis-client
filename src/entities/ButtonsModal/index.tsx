@@ -30,7 +30,7 @@ export const ButtonModal: FC<IButtonModal> = (props) => {
     <div
       className="modal fade"
       id={type==="create"? "triggerCreateButtons" : "triggerUpdateButtons"}
-      aria-labelledby="exampleMoudalLabel"
+      aria-labelledby="staticBackdropLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog">
