@@ -1,5 +1,5 @@
 export const tableHead: Array<string> = [
-  "$",
+  "#",
   "Id",
   "Ismi",
   "Familiya",

@@ -83,7 +83,8 @@ export const FilterForm = () => {
         className="me-auto w-100 my-4 cursor-pointer"
         onClick={handleClick}
       >
-        Qidirish <i className="bi bi-search"></i>
+      <i className="bi bi-search"></i>
+      <span className={"ms-1"}>Qidirish</span>
       </Button>
     </>
   );
