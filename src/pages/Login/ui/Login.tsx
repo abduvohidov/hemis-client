@@ -2,13 +2,12 @@ import "./Login.css";
 import React from "react";
 import { Title } from "../../../shared";
 import { FormAuthorization } from "../../../widgets";
+import LoginLogo from "../../../app/img/login-logo.png"
 
 export const Login: React.FC = () => (
   <section>
     <img
-      src={
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRLKFCB5V-pQ5VVa5OtcVQIpOXMrOe6PhTvA&s"
-      }
+      src={LoginLogo}
       alt={"img"}
       width={"150px"}
       height={"150px"}
