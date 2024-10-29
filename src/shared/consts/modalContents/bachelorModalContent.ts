@@ -25,6 +25,6 @@ export const Bachelor_Modal_Content: Array<BachelorModalContentProps> = [
   {
     isSelect: false,
     name: "previousSpecialization",
-    placeholder: "Tugatgan mutaxasisligi",
+    placeholder: "Tugatgan yo'nalish",
   },
 ];

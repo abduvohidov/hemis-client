@@ -11,7 +11,7 @@ export const FILTER_EDUCATION_CONTENT = [
     type: "select",
     name: "course",
     placeholder: "Kursni tanlang",
-    options: ["1", "2", "3", "4"],
+    options: ["1", "2", "3"],
   },
   {
     value: "",

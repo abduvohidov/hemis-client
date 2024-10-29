@@ -9,33 +9,33 @@ export const Article_Modal_Content: Array<ArticleModalContentProps> = [
   {
     isSelect: false,
     name: "firstArticle",
-    placeholder: "Birinchi maqolani kiriting",
-  },
-  {
-    isSelect: false,
-    name: "firstArticleDate",
-    placeholder: "Birinchi maqolaning sanasini kiriting",
+    placeholder: "Birinchi maqola tezis nomi",
   },
   {
     isSelect: false,
     name: "firstArticleJournal",
-    placeholder: "Birinchi maqolani tzs kiriting",
+    placeholder: "Birinchi maqola chop etilgan jurnal",
+  },
+  {
+    isSelect: false,
+    name: "firstArticleDate",
+    placeholder: "Birinchi maqola chop etilgan sana",
   },
 
   {
     isSelect: false,
     name: "secondArticle",
-    placeholder: "Ikkinchi maqolani",
+    placeholder: "Ikkinchi maqola tezis nomi",
   },
 
   {
     isSelect: false,
     name: "secondArticleJournal",
-    placeholder: "Ikkinchi maqolani tzs kiriting",
+    placeholder: "maqola chop etilgan jurnal",
   },
   {
     isSelect: false,
     name: "secondArticleDate",
-    placeholder: "Ikkinchi maqolaning sanasini kiriting",
+    placeholder: "Ikkinchi maqola chop etilgan sana",
   },
 ];

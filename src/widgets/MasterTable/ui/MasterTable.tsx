@@ -129,8 +129,13 @@ export const MasterTable: React.FC = () => {
   }
 
   async function downloadReport() {
-    const filename = await generateXlsxFile(data)
-    window.open(`http://localhost:9000/Masters/download/sheets/${filename}`, "_blank")?.focus()
+    const filename = await generateXlsxFile(data);
+    window
+      .open(
+        `http://localhost:9000/Masters/download/sheets/${filename}`,
+        "_blank"
+      )
+      ?.focus();
   }
 
   useEffect(() => {
@@ -141,11 +146,10 @@ export const MasterTable: React.FC = () => {
 
   return (
     <>
-      <h6>Magistrlar Tablitsasi</h6>
-      <div className="my-3">
+      <h6>Magistrlar ro'yxati</h6>
+      <div className="my-3 d-flex gap-4 align-items-center">
         <Button
           color="light"
-          className="mx-2"
           toggleMasterModal="modal"
           targetMasterModal="#triggerCreateButtons"
           children="Yaratish"
@@ -153,10 +157,12 @@ export const MasterTable: React.FC = () => {
 
         <Button
           color="light"
-          className="mx-2"
           onClick={downloadReport}
           children={<i className="bi bi-download"></i>}
         />
+        <p>
+          <strong>Magistirlar soni :</strong> {data.length}
+        </p>
       </div>
 
       <Table tableHead={renderMasterHead()} tableBody={renderMasterValues()} />

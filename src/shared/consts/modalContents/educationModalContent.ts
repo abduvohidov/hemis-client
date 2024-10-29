@@ -17,7 +17,7 @@ export const Education_Modal_Content: Array<EducationModalContentProps> = [
     isSelect: true,
     name: "course",
     placeholder: "Kursni tanlang",
-    options: ["1", "2", "3", "4"],
+    options: ["1", "2", "3"],
   },
   {
     isSelect: true,
