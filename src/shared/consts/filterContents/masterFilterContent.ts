@@ -33,7 +33,7 @@ export const FILTER_Master_CONTENT = [
     value: "",
     type: "text",
     name: "dateOfBirth",
-    placeholder: "KUN/OY/YIL",
+    placeholder: "Yil-oy-kun",
   },
   {
     value: "Jins tanlnang",

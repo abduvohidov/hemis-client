@@ -1,29 +1,32 @@
-import React from "react";
-import InputMask from "react-input-mask";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export const DateInput = ({
-  value,
+  placeholder,
   onChange,
   name,
-  placeholder = "yil-oy-kun",
   disabled = false,
 }) => {
+  const [selectedDate, setSelectedDate] = useState(null);
+
+  const handleDateChange = (date) => {
+    if (date) {
+      const formattedDate = date.toISOString().split("T")[0];
+      setSelectedDate(formattedDate)
+      const e = { target: { name, value: formattedDate } };
+      onChange(e);
+    }
+  };
+
   return (
-    <InputMask
-      mask="9999-99-99"
-      placeholder={placeholder}
-      maskChar="_"
-      onChange={onChange}
+    <DatePicker
+      placeholderText={placeholder}
+      selected={selectedDate}
+      onChange={handleDateChange}
+      dateFormat="yyyy-MM-dd"
       disabled={disabled}
-    >
-      {(inputProps) => (
-        <input
-          {...inputProps}
-          name={name}
-          type="text"
-          className="form-control"
-        />
-      )}
-    </InputMask>
+      className="form-control"
+    />
   );
 };
