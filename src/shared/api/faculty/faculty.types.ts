@@ -1,7 +1,10 @@
 export interface IFaculty {
-	name: string;
-	education: any[];
+  id?: number;
+  name: string;
+  education: any[];
 }
-export interface IFacultyReponse extends IFaculty {
-	id: number;
+export interface IFacultyResponse {
+  success: boolean | undefined;
+  message: string;
+  data: IFaculty | null;
 }

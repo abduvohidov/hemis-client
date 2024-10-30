@@ -9,7 +9,7 @@ export const loginApi = {
     );
 
     if (response) {
-      const { jwt, redirectTo } = response;
+      const { redirectTo } = response.message;
       localStorage.setItem("redirectTo", redirectTo);
       window.location.href = `/${redirectTo}`;
     }

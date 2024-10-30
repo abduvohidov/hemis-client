@@ -11,8 +11,9 @@ import {
   IEducation,
   IFaculty,
   IMaster,
-  MasterApi,
+  masterApi,
 } from "../../../shared";
+import { ICreateFacultyProps } from "./types";
 
 export interface IModalMaster {
   id: number;
@@ -43,8 +44,8 @@ export const useModalStore = create<IModalStore>((set, _) => {
       })),
     createMaster: async (data: IMaster) => {
       try {
-        const master = await MasterApi.createMaster(data);
-
+        const master = await masterApi.createMaster(data);
+        
         if (typeof master === "string") {
           alert(master);
           return;
@@ -90,25 +91,17 @@ export const useModalStore = create<IModalStore>((set, _) => {
         alert(error);
       }
     },
-    createFaculty: async (data: any) => {
+    createFaculty: async (data: ICreateFacultyProps) => {
       try {
-        let faculty = await facultyApi.findByName(data.name);
-        if (typeof faculty === "string") {
-          alert(faculty);
-          return;
-        } else if (!faculty) {
-          alert("Some error");
+        let result = await facultyApi.findOrCreate(data);
+        if (result.success) {
+          window.location.reload();
+          alert("Fakultet qo`shildi ✅");
           return;
         }
-        const education = await educationApi.getByMasterId(
-          Number(data?.masterId)
-        );
-        if (typeof education === "string") alert(education);
-        const updatedData = { facultyId: Number(faculty.data.id) };
-
-        await educationApi.udpate(education.id, updatedData);
+        alert("Masterni tanlang va qayta urinib ko`ring");
       } catch (error) {
-        alert(error);
+        alert("Qaytadan urinib ko`ring");
       }
     },
     createArticle: async (data: any) => {

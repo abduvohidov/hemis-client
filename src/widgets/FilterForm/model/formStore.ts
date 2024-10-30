@@ -6,7 +6,7 @@ import {
   educationApi,
   facultyApi,
   IMaster,
-  MasterApi,
+  masterApi,
 } from "../../../shared";
 
 interface FormState {
@@ -25,7 +25,7 @@ interface FormState {
 
 export const useFormStore = create<FormState>((set, get) => {
   const getAllMasters = async () => {
-    const Masters = await MasterApi.getAllMasters();
+    const Masters = await masterApi.getAllMasters();
 
     set({
       Masters,
@@ -50,7 +50,7 @@ export const useFormStore = create<FormState>((set, get) => {
       })),
     getAllMasters,
     filterByMaster: async (formData: Record<string, string>) => {
-      const result: any = await MasterApi.getMastersByFilter(
+      const result: any = await masterApi.getMastersByFilter(
         formData as Partial<IMaster>
       );
       return result.data;

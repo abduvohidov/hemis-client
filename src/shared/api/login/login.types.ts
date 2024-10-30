@@ -7,8 +7,17 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  token(token: any): unknown;
-  redirectTo: string;
-  jwt: string;
-  result: IMasterReponse | IUserReponse;
+  success: boolean;
+  message: {
+    jwt: string;
+    redirectTo: string;
+    result: {
+      id: number;
+      name: string;
+      lastName: string;
+      email: string;
+      password: string;
+      role: string;
+    };
+  };
 }

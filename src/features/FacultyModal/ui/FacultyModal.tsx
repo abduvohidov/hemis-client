@@ -1,25 +1,34 @@
 import React, { FC, useEffect, useState } from "react";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
+import { facultyApi, IFacultyResponse, IMaster } from "../../../shared";
 import { Faculty_Modal_Content } from "../../../shared/consts";
 import { useFormStore } from "../../../widgets/FilterForm/model/formStore";
 import {
   ModalFormLayout,
   useModalStore,
 } from "../../../entities/ModalFormLayout";
-import { facultyApi, IFacultyReponse } from "../../../shared";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
+import { Faculty_Specizialization_Content } from "../../../shared/consts/modalContents/facultyModalContent";
 
 interface FacultyModalProps {
-  faculty: IFacultyReponse | null;
+  faculty: IFacultyResponse | null;
 }
 
 export const FacultyModal: FC<FacultyModalProps> = (props) => {
   const { faculty } = props;
-  const masters = useFormStore((state) => state.Masters);
   const [formUpdateData, setFormUpdateData] = useState({});
+  const [selectedMasterId, setSelectedMasterId] = useState<number>();
+  const [modalContent, setModalContent] = useState(Faculty_Modal_Content);
+
+  const masters = useFormStore((state) => state.Masters);
   const modalData = useModalStore((state) => state.modalData);
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createFaculty = useModalStore((state) => state.createFaculty);
+
+  // excluding masters with faculty
+  let masterWithoutFaculty = masters.filter(
+    (master) => !master.education[0].facultyId
+  );
 
   //create function
   function handleChange(
@@ -27,12 +36,13 @@ export const FacultyModal: FC<FacultyModalProps> = (props) => {
   ) {
     const { name, value } = e.target;
     setInputValue(name, value);
+    if (name === "masterId") {
+      setSelectedMasterId(Number(value));
+    }
   }
   async function handleSave() {
     try {
       await createFaculty(modalData as any);
-      window.location.reload();
-      alert("Masgistrga fakultet qo'shildi");
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -61,6 +71,20 @@ export const FacultyModal: FC<FacultyModalProps> = (props) => {
     }
   }, [faculty]);
 
+  // for updating faculty
+  useEffect(() => {
+    const master = masters?.find((master) => master.id === selectedMasterId);
+    const educationName = master?.education[0].currentSpecialization;
+
+    if (educationName) {
+      const newOptions = Faculty_Specizialization_Content[educationName] || [];
+      setModalContent((prevContent) => {
+        return prevContent.map((item, index) =>
+          index === 0 ? { ...item, options: newOptions } : item
+        );
+      });
+    }
+  }, [selectedMasterId]);
   async function handleUpdateChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
@@ -86,8 +110,8 @@ export const FacultyModal: FC<FacultyModalProps> = (props) => {
       ) : (
         <ModalFormLayout
           handleChange={handleChange}
-          masters={masters}
-          content={Faculty_Modal_Content}
+          masters={masterWithoutFaculty}
+          content={modalContent}
         />
       )}
     </Modal>

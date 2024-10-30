@@ -17,12 +17,13 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
     null,
   login: async (data: LoginRequest): Promise<String | null> => {
     const result = await loginApi.login(data);
-    if (typeof result !== "string") {
-      setToken(result.jwt);
-      localStorage.setItem("role", result.redirectTo);
-      set({ error: null, MasterInfo: result.result });
-      localStorage.setItem("Master", JSON.stringify(result.result));
-      return result.redirectTo as string;
+
+    if (typeof result.success) {
+      setToken(result.message.jwt);
+      localStorage.setItem("role", result.message.redirectTo);
+      set({ error: null, MasterInfo: result.message.result });
+      localStorage.setItem("Master", JSON.stringify(result.message.result));
+      return result.message.redirectTo;
     } else {
       set({ error: result });
       return null;

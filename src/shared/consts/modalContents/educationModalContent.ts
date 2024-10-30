@@ -11,7 +11,7 @@ export const Education_Modal_Content: Array<EducationModalContentProps> = [
     isSelect: true,
     name: "currentSpecialization",
     placeholder: "Sohani tanlang",
-    options: ["IT", "Business", "TAMAM"],
+    options: ["Matematika", "Amaliy matematika va intellektual texnologiyalar", "Fizika"],
   },
   {
     isSelect: true,

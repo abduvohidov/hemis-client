@@ -4,7 +4,11 @@ export const FILTER_EDUCATION_CONTENT = [
     type: "select",
     name: "currentSpecialization",
     placeholder: "Sohani tanlang",
-    options: ["IT", "Business", "TAMAM"],
+    options: [
+      "Matematika",
+      "Amaliy matematika va intellektual texnologiyalar",
+      "Fizika",
+    ],
   },
   {
     value: "",

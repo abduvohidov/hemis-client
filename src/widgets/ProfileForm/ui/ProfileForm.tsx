@@ -2,7 +2,7 @@ import "./ProfileForm.css";
 import { useNavigate } from "react-router";
 import React, { FC, useState } from "react";
 import { ProfileInput } from "../../../entities/ProfileInput";
-import { Button, IMasterReponse, MasterApi } from "../../../shared";
+import { Button, IMasterReponse, masterApi } from "../../../shared";
 
 export interface IProfileForm {
   Master: IMasterReponse;
@@ -74,7 +74,7 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
       }
 
       try {
-        const updatedMaster: any = await MasterApi.updateMaster(
+        const updatedMaster: any = await masterApi.updateMaster(
           Master.id,
           data
         );
@@ -83,7 +83,7 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
           setPassword("");
           setNewPassword("");
           localStorage.setItem("Master", JSON.stringify(updatedMaster.data));
-          window.location.reload()
+          window.location.reload();
         } else {
           alert(updatedMaster);
         }

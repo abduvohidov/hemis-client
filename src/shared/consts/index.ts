@@ -1,5 +1,5 @@
-export { Faculty_Modal_Content } from "./modalContents/facultyModal";
 export { mastersModalContent } from "./modalContents/mastersModalContent";
+export { Faculty_Modal_Content } from "./modalContents/facultyModalContent";
 export { Address_Modal_Content } from "./modalContents/addressModalContent";
 export { Article_Modal_Content } from "./modalContents/articleModalContent";
 export { Bachelor_Modal_Content } from "./modalContents/bachelorModalContent";

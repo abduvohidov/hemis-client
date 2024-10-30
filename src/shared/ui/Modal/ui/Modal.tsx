@@ -8,8 +8,11 @@ export const Modal: React.FC<ModalProps> = (props) => {
     <div
       className={`modal fade ${className}`}
       id={modalId}
-      aria-labelledby="exampleMoudalLabel"
-      aria-hidden="true"
+      tabIndex={-1}
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="false"
     >
       <div className="modal-dialog">
         <div className="modal-content">

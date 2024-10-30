@@ -5,7 +5,7 @@ import {
   ModalFormLayout,
   useModalStore,
 } from "../../../entities/ModalFormLayout";
-import { IMaster, IMasterReponse, MasterApi } from "../../../shared";
+import { IMaster, IMasterReponse, masterApi } from "../../../shared";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
 
 interface MasterModalProps {
@@ -66,7 +66,7 @@ export const MasterModal: React.FC<MasterModalProps> = (props) => {
   async function handleUpdate() {
     try {
       if (master) {
-        const updatedResult = await MasterApi.updateMaster(
+        const updatedResult = await masterApi.updateMaster(
           master.id,
           modalData as any
         );

@@ -1,5 +1,5 @@
-import { MasterApi } from "../../../shared";
+import { masterApi } from "../../../shared";
 
 export async function removeMaster(id: number): Promise<void> {
-  await MasterApi.deleteMaster(id);
+  await masterApi.deleteMaster(id);
 }

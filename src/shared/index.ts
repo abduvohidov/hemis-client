@@ -16,7 +16,7 @@ export type { LoginRequest, LoginResponse } from "./api/login/login.types";
 
 //Master
 
-export { MasterApi } from "./api/master/master.api";
+export { masterApi } from "./api/master/master.api";
 export type {
   IMaster,
   IMasterDeletedResponse,
@@ -47,4 +47,4 @@ export type {
 
 //faculty
 export { facultyApi } from "./api/faculty/faculty.api";
-export type { IFaculty, IFacultyReponse } from "./api/faculty/faculty.types";
+export type { IFaculty, IFacultyResponse } from "./api/faculty/faculty.types";

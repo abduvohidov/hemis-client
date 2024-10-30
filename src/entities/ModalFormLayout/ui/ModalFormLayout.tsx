@@ -29,12 +29,14 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
     <form className="row">
       {masters && (
         <select
-          defaultValue="Student tanlang"
+          defaultValue=""
           name="masterId"
           className="form-control mt-2 mb-2 mx-2"
           onChange={handleChange}
         >
-          <option disabled>Student tanlang</option>
+          <option value="" disabled>
+            Student tanlang
+          </option>
           {mastersContent}
         </select>
       )}

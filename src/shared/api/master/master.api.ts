@@ -6,7 +6,7 @@ import {
   IMasterDeletedResponse,
 } from "./master.types";
 
-export const MasterApi = {
+export const masterApi = {
   createMaster: async (data: IMaster): Promise<IMasterReponse> => {
     return await baseApi.post<IMasterReponse, IMaster>(
       "/masters/register",
@@ -48,12 +48,9 @@ export const MasterApi = {
   // gets
   getAllMasters: async (): Promise<IMasterReponse[]> => {
     const result = await baseApi.get<IMasterReponse[]>(`/masters/all`);
-    return result.data;
+    return result.message.data;
   },
 
-  getMasterById: async (id: number): Promise<IMaster[]> => {
-    return await baseApi.get<IMaster[]>(`/masters/${id}`);
-  },
   getMastersByFilter: async (data: Partial<IMaster>): Promise<IMaster[]> => {
     return await baseApi.post<IMasterReponse[], Partial<IMaster>>(
       `/masters/filter`,
