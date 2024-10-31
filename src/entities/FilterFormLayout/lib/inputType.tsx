@@ -73,6 +73,7 @@ export function inputType(
         onChange={(e) => {
           handleChange(e);
         }}
+        required
         placeholder={placeholder || value}
       />
     );

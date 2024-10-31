@@ -27,7 +27,7 @@ export const FacultyModal: FC<FacultyModalProps> = (props) => {
 
   // excluding masters with faculty
   let masterWithoutFaculty = masters.filter(
-    (master) => !master.education[0].facultyId
+    (master) => !master?.education[0]?.facultyId
   );
 
   //create function

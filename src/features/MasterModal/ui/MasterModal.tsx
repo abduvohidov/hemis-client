@@ -38,7 +38,6 @@ export const MasterModal: React.FC<MasterModalProps> = (props) => {
     });
   };
   // create functions
-
   async function handleSave() {
     try {
       await createMaster(modalData as unknown as IMaster);

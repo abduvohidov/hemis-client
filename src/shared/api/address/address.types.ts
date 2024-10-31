@@ -1,10 +1,19 @@
+import { IMaster } from "../Master/Master.types";
+
 export interface IAddress {
-	country: string;
-	region: string;
-	address: string;
-	masterId: number;
+  id?: number;
+  country: string;
+  region: string;
+  address: string;
+  masterId: number;
+  master?: IMaster;
 }
 
 export interface IAddressResponse extends IAddress {
-	id: number;
+  success: boolean;
+  message: {
+    data: IAddress;
+    messsage: string;
+    status: boolean;
+  };
 }

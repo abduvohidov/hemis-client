@@ -12,7 +12,7 @@ export interface IButtonModal {
 
 export const ButtonModal: FC<IButtonModal> = (props) => {
   const { type } = props;
-  
+
   const content =
     type === "create"
       ? Button_Modal_Create_Contents

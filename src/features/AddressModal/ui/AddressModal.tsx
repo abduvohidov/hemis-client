@@ -13,27 +13,30 @@ interface MasterModalProps {
   address: IAddressResponse | null;
 }
 
-export const AddressModal: React.FC<MasterModalProps> = (props) => {
-  const { address } = props;
+export const AddressModal: React.FC<MasterModalProps> = ({ address }) => {
+  const [formUpdateData, setFormUpdateData] = useState({});
+
+  const masters = useFormStore((state) => state.Masters);
   const modalData = useModalStore((state) => state.modalData);
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createAddress = useModalStore((state) => state.createAddress);
-  const master = useFormStore((state) => state.Masters);
-  const [formUpdateData, setFormUpdateData] = useState({});
+
+  // excluding masters with address
+  let mastersWithoutAddress = masters.filter(
+    (master) => !master?.addresses[0]?.id
+  );
 
   // create functions
-
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
     const { name, value } = e.target;
     setInputValue(name, value);
   }
+
   async function handleSave() {
     try {
       await createAddress(modalData as unknown as IAddress);
-      window.location.reload();
-      alert("Masgistrga yashash manzili qo'shildi");
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -91,7 +94,7 @@ export const AddressModal: React.FC<MasterModalProps> = (props) => {
         />
       ) : (
         <ModalFormLayout
-          masters={master}
+          masters={mastersWithoutAddress}
           handleChange={handleChange}
           content={Address_Modal_Content}
         />

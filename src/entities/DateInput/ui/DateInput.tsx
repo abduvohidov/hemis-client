@@ -13,7 +13,7 @@ export const DateInput = ({
   const handleDateChange = (date) => {
     if (date) {
       const formattedDate = date.toISOString().split("T")[0];
-      setSelectedDate(formattedDate)
+      setSelectedDate(formattedDate);
       const e = { target: { name, value: formattedDate } };
       onChange(e);
     }
@@ -21,6 +21,7 @@ export const DateInput = ({
 
   return (
     <DatePicker
+      required
       placeholderText={placeholder}
       selected={selectedDate}
       onChange={handleDateChange}

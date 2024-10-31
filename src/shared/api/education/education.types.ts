@@ -1,4 +1,5 @@
 export interface IEducation {
+  id?: number;
   masterId: number;
   bachelorId?: number;
   currentSpecialization: string;
@@ -17,11 +18,16 @@ export interface IEducation {
   thesisTopic: string;
   articlesId?: number;
   academicLeave: string;
-}
-
-export interface IEdcationResponse extends IEducation {
-  id: number;
   bachelor?: any[];
   articles?: any[];
   faculty?: any[];
+}
+
+export interface IEdcationResponse {
+  success: boolean;
+  message: {
+    data: IEducation;
+    messsage: string;
+    status: boolean;
+  };
 }

@@ -13,9 +13,9 @@ export const Select: FC<ISelect> = (props) => {
 
   return (
     <select
-      className={`form-select ${className}`}
       name={field.name}
       onChange={handleChange}
+      className={`form-select ${className}`}
       defaultValue={defaultValue || "Tanlang"}
     >
       <option disabled>{defaultValue || "Tanlang"}</option>

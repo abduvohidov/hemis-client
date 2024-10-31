@@ -21,6 +21,11 @@ export const EducationModal: React.FC<MasterModalProps> = (props) => {
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createEducation = useModalStore((state) => state.createEducation);
 
+  // excluding masters with education
+  let masterWithoutEducation = masters.filter(
+    (master) => !master?.education[0]?.id
+  );
+
   // create function
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -32,8 +37,6 @@ export const EducationModal: React.FC<MasterModalProps> = (props) => {
   async function handleSave() {
     try {
       await createEducation(modalData as unknown as IEducation);
-      window.location.reload();
-      alert("Masgistrga OTM malumotlari qo'shildi");
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -86,12 +89,12 @@ export const EducationModal: React.FC<MasterModalProps> = (props) => {
     >
       {education ? (
         <ModalUpdateLayout
-          content={formUpdateData }
+          content={formUpdateData}
           handleChange={handleUpdateChange}
         />
       ) : (
         <ModalFormLayout
-          masters={masters}
+          masters={masterWithoutEducation}
           handleChange={handleChange}
           content={Education_Modal_Content}
         />

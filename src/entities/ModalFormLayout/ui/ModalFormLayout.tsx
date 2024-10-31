@@ -26,7 +26,7 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
   }
 
   return (
-    <form className="row">
+    <>
       {masters && (
         <select
           defaultValue=""
@@ -43,6 +43,6 @@ export const ModalFormLayout: React.FC<ModalLayoutFormProps> = (props) => {
       <div className="container">
         <div className="row">{renderFormInputs()}</div>
       </div>
-    </form>
+    </>
   );
 };

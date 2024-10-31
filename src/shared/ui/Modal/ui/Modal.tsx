@@ -4,6 +4,7 @@ import { ModalProps } from "../type";
 
 export const Modal: React.FC<ModalProps> = (props) => {
   const { title, children, modalId, onSave, className } = props;
+
   return (
     <div
       className={`modal fade ${className}`}
@@ -21,17 +22,24 @@ export const Modal: React.FC<ModalProps> = (props) => {
               {title}
             </h1>
           </div>
+          <form
+            className="row"
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (onSave) onSave();
+            }}
+          >
+            <div className="modal-body">{children}</div>
 
-          <div className="modal-body">{children}</div>
-
-          <div className="modal-footer">
-            <Button color="light" toggleMasterModal="modal">
-              Yopish
-            </Button>
-            <Button color="primary" toggleMasterModal="modal" onClick={onSave}>
-              Saqlash
-            </Button>
-          </div>
+            <div className="modal-footer">
+              <Button color="light" toggleMasterModal="modal">
+                Yopish
+              </Button>
+              <Button color="primary" type="submit">
+                Saqlash
+              </Button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

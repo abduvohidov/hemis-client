@@ -45,7 +45,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
     createMaster: async (data: IMaster) => {
       try {
         const master = await masterApi.createMaster(data);
-        
+
         if (typeof master === "string") {
           alert(master);
           return;
@@ -58,35 +58,32 @@ export const useModalStore = create<IModalStore>((set, _) => {
         alert(error);
       }
     },
+
     createAddress: async (data: IAddress) => {
       try {
-        data = { ...data, masterId: Number(data.masterId) };
-        const address = await addressApi.createUser(data);
-        if (typeof address === "string") {
-          alert(address);
-          return;
-        } else if (!address) {
-          alert("Some error");
-          return;
+        const address = await addressApi.create(data);
+        if (address.success) {
+          window.location.reload();
+          alert("Yashash manzili qo'shildi ✅");
+        } else {
+          alert(address.message);
         }
-        console.log(address);
       } catch (error) {
-        alert(error);
+        alert("Iltimos boshidan urinib ko`ring");
       }
     },
+
     createEducation: async (data: IEducation) => {
       try {
+        // just make revert masterId into number
         data = { ...data, masterId: Number(data.masterId) };
-        console.log(data);
-        const address = await educationApi.create(data);
-        if (typeof address === "string") {
-          alert(address);
-          return;
-        } else if (!address) {
-          alert("Some error");
+        const result = await educationApi.create(data);
+        if (result.success) {
+          window.location.reload();
+          alert("O`TM qo`shildi");
           return;
         }
-        console.log(address);
+        alert("Qaytadan urinib ko`ring");
       } catch (error) {
         alert(error);
       }
