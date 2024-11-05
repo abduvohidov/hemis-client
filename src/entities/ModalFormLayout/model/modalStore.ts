@@ -51,7 +51,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
 
         if (result.success) {
           window.location.reload();
-          alert("Magistr qo`shildi");
+          alert("Magistr qo`shildi ✅");
         } else {
           alert(result.message);
           return;

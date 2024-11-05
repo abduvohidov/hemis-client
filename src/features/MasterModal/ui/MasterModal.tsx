@@ -13,11 +13,9 @@ interface MasterModalProps {
 }
 
 export const MasterModal: React.FC<MasterModalProps> = ({ master }) => {
-  
   const modalData = useModalStore((state) => state.modalData);
   const createMaster = useModalStore((state) => state.createMaster);
   const setInputValue = useModalStore((state) => state.setInputValue);
-
   const [formUpdateData, setFormUpdateData] = useState({});
 
   const convertBase64 = (file) => {
@@ -43,8 +41,6 @@ export const MasterModal: React.FC<MasterModalProps> = ({ master }) => {
   async function handleSave() {
     try {
       await createMaster(modalData as unknown as IMaster);
-      window.location.reload();
-      alert("Magistr qo'shildi ✅");
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -67,16 +63,7 @@ export const MasterModal: React.FC<MasterModalProps> = ({ master }) => {
   async function handleUpdate() {
     try {
       if (master) {
-        const updatedResult = await masterApi.updateMaster(
-          master.id,
-          modalData as any
-        );
-        if (typeof updatedResult === "string") {
-          alert(updatedResult);
-          return;
-        }
-        window.location.reload();
-        alert("Masgistr o'zgartirildi");
+        await masterApi.updateMaster(Number(master.id), modalData as any);
       }
     } catch (error) {
       console.error("Error submitting form", error);
