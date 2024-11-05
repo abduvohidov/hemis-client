@@ -14,6 +14,9 @@ import {
   masterApi,
 } from "../../../shared";
 import { ICreateFacultyProps } from "./types";
+import { IBachelorModalData } from "../../../shared/api/bachelor/bachelor.types";
+import { useLayoutEffect } from "react";
+import { IArticleModal } from "../../../shared/api/article/article.types";
 
 export interface IModalMaster {
   id: number;
@@ -44,14 +47,13 @@ export const useModalStore = create<IModalStore>((set, _) => {
       })),
     createMaster: async (data: IMaster) => {
       try {
-        const master = await masterApi.createMaster(data);
+        const result = await masterApi.createMaster(data);
 
-        if (typeof master === "string") {
-          alert(master);
-          return;
-        } else if (!master) {
-          alert("Some error");
-          console.log(master);
+        if (result.success) {
+          window.location.reload();
+          alert("Magistr qo`shildi");
+        } else {
+          alert(result.message);
           return;
         }
       } catch (error) {
@@ -101,34 +103,32 @@ export const useModalStore = create<IModalStore>((set, _) => {
         alert("Qaytadan urinib ko`ring");
       }
     },
-    createArticle: async (data: any) => {
+    createArticle: async (data: IArticleModal) => {
       try {
-        const article = await articleApi.create(data);
-        const education = await educationApi.getByMasterId(
-          Number(data?.masterId)
-        );
-        console.log(Number(article.id));
-
-        if (typeof education === "string") alert(education);
-        const updatedData = { articlesId: Number(article.id) };
-
-        await educationApi.udpate(education.id, updatedData);
+        // masterId have to be number
+        data = { ...data, masterId: Number(data.masterId) };
+        const result = await articleApi.create(data);
+        if (!result.success) return alert(result?.message);
+        if (result.success) {
+          window.location.reload();
+          alert("Maqolalar O`TM qo`shildi ✅");
+        }
       } catch (error) {
         console.log(error);
 
         alert(error);
       }
     },
-    createBachelor: async (data: any) => {
+    createBachelor: async (data: IBachelorModalData) => {
       try {
-        const bachelor = await bachelorApi.create(data);
-        const education = await educationApi.getByMasterId(
-          Number(data?.masterId)
-        );
-        if (typeof education === "string") alert(education);
-        const updatedData = { bachelorId: Number(bachelor.id) };
-
-        await educationApi.udpate(education.id, updatedData);
+        // masterId have to be number
+        data = { ...data, masterId: Number(data.masterId) };
+        const result = await bachelorApi.create(data);
+        if (!result.success) return alert(result?.message);
+        if (result.success) {
+          window.location.reload();
+          alert("Tugatilgan O`TM qo`shildi ✅");
+        }
       } catch (error) {
         alert(error);
       }

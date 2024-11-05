@@ -1,8 +1,5 @@
-import { IArticleReponse } from "../article/article.types";
-import { IBachelorResponse } from "../bachelor/bachelor.types";
-import { IFacultyReponse } from "../faculty/faculty.types";
-
 export interface IMaster {
+  id?: number;
   lastName: string;
   firstName: string;
   middleName: string;
@@ -19,8 +16,13 @@ export interface IMaster {
   education?: any[];
 }
 export interface IMasterReponse extends IMaster {
-  [x: string]: any;
-  id: number;
+  success: boolean;
+  message:
+    | string
+    | {
+        message: string;
+        data: IMaster;
+      };
 }
 export interface IMasterDeletedResponse extends IMaster {
   message: string;

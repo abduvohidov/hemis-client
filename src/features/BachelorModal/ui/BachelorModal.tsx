@@ -8,6 +8,7 @@ import {
 } from "../../../entities/ModalFormLayout";
 import { bachelorApi, IBachelorResponse } from "../../../shared";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
+import { IBachelorModalData } from "../../../shared/api/bachelor/bachelor.types";
 
 interface IBachelorProps {
   bachelor: IBachelorResponse | null;
@@ -31,9 +32,7 @@ export const BachelorModal: FC<IBachelorProps> = (props) => {
 
   async function handleSave() {
     try {
-      await createBachelor(modalData as any);
-      window.location.reload();
-      alert("Masgistrga Tugatgan OTM malumotlari qo'shildi");
+      await createBachelor(modalData as unknown as IBachelorModalData);
     } catch (error) {
       console.error("Error submitting form", error);
     }

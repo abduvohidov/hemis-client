@@ -1,13 +1,12 @@
 import { baseApi } from "../base.api";
-import { IArticle, IArticleReponse } from "./article.types";
+import { IArticle, IArticleModal, IArticleReponse } from "./article.types";
 
 export const articleApi = {
-  create: async (data: IArticle): Promise<IArticleReponse> => {
-    const result = await baseApi.post<IArticleReponse, IArticle>(
+  create: async (data: IArticleModal): Promise<IArticleReponse> => {
+    return await baseApi.post<IArticleReponse, IArticleModal>(
       "/articles/create",
       data
     );
-    return result.article;
   },
   update: async (
     id: number,

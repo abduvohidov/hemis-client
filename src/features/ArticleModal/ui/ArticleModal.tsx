@@ -7,7 +7,10 @@ import {
   useModalStore,
 } from "../../../entities/ModalFormLayout";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
-import { IArticleReponse } from "../../../shared/api/article/article.types";
+import {
+  IArticleModal,
+  IArticleReponse,
+} from "../../../shared/api/article/article.types";
 import { articleApi } from "../../../shared";
 
 interface IArticleModalProps {
@@ -31,10 +34,7 @@ export const ArticleModal: FC<IArticleModalProps> = (props) => {
   }
   async function handleSave() {
     try {
-      console.log(modalData);
-      await createArticle(modalData as any);
-      window.location.reload();
-      alert("Masgistrga maqola qo'shildi");
+      await createArticle(modalData as unknown as IArticleModal);
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -44,7 +44,7 @@ export const ArticleModal: FC<IArticleModalProps> = (props) => {
   async function handleUpdate() {
     try {
       if (article) {
-        const updatedResult = await articleApi.update(article.id, modalData);
+        const updatedResult = await articleApi.update(article.iud, modalData);
         if (typeof updatedResult === "string") {
           alert(updatedResult);
           return;

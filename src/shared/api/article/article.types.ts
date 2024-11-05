@@ -1,12 +1,23 @@
 export interface IArticle {
-	firstArticle: string;
-	firstArticleDate: string;
-	firstArticleJournal: string;
-	secondArticle: string;
-	secondArticleDate: string;
-	secondArticleJournal: string;
-	education?: any[];
+  id?: number;
+  firstArticle: string;
+  firstArticleDate: string;
+  firstArticleJournal: string;
+  secondArticle: string;
+  secondArticleDate: string;
+  secondArticleJournal: string;
+  education?: any[];
 }
-export interface IArticleReponse extends IArticle {
-	id: number;
+export interface IArticleReponse {
+  success: boolean;
+  message:
+    | string
+    | {
+        message: string;
+        data: IArticle;
+      };
+}
+
+export interface IArticleModal extends IArticle {
+  masterId: string | number;
 }

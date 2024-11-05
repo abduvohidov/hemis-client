@@ -12,11 +12,12 @@ interface MasterModalProps {
   master: IMasterReponse | null;
 }
 
-export const MasterModal: React.FC<MasterModalProps> = (props) => {
-  const { master } = props;
-  const setInputValue = useModalStore((state) => state.setInputValue);
-  const createMaster = useModalStore((state) => state.createMaster);
+export const MasterModal: React.FC<MasterModalProps> = ({ master }) => {
+  
   const modalData = useModalStore((state) => state.modalData);
+  const createMaster = useModalStore((state) => state.createMaster);
+  const setInputValue = useModalStore((state) => state.setInputValue);
+
   const [formUpdateData, setFormUpdateData] = useState({});
 
   const convertBase64 = (file) => {
@@ -37,6 +38,7 @@ export const MasterModal: React.FC<MasterModalProps> = (props) => {
       };
     });
   };
+
   // create functions
   async function handleSave() {
     try {

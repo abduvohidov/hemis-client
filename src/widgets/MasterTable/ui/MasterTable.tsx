@@ -21,12 +21,9 @@ import { Modal } from "bootstrap";
 
 export const MasterTable: React.FC = () => {
   const masters = useFormStore((state) => state.Masters);
-  console.log(masters);
 
-  const [data, setData] = useState<IMasterReponse[]>([]);
-  const [selectedStudent, setSelectedStudent] = useState<IMasterReponse | null>(
-    null
-  );
+  const [data, setData] = useState<any[]>([]);
+  const [selectedStudent, setSelectedStudent] = useState<any | null>(null);
 
   async function fetchMasters() {
     try {

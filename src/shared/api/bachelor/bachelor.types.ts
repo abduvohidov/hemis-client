@@ -1,11 +1,22 @@
 export interface IBachelor {
-	previousUniversity: string;
-	graduationYear: string;
-	diplomaNumber: string;
-	previousSpecialization: string;
-	education?: any[];
+  id?: number;
+  previousUniversity: string;
+  graduationYear: string;
+  diplomaNumber: string;
+  previousSpecialization: string;
+  education?: any[];
 }
 
 export interface IBachelorResponse extends IBachelor {
-	id: number;
+  success: boolean;
+  message:
+    | string
+    | {
+        message: string;
+        data: IBachelor;
+      };
+}
+
+export interface IBachelorModalData extends Omit<IBachelor, "education"> {
+  masterId: string | number;
 }
