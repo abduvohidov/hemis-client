@@ -1,14 +1,10 @@
 import React from "react";
-import {
-  IBachelorResponse,
-  IEdcationResponse,
-  IFacultyReponse,
-} from "../../../shared";
-import { IArticleReponse } from "../../../shared/api/article/article.types";
+import { IBachelorResponse, IEducation, IFaculty } from "../../../shared";
+import { IArticle } from "../../../shared/api/article/article.types";
 
 export function renderMasterEducation(education) {
   if (education && education.length > 0) {
-    return education.map((edu: IEdcationResponse, index) => (
+    return education.map((edu: IEducation, index) => (
       <React.Fragment key={index}>
         <td>{edu.academicLeave}</td>
         <td>{edu.course}</td>
@@ -72,14 +68,14 @@ export function renderMasterBachelor(bachelor) {
 }
 export function renderMasterArticle(article) {
   if (article && article.length > 0) {
-    return article.map((art: IArticleReponse, index) => (
+    return article.map((art: IArticle, index) => (
       <React.Fragment key={index}>
         <td>{art?.firstArticle}</td>
         <td>{art?.firstArticleDate}</td>
         <td>{art?.firstArticleJournal}</td>
         <td>{art?.secondArticle}</td>
-        <td>{art?.secondArticleDate}</td>
         <td>{art?.secondArticleJournal}</td>
+        <td>{art?.secondArticleDate}</td>
       </React.Fragment>
     ));
   } else {
@@ -97,7 +93,7 @@ export function renderMasterArticle(article) {
 }
 export function renderMasterFaculty(faculty) {
   if (faculty && faculty.length > 0) {
-    return faculty.map((fac: IFacultyReponse, index) => (
+    return faculty.map((fac: IFaculty, index) => (
       <React.Fragment key={index}>
         <td>{fac?.name}</td>
       </React.Fragment>
