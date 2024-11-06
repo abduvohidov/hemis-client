@@ -1,1 +1,2 @@
-export { AddressModal } from "./ui/AddressModal";
+export { AddressCreateModal } from "./ui/AddressCreateModal";
+export { AddressUpdateModal } from "./ui/AddressUpdateModal";

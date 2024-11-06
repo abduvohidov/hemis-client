@@ -13,9 +13,10 @@ export interface IMaster {
   parentPhoneNumber: string;
   avatarUrl: string;
   password: string;
-  education?: any[];
+  education?: any;
+  addresses?: any;
 }
-export interface IMasterReponse extends IMaster {
+export interface IMasterResponse {
   success: boolean;
   message:
     | string

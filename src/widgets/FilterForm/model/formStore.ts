@@ -41,6 +41,7 @@ export const useFormStore = create<FormState>((set, get) => {
     Faculty: [],
     Article: [],
     formData: {},
+
     setInputValue: (name, value) =>
       set((state) => ({
         formData: {

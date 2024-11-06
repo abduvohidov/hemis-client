@@ -10,20 +10,13 @@ import {
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
 import { Faculty_Specizialization_Content } from "../../../shared/consts/modalContents/facultyModalContent";
 
-interface FacultyModalProps {
-  faculty: IFacultyResponse | null;
-}
-
-export const FacultyModal: FC<FacultyModalProps> = (props) => {
-  const { faculty } = props;
-  const [formUpdateData, setFormUpdateData] = useState({});
-  const [selectedMasterId, setSelectedMasterId] = useState<number>();
-  const [modalContent, setModalContent] = useState(Faculty_Modal_Content);
-
+export const FacultyCreateModal = () => {
   const masters = useFormStore((state) => state.Masters);
   const modalData = useModalStore((state) => state.modalData);
+  const [selectedMasterId, setSelectedMasterId] = useState<number>();
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createFaculty = useModalStore((state) => state.createFaculty);
+  const [modalContent, setModalContent] = useState(Faculty_Modal_Content);
 
   // excluding masters with faculty
   let masterWithoutFaculty = masters.filter(
@@ -48,29 +41,6 @@ export const FacultyModal: FC<FacultyModalProps> = (props) => {
     }
   }
 
-  // update function
-  async function handleUpdate() {
-    try {
-      if (faculty) {
-        const updatedResult = await facultyApi.update(faculty.id, modalData);
-        if (typeof updatedResult === "string") {
-          alert(updatedResult);
-          return;
-        }
-        window.location.reload();
-        alert("Fakultet malumotlari o'zgartirildi");
-      }
-    } catch (error) {
-      console.error("Error submitting form", error);
-    }
-  }
-
-  useEffect(() => {
-    if (faculty) {
-      setFormUpdateData(faculty);
-    }
-  }, [faculty]);
-
   // for updating faculty
   useEffect(() => {
     const master = masters?.find((master) => master.id === selectedMasterId);
@@ -85,35 +55,13 @@ export const FacultyModal: FC<FacultyModalProps> = (props) => {
       });
     }
   }, [selectedMasterId]);
-  async function handleUpdateChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) {
-    const { name, value } = e.target;
-
-    setFormUpdateData((prevData: any) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    setInputValue(name, value);
-  }
   return (
-    <Modal
-      modalId={faculty ? "facultyUpdateModal" : "facultyModal"}
-      title={faculty ? "Fakultet o'zgartirish" : "Fakultet yaratish"}
-      onSave={faculty ? handleUpdate : handleSave}
-    >
-      {faculty ? (
-        <ModalUpdateLayout
-          content={formUpdateData}
-          handleChange={handleUpdateChange}
-        />
-      ) : (
-        <ModalFormLayout
-          handleChange={handleChange}
-          masters={masterWithoutFaculty}
-          content={modalContent}
-        />
-      )}
+    <Modal modalId="facultyModal" title="Fakultet yaratish" onSave={handleSave}>
+      <ModalFormLayout
+        content={modalContent}
+        handleChange={handleChange}
+        masters={masterWithoutFaculty}
+      />
     </Modal>
   );
 };

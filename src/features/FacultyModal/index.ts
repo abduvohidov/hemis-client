@@ -1,1 +1,2 @@
-export { FacultyModal } from "./ui/FacultyModal";
+export { FacultyCreateModal } from "./ui/FacultyCreateModal";
+export { FacultyUpdateModal } from "./ui/FacultyUpdateModal";

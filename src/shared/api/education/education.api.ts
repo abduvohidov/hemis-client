@@ -7,7 +7,7 @@ export const educationApi = {
       data
     );
   },
-  udpate: async (
+  update: async (
     id: number,
     data: Partial<IEducation>
   ): Promise<IEdcationResponse> => {

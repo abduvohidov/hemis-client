@@ -2,15 +2,26 @@ import { tableHead } from "../model/tableHead.ts";
 import React, { useEffect, useState } from "react";
 import { Table } from "../../../shared/ui/Table/index.ts";
 import { ButtonModal } from "../../../entities/ButtonsModal";
-import { useFormStore } from "../../FilterForm/model/formStore.ts";
-import { MasterModal } from "../../../features/MasterModal/index.ts";
 import { Button, IMasterReponse } from "../../../shared/index.ts";
+import { useFormStore } from "../../FilterForm/model/formStore.ts";
+import { useModalStore } from "../../../entities/ModalFormLayout/index.ts";
 import { removeMaster, findMasters, generateXlsxFile } from "../lib/index.ts";
-import { AddressModal } from "../../../features/AddressModal/index.ts";
-import { EducationModal } from "../../../features/EducationModal";
-import { FacultyModal } from "../../../features/FacultyModal";
-import { ArticleModal } from "../../../features/ArticleModal";
-import { BachelorModal } from "../../../features/BachelorModal";
+import {
+  AddressCreateModal,
+  AddressUpdateModal,
+} from "../../../features/AddressModal/index.ts";
+import {
+  FacultyCreateModal,
+  FacultyUpdateModal,
+} from "../../../features/FacultyModal";
+import {
+  ArticleCreateModal,
+  ArticleUpdateModal,
+} from "../../../features/ArticleModal";
+import {
+  BachelorCreateModal,
+  BachelorUpdateModal,
+} from "../../../features/BachelorModal";
 import {
   renderMasterArticle,
   renderMasterBachelor,
@@ -18,12 +29,19 @@ import {
   renderMasterFaculty,
 } from "../lib/renderData.tsx";
 import { Modal } from "bootstrap";
+import {
+  MasterUpdateModal,
+  MasterCreateModal,
+} from "../../../features/MasterModal";
+import {
+  EducationUpdateModal,
+  EducationCreateModal,
+} from "../../../features/EducationModal";
 
 export const MasterTable: React.FC = () => {
   const masters = useFormStore((state) => state.Masters);
-
+  const setMaster = useModalStore((state) => state.setMaster);
   const [data, setData] = useState<any[]>([]);
-  const [selectedStudent, setSelectedStudent] = useState<any | null>(null);
 
   async function fetchMasters() {
     try {
@@ -36,15 +54,15 @@ export const MasterTable: React.FC = () => {
     }
   }
 
-  function openUpdateModal(student, modalId) {
-    setSelectedStudent(student);
+  function openUpdateModal(master, modalId) {
+    setMaster(master);
     const modal = new Modal(document.getElementById(modalId));
     modal.show();
   }
 
   async function handleDelete(item: IMasterReponse) {
     try {
-      await removeMaster(item.id);
+      await removeMaster(Number(item.id));
       setData((prevData) => prevData.filter((master) => master.id !== item.id));
     } catch (err) {
       console.error(err instanceof Error ? err.message : err);
@@ -166,16 +184,20 @@ export const MasterTable: React.FC = () => {
 
       <Table tableHead={renderMasterHead()} tableBody={renderMasterValues()} />
 
-      <MasterModal master={selectedStudent} />
+      <MasterCreateModal />
+      <MasterUpdateModal />
+      <ArticleCreateModal />
+      <ArticleUpdateModal />
+      <FacultyCreateModal />
+      <FacultyUpdateModal />
+      <AddressCreateModal />
+      <AddressUpdateModal />
+      <BachelorCreateModal />
+      <BachelorUpdateModal />
+      <EducationCreateModal />
+      <EducationUpdateModal />
       <ButtonModal type="create" />
       <ButtonModal type="update" />
-      <AddressModal address={selectedStudent?.addresses || null} />
-      <EducationModal education={selectedStudent?.education || null} />
-      <FacultyModal faculty={selectedStudent?.education[0]?.faculty || null} />
-      <ArticleModal article={selectedStudent?.education[0]?.articles || null} />
-      <BachelorModal
-        bachelor={selectedStudent?.education[0]?.bachelor || null}
-      />
     </>
   );
 };

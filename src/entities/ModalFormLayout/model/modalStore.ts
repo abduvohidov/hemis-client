@@ -33,11 +33,20 @@ export interface IModalStore {
   createArticle: (data: IArticle) => Promise<void>;
   createBachelor: (data: IBachelor) => Promise<void>;
   setInputValue: (name: string, value: string) => void;
+  setMaster: (master: IMaster) => void;
+  updatingMaster: IMaster | null;
 }
 
 export const useModalStore = create<IModalStore>((set, _) => {
   return {
     modalData: {},
+    updatingMaster: null,
+    setMaster: (master: IMaster) =>
+      set((state) => ({
+        ...state,
+        updatingMaster: master,
+      })),
+
     setInputValue: (name, value) =>
       set((state) => ({
         modalData: {

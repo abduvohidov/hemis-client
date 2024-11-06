@@ -1,1 +1,2 @@
-export { EducationModal } from "./ui/educationModal";
+export { EducationCreateModal } from "./ui/EducationCreateModal";
+export { EducationUpdateModal } from "./ui/EducationUpdateModal";

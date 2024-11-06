@@ -1,14 +1,14 @@
 import { getToken } from "../../../widgets/FormAuthorization/lib/cookie";
 import { baseApi } from "../base.api";
 import {
-  IMasterReponse,
+  IMasterResponse,
   IMaster,
   IMasterDeletedResponse,
 } from "./master.types";
 
 export const masterApi = {
-  createMaster: async (data: IMaster): Promise<IMasterReponse> => {
-    return await baseApi.post<IMasterReponse, IMaster>(
+  createMaster: async (data: IMaster): Promise<IMasterResponse> => {
+    return await baseApi.post<IMasterResponse, IMaster>(
       "/masters/register",
       data
     );
@@ -17,14 +17,14 @@ export const masterApi = {
   updateMaster: async (
     id: number,
     data: Partial<IMaster>
-  ): Promise<IMaster> => {
-    return await baseApi.put<IMasterReponse, Partial<IMaster>>(
+  ): Promise<IMasterResponse> => {
+    return await baseApi.put<IMasterResponse, Partial<IMaster>>(
       `/masters/update/${id}`,
       data
     );
   },
 
-  deleteMaster: async (id: number): Promise<IMasterReponse> => {
+  deleteMaster: async (id: number): Promise<IMasterResponse> => {
     const token = getToken();
 
     if (!token) {
@@ -46,13 +46,13 @@ export const masterApi = {
   },
 
   // gets
-  getAllMasters: async (): Promise<IMasterReponse[]> => {
-    const result = await baseApi.get<IMasterReponse[]>(`/masters/all`);
+  getAllMasters: async (): Promise<IMasterResponse[]> => {
+    const result = await baseApi.get<IMasterResponse[]>(`/masters/all`);
     return result.message.data;
   },
 
   getMastersByFilter: async (data: Partial<IMaster>): Promise<IMaster[]> => {
-    return await baseApi.post<IMasterReponse[], Partial<IMaster>>(
+    return await baseApi.post<IMasterResponse[], Partial<IMaster>>(
       `/masters/filter`,
       data
     );
