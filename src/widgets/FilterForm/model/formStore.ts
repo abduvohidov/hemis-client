@@ -5,6 +5,11 @@ import {
   bachelorApi,
   educationApi,
   facultyApi,
+  IAddress,
+  IArticle,
+  IBachelor,
+  IEducation,
+  IFaculty,
   IMaster,
   masterApi,
 } from "../../../shared";
@@ -25,8 +30,7 @@ interface FormState {
 
 export const useFormStore = create<FormState>((set, get) => {
   const getAllMasters = async () => {
-    const Masters = await masterApi.getAllMasters();
-
+    const Masters: IMaster[] = await masterApi.getAllMasters();
     set({
       Masters,
     });
@@ -50,31 +54,43 @@ export const useFormStore = create<FormState>((set, get) => {
         },
       })),
     getAllMasters,
-    filterByMaster: async (formData: Record<string, string>) => {
-      const result: any = await masterApi.getMastersByFilter(
+    filterByMaster: async (
+      formData: Record<string, string>
+    ): Promise<IMaster[]> => {
+      const result: IMaster[] = await masterApi.getMastersByFilter(
         formData as Partial<IMaster>
       );
-      return result.data;
+      return result;
     },
-    filterByEducation: async (formData: Record<string, string>) => {
+    filterByEducation: async (
+      formData: Record<string, string>
+    ): Promise<IEducation[]> => {
       const result: any = await educationApi.filter(formData);
-      return result.data;
+      return result;
     },
-    filterByBachelor: async (formData: Record<string, string>) => {
+    filterByBachelor: async (
+      formData: Record<string, string>
+    ): Promise<IBachelor[]> => {
       const result: any = await bachelorApi.filter(formData);
-      return result.data;
+      return result;
     },
-    filterByFaculty: async (formData: Record<string, string>) => {
-      const result: any = await facultyApi.getByName(formData.name);
-      return result.data;
+    filterByFaculty: async (
+      formData: Record<string, string>
+    ): Promise<IFaculty[]> => {
+      const result = await facultyApi.getByName(formData.name);
+      return result;
     },
-    filterByAddress: async (formData: Record<string, string>) => {
+    filterByAddress: async (
+      formData: Record<string, string>
+    ): Promise<IAddress[]> => {
       const result: any = await addressApi.filter(formData);
-      return result.data;
+      return result;
     },
-    filterByArticle: async (formData: Record<string, string>) => {
+    filterByArticle: async (
+      formData: Record<string, string>
+    ): Promise<IArticle[]> => {
       const result: any = await articleApi.filter(formData);
-      return result.data;
+      return result;
     },
 
     // Filter data function that triggers all filters

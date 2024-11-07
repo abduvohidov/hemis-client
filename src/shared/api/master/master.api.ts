@@ -46,15 +46,16 @@ export const masterApi = {
   },
 
   // gets
-  getAllMasters: async (): Promise<IMasterResponse[]> => {
-    const result = await baseApi.get<IMasterResponse[]>(`/masters/all`);
-    return result.message.data;
+  getAllMasters: async (): Promise<IMaster> => {
+    const result = await baseApi.get<IMasterResponse>(`/masters/all`);
+    return result?.message?.data;
   },
 
   getMastersByFilter: async (data: Partial<IMaster>): Promise<IMaster[]> => {
-    return await baseApi.post<IMasterResponse[], Partial<IMaster>>(
+    const result = await baseApi.post<IMasterResponse, Partial<IMaster>>(
       `/masters/filter`,
       data
     );
+    return result?.message?.data;
   },
 };

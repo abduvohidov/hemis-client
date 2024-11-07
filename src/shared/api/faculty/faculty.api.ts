@@ -28,18 +28,26 @@ export const facultyApi = {
   getById: async (id: number): Promise<IFacultyResponse> => {
     return await baseApi.get<IFacultyResponse>(`/faculties/${id}`);
   },
-  getAll: async (): Promise<IFacultyResponse[]> => {
-    const result = await baseApi.get<IFacultyResponse[]>(`/faculties/all`);
-    return result.data;
+  getAll: async (): Promise<IFaculty[]> => {
+    const result = await baseApi.get<IFacultyResponse>(`/faculties/all`);
+    return result?.message?.data;
   },
-  getByName: async (name: string): Promise<IFacultyResponse[]> => {
-    return await baseApi.post<IFacultyResponse, any>("/faculties/filter", {
-      name,
-    });
+  getByName: async (name: string): Promise<IFaculty[]> => {
+    const result = await baseApi.post<IFacultyResponse, any>(
+      "/faculties/filter",
+      {
+        name,
+      }
+    );
+    return result?.message?.data;
   },
-  findByName: async (name: string): Promise<any> => {
-    return await baseApi.post<any, any>("/faculties/findByName", {
-      name,
-    });
+  findByName: async (name: string): Promise<IFaculty> => {
+    const result = await baseApi.post<IFacultyResponse, { name: string }>(
+      "/faculties/findByName",
+      {
+        name,
+      }
+    );
+    return result?.message?.data;
   },
 };

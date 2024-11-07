@@ -22,17 +22,18 @@ export const bachelorApi = {
   },
 
   // gets
-  getAll: async (): Promise<IBachelorResponse[]> => {
-    const result = await baseApi.get<IBachelorResponse[]>(`/bachelors/all`);
-    return result.data;
+  getAll: async (): Promise<IBachelor[]> => {
+    const result = await baseApi.get<IBachelorResponse>(`/bachelors/all`);
+    return result?.message?.data;
   },
-  getById: async (id: number): Promise<IBachelorResponse> => {
+  getById: async (id: number): Promise<IBachelor> => {
     return await baseApi.get<IBachelorResponse>(`/bachelors/${id}`);
   },
-  filter: async (data: Partial<IBachelor>): Promise<IBachelorResponse[]> => {
-    return await baseApi.post<IBachelorResponse, Partial<IBachelor>>(
+  filter: async (data: Partial<IBachelor>): Promise<IBachelor[]> => {
+    const result = await baseApi.post<IBachelorResponse, Partial<IBachelor>>(
       `/bachelors/filter`,
       data
     );
+    return result?.message?.data;
   },
 };

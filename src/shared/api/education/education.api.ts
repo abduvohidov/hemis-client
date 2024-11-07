@@ -21,24 +21,26 @@ export const educationApi = {
   },
 
   // gets
-  getById: async (id: number): Promise<IEdcationResponse> => {
+  getById: async (id: number): Promise<IEducation> => {
     return await baseApi.get<IEdcationResponse>(`/educations/${id}`);
   },
-  getAll: async (): Promise<IEdcationResponse[]> => {
-    const result = await baseApi.get<IEdcationResponse[]>(`/educations/all`);
-    return result.data;
+  getAll: async (): Promise<IEducation[]> => {
+    const result = await baseApi.get<IEdcationResponse>(`/educations/all`);
+    return result?.message?.data;
   },
-  getByMasterId: async (id: number): Promise<IEdcationResponse> => {
-    const result = await baseApi.post<any, { id: number }>(
+  getByMasterId: async (id: number): Promise<IEducation> => {
+    const result = await baseApi.post<IEdcationResponse, { id: number }>(
       `/educations/findByMaster`,
       { id }
     );
-    return result.data;
+    return result?.message?.data;
   },
   filter: async (data: Partial<IEducation>): Promise<IEdcationResponse[]> => {
-    return await baseApi.post<IEdcationResponse, Partial<IEducation>>(
+    const result = await baseApi.post<IEdcationResponse, Partial<IEducation>>(
       `/educations/filter`,
       data
     );
+
+    return result?.message?.data;
   },
 };

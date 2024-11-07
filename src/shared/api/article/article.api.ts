@@ -22,18 +22,19 @@ export const articleApi = {
   },
 
   // gets
-  getById: async (id: number): Promise<IArticleReponse> => {
+  getById: async (id: number): Promise<IArticle> => {
     return await baseApi.get<IArticleReponse>(`/articles/${id}`);
   },
-  getAll: async (): Promise<IArticleReponse[]> => {
-    const result = await baseApi.get<IArticleReponse[]>(`/articles/all`);
+  getAll: async (): Promise<IArticle[]> => {
+    const result = await baseApi.get<IArticleReponse>(`/articles/all`);
 
     return result.articles;
   },
-  filter: async (data: Partial<IArticle>): Promise<IArticleReponse[]> => {
-    return await baseApi.post<IArticleReponse, Partial<IArticle>>(
+  filter: async (data: Partial<IArticle>): Promise<IArticle[]> => {
+    const result = await baseApi.post<IArticleReponse, Partial<IArticle>>(
       `/articles/filter`,
       data
     );
+    return result?.message?.data;
   },
 };

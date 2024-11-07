@@ -27,9 +27,10 @@ export const addressApi = {
     return await baseApi.get<IAddressResponse>(`/addresses/${id}`);
   },
   filter: async (data: Partial<IAddress>): Promise<IAddressResponse[]> => {
-    return await baseApi.post<IAddressResponse, Partial<IAddress>>(
+    const result = await baseApi.post<IAddressResponse, Partial<IAddress>>(
       `/addresses/filter`,
       data
     );
+    return result.message?.data;
   },
 };

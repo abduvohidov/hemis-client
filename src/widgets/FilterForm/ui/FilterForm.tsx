@@ -13,12 +13,14 @@ import { FilterFormLayout } from "../../../entities/FilterFormLayout";
 import { Button } from "../../../shared";
 
 export const FilterForm = () => {
-  const { formData, setInputValue, filterData } = useFormStore();
+  const { formData, setInputValue, filterData } = useFormStore(
+    (state) => state
+  );
 
   function submitForm(e: FormEvent) {
     e.preventDefault();
     try {
-      filterData(formData);
+    filterData(formData);
     } catch (error) {
       console.error("Error submitting form", error);
     }
@@ -83,8 +85,8 @@ export const FilterForm = () => {
         className="me-auto w-100 my-4 cursor-pointer"
         onClick={handleClick}
       >
-      <i className="bi bi-search"></i>
-      <span className={"ms-1"}>Qidirish</span>
+        <i className="bi bi-search"></i>
+        <span className={"ms-1"}>Qidirish</span>
       </Button>
     </>
   );
