@@ -8,7 +8,7 @@ import { getToken } from "../widgets/FormAuthorization/lib/cookie";
 
 export const Routing = () => {
   const isProtected = getToken();
-  const redirectTo = localStorage.getItem("redirectTo");
+  const redirectTo = localStorage.getItem("role");
 
   return (
     <>

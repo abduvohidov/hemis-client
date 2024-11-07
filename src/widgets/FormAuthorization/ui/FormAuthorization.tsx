@@ -20,16 +20,8 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const role = await login({ email, password });
-    const { error } = useLoginStore.getState();
+    await login({ email, password });
 
-    if (error) {
-      alert(error);
-    } else {
-      alert("Login successful!");
-      if (role === "Master") navigate("/master");
-      else navigate("/admin");
-    }
     clearForm();
   }
 
