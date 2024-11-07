@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useModalStore } from "../model/modalStore";
+import { updateInputType } from "../../ModalFormLayout/lib/updateInputType";
 
 export interface ModalLayoutUpdateProps {
   content: any;
+  modalContent: any;
 }
 
 export const ModalUpdateLayout: React.FC<ModalLayoutUpdateProps> = ({
   content,
+  modalContent = [],
 }) => {
   const [localContent, setLocalContent] = useState(content);
   const setInputValue = useModalStore((state) => state.setInputValue);
@@ -32,8 +35,9 @@ export const ModalUpdateLayout: React.FC<ModalLayoutUpdateProps> = ({
     "masterId",
     "avatarUrl",
   ];
-
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
     const { name, value } = e.target;
     setLocalContent((prevData) => ({
       ...prevData,
@@ -41,25 +45,27 @@ export const ModalUpdateLayout: React.FC<ModalLayoutUpdateProps> = ({
     }));
     setInputValue(name, value); // Update in the store as well
   }
-
+  const filteredModalContent = modalContent.filter(
+    (item) => !excluded.includes(item?.name)
+  );
   function renderFormInput() {
-    return Object.entries(localContent || {})
-      .filter(([key]) => !excluded.includes(key))
-      .map(([key, value]) => (
-        <input
-          key={key}
-          id={key}
-          type="text"
-          name={key}
-          value={value as any || ""}
-          className="form-control"
-          onChange={handleInputChange}
-        />
-      ));
+    return filteredModalContent.map((item) => {
+      const currentValue = localContent[item.name] || item.value;
+
+      return (
+        <div key={item.name} className={`col-${item.col}`}>
+          {updateInputType(
+            { ...item, value: currentValue }, // Set current value
+            item.name,
+            handleInputChange
+          )}
+        </div>
+      );
+    });
   }
 
   return (
-    <div>
+    <div className="row">
       {localContent && Object.keys(localContent).length > 0 ? (
         renderFormInput()
       ) : (

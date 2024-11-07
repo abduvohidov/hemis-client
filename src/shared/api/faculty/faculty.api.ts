@@ -1,6 +1,6 @@
-import { ICreateFacultyProps } from "../../../entities/ModalFormLayout/model/types";
 import { baseApi } from "../base.api";
 import { IFacultyResponse, IFaculty } from "./faculty.types";
+import { ICreateFacultyProps } from "../../../entities/ModalFormLayout/model/types";
 
 export const facultyApi = {
   findOrCreate: async (

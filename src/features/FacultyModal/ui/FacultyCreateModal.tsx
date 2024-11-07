@@ -1,13 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
-import { facultyApi, IFacultyResponse, IMaster } from "../../../shared";
 import { Faculty_Modal_Content } from "../../../shared/consts";
 import { useFormStore } from "../../../widgets/FilterForm/model/formStore";
 import {
   ModalFormLayout,
   useModalStore,
 } from "../../../entities/ModalFormLayout";
-import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
 import { Faculty_Specizialization_Content } from "../../../shared/consts/modalContents/facultyModalContent";
 
 export const FacultyCreateModal = () => {

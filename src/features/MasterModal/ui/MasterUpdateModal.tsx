@@ -3,6 +3,7 @@ import { masterApi } from "../../../shared";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
 import { useModalStore } from "../../../entities/ModalFormLayout";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
+import { mastersModalContent } from "../../../shared/consts/modalContents/mastersModalContent";
 
 export const MasterUpdateModal = () => {
   const modalData = useModalStore((state) => state.modalData);
@@ -31,7 +32,10 @@ export const MasterUpdateModal = () => {
       title="Magistr o'zgartirish"
       onSave={handleUpdate}
     >
-      <ModalUpdateLayout content={updatingMaster} />
+      <ModalUpdateLayout
+        content={updatingMaster}
+        modalContent={mastersModalContent}
+      />
     </Modal>
   );
 };

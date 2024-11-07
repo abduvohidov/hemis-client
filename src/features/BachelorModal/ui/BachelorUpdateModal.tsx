@@ -1,6 +1,7 @@
 import React from "react";
 import { bachelorApi } from "../../../shared";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
+import { Bachelor_Modal_Content } from "../../../shared/consts";
 import { useModalStore } from "../../../entities/ModalFormLayout";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
 
@@ -34,7 +35,10 @@ export const BachelorUpdateModal = () => {
       modalId="bachelorUpdateModal"
       title="Tugatgan O`TM o'zgartirish"
     >
-      <ModalUpdateLayout content={updatingBachelor} />
+      <ModalUpdateLayout
+        content={updatingBachelor}
+        modalContent={Bachelor_Modal_Content}
+      />
     </Modal>
   );
 };

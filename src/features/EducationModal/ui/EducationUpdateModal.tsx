@@ -1,9 +1,9 @@
 import React from "react";
 import { educationApi } from "../../../shared";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
+import { Education_Modal_Content } from "../../../shared/consts";
 import { useModalStore } from "../../../entities/ModalFormLayout";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
-
 export const EducationUpdateModal = () => {
   const modalData = useModalStore((state) => state.modalData);
   const updatingMaster = useModalStore((state) => state.updatingMaster);
@@ -33,7 +33,10 @@ export const EducationUpdateModal = () => {
       modalId="educationUpdateModal"
       title="OTM malumotini o'zgartirish"
     >
-      <ModalUpdateLayout content={updatingEducation} />
+      <ModalUpdateLayout
+        content={updatingEducation}
+        modalContent={Education_Modal_Content}
+      />
     </Modal>
   );
 };
