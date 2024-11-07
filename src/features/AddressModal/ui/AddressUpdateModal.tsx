@@ -3,6 +3,7 @@ import { addressApi } from "../../../shared";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
 import { useModalStore } from "../../../entities/ModalFormLayout";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
+import { Address_Modal_Content } from "../../../shared/consts/modalContents/addressModalContent";
 
 export const AddressUpdateModal = () => {
   const modalData = useModalStore((state) => state.modalData);
@@ -32,7 +33,7 @@ export const AddressUpdateModal = () => {
       modalId="addressUpdateModal"
       title="Yashash manzili o'zgartirish"
     >
-      <ModalUpdateLayout content={updatingAddress} />
+      <ModalUpdateLayout content={updatingAddress} modalContent={Address_Modal_Content}/>
     </Modal>
   );
 };

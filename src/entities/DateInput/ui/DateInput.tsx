@@ -1,6 +1,7 @@
-import React, { FC, useState } from "react";
 import DatePicker from "react-datepicker";
+import React, { FC, useState } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+
 interface IDateInput {
   selected?: Date;
   placeholder: string;
@@ -8,6 +9,7 @@ interface IDateInput {
   name: string;
   disabled?: boolean;
 }
+
 export const DateInput: FC<IDateInput> = ({
   selected,
   placeholder,
@@ -29,12 +31,12 @@ export const DateInput: FC<IDateInput> = ({
   return (
     <DatePicker
       required
-      placeholderText={placeholder}
-      selected={selectedDate}
-      onChange={handleDateChange}
-      dateFormat="yyyy-MM-dd"
       disabled={disabled}
+      dateFormat="yyyy-MM-dd"
+      selected={selectedDate}
       className="form-control"
+      onChange={handleDateChange}
+      placeholderText={placeholder}
     />
   );
 };

@@ -1,17 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
+import React from "react";
+import { articleApi } from "../../../shared";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
 import { Article_Modal_Content } from "../../../shared/consts";
-import { useFormStore } from "../../../widgets/FilterForm/model/formStore";
-import {
-  ModalFormLayout,
-  useModalStore,
-} from "../../../entities/ModalFormLayout";
+import { useModalStore } from "../../../entities/ModalFormLayout";
 import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
-import {
-  IArticleModal,
-  IArticleReponse,
-} from "../../../shared/api/article/article.types";
-import { articleApi } from "../../../shared";
 
 export const ArticleUpdateModal = () => {
   const modalData = useModalStore((state) => state.modalData);
@@ -42,7 +34,7 @@ export const ArticleUpdateModal = () => {
       title="Maqola o'zgartirish"
       modalId="articleUpdateModal"
     >
-      <ModalUpdateLayout content={updatingArticle} />
+      <ModalUpdateLayout content={updatingArticle} modalContent={Article_Modal_Content} />
     </Modal>
   );
 };
