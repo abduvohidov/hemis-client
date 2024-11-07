@@ -1,6 +1,6 @@
 import "./User.css";
 import React from "react";
-import { IMasterReponse } from "../../../shared";
+import { IMaster } from "../../../shared";
 import { ProfileForm } from "../../../widgets/ProfileForm/ui/ProfileForm";
 import { useLoginStore } from "../../../widgets/FormAuthorization/model/loginModel";
 
@@ -10,13 +10,9 @@ export const User = () => {
   return (
     <div className="container">
       <div className="profile-wrapper">
-        <ProfileForm Master={Master as IMasterReponse} logout={logout} />
+        <ProfileForm Master={Master as IMaster} logout={logout} />
         <div>
-          <img
-            className="profile-image"
-            src={Master.avatarUrl}
-            alt="img"
-          />
+          <img className="profile-image" src={Master?.avatarUrl} alt="img" />
         </div>
       </div>
     </div>

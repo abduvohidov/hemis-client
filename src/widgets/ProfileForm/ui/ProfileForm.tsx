@@ -2,24 +2,24 @@ import "./ProfileForm.css";
 import { useNavigate } from "react-router";
 import React, { FC, useState } from "react";
 import { ProfileInput } from "../../../entities/ProfileInput";
-import { Button, IMasterReponse, masterApi } from "../../../shared";
+import { Button, IMaster, IMasterReponse, masterApi } from "../../../shared";
 
 export interface IProfileForm {
-  Master: IMasterReponse;
+  Master: IMaster;
   logout: Function;
 }
 
-export const ProfileForm: FC<IProfileForm> = (props) => {
-  const { Master, logout } = props;
+export const ProfileForm: FC<IProfileForm> = ({ Master, logout }) => {
   const navigate = useNavigate();
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>(Master.email);
   const [newPassword, setNewPassword] = useState<string>("");
   const [isUpdating, setIsUpdating] = useState<boolean>(false);
+  const [lastName, setLastName] = useState<string>(Master.lastName);
   const [firstName, setFirstName] = useState<string>(Master.firstName);
-  const [lastName, setLastName] = useState<string>(Master.lastName); // Corrected here
   const [phoneNumber, setPhoneNumber] = useState<string>(Master.phoneNumber);
   const [avatarUrl, setAvatarUrl] = useState<string | File>(Master.avatarUrl);
+
   const btnContent = isUpdating ? "Saqlash" : "O'zgartirish";
 
   const convertBase64 = (file: File) => {
@@ -36,13 +36,13 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
   };
 
   async function handleLogout(event: React.MouseEvent) {
-    event.preventDefault(); // Prevent default behavior
+    event.preventDefault();
     navigate("/");
     await logout();
   }
 
   async function handleClick(event: React.MouseEvent) {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     if (isUpdating) {
       if (password && password !== newPassword) {
@@ -50,7 +50,7 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
         return;
       }
 
-      const data: any = {
+      const data: Partial<IMaster> = {
         id: Master.id,
         email,
         phoneNumber,
@@ -74,15 +74,19 @@ export const ProfileForm: FC<IProfileForm> = (props) => {
       }
 
       try {
-        const updatedMaster: any = await masterApi.updateMaster(
-          Master.id,
+        const updatedMaster: IMasterReponse = await masterApi.updateMaster(
+          Number(Master.id),
           data
         );
-        if (typeof updatedMaster !== "string") {
-          alert("Malumotlar yangilandi");
+        console.log(updatedMaster);
+        if (updatedMaster.success) {
+          alert("Malumotlar yangilandi ✅");
           setPassword("");
           setNewPassword("");
-          localStorage.setItem("Master", JSON.stringify(updatedMaster.data));
+          localStorage.setItem(
+            "Master",
+            JSON.stringify(updatedMaster.message.data)
+          );
           window.location.reload();
         } else {
           alert(updatedMaster);
