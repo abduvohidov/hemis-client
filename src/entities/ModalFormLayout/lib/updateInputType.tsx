@@ -18,7 +18,7 @@ export function updateInputType(
         isPhoneInput={true}
         name={name}
         disabled={false}
-        value={value}
+        value={value as string}
         onChange={handleChange}
         placeholder={
           inputType === "parentPhoneNumber"
@@ -34,7 +34,7 @@ export function updateInputType(
   ) {
     return (
       <DateInput
-        value={value || ""}
+        selected={value as any}
         onChange={handleChange}
         name={name}
         placeholder={placeholder}

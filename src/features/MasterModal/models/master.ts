@@ -6,7 +6,7 @@ export interface MasterState {
   middleName: string;
   passportNumber: string;
   jshshr: string;
-  dateOfBirth: string;
+  dateOfBirth: string | Date;
   gender: string;
   nationality: string;
   email: string;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useModalStore } from "../model/modalStore";
 import { updateInputType } from "../../ModalFormLayout/lib/updateInputType";
-import { mastersModalContent } from "../../../shared/consts/modalContents/mastersModalContent";
 
 export interface ModalLayoutUpdateProps {
   content: any;
@@ -10,7 +9,7 @@ export interface ModalLayoutUpdateProps {
 
 export const ModalUpdateLayout: React.FC<ModalLayoutUpdateProps> = ({
   content,
-  modalContent,
+  modalContent = [],
 }) => {
   const [localContent, setLocalContent] = useState(content);
   const setInputValue = useModalStore((state) => state.setInputValue);
@@ -36,7 +35,6 @@ export const ModalUpdateLayout: React.FC<ModalLayoutUpdateProps> = ({
     "masterId",
     "avatarUrl",
   ];
-
   function handleInputChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
@@ -47,7 +45,7 @@ export const ModalUpdateLayout: React.FC<ModalLayoutUpdateProps> = ({
     }));
     setInputValue(name, value); // Update in the store as well
   }
-  const filteredModalContent = mastersModalContent.filter(
+  const filteredModalContent = modalContent.filter(
     (item) => !excluded.includes(item?.name)
   );
   function renderFormInput() {

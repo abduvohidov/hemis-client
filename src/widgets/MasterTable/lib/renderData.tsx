@@ -71,11 +71,11 @@ export function renderMasterArticle(article) {
     return article.map((art: IArticle, index) => (
       <React.Fragment key={index}>
         <td>{art?.firstArticle}</td>
-        <td>{art?.firstArticleDate}</td>
+        <td>{art?.firstArticleDate?.slice(0, 10)}</td>
         <td>{art?.firstArticleJournal}</td>
         <td>{art?.secondArticle}</td>
         <td>{art?.secondArticleJournal}</td>
-        <td>{art?.secondArticleDate}</td>
+        <td>{art?.secondArticleDate?.slice(0, 10)}</td>
       </React.Fragment>
     ));
   } else {
