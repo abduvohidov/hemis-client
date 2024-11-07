@@ -1,15 +1,18 @@
+import "./FormAuthorization.css";
 import React, { useState } from "react";
 import { useLoginStore } from "../model/loginModel";
 import { FormAuthorizationProps } from "../types/types";
 import { Button, Input, Label } from "../../../shared";
-import { useNavigate } from "react-router";
+import { ManipulatePassword } from "../lib/manipulatePassword";
 
 export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   className,
 }) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useNavigate();
+  const [passwordVisibility, setPasswordVisibility] = useState<
+    "text" | "password"
+  >("password");
 
   const login = useLoginStore((state: { login: Function }) => state.login);
   function clearForm() {
@@ -38,15 +41,20 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
           }}
         />
       </div>
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column position-relative">
         <Label children={"Password"} />
         <Input
           placeholder={"Enter your email password"}
           value={password}
-          type="password"
+          type={passwordVisibility}
           handleChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setPassword(e.target.value);
           }}
+        />
+        <ManipulatePassword
+          className="password-changer"
+          passwordVisibilty={passwordVisibility}
+          setPasswordVisibility={setPasswordVisibility}
         />
       </div>
       <Button
