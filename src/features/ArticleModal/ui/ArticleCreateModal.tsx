@@ -10,12 +10,14 @@ import { IArticleModal } from "../../../shared/api/article/article.types";
 
 export const ArticleCreateModal = () => {
   const masters = useFormStore((state) => state.Masters);
+  console.log(masters);
+
   const modalData = useModalStore((state) => state.modalData);
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createArticle = useModalStore((state) => state.createArticle);
-  let masterWithoutArtcle = masters.filter(
-    (master) => !master?.education[0]?.articles
-  );
+  let masterWithoutArtcle = masters.filter((master) => {
+    if (master.education) !master?.education[0]?.articles;
+  });
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

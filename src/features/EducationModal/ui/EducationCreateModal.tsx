@@ -15,9 +15,9 @@ export const EducationCreateModal = () => {
   const createEducation = useModalStore((state) => state.createEducation);
 
   // excluding masters with education
-  let masterWithoutEducation = masters.filter(
-    (master) => !master?.education[0]?.id
-  );
+  let masterWithoutEducation = masters.filter((master) => {
+    if (master.education) !master?.education[0]?.id;
+  });
 
   // create function
   function handleChange(

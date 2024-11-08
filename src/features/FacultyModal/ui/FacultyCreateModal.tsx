@@ -17,9 +17,9 @@ export const FacultyCreateModal = () => {
   const [modalContent, setModalContent] = useState(Faculty_Modal_Content);
 
   // excluding masters with faculty
-  let masterWithoutFaculty = masters.filter(
-    (master) => !master?.education[0]?.facultyId
-  );
+  let masterWithoutFaculty = masters.filter((master) => {
+    if (master.education) !master?.education[0]?.facultyId;
+  });
 
   //create function
   function handleChange(

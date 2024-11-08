@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   ModalFormLayout,
   useModalStore,
 } from "../../../entities/ModalFormLayout";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
 import { Address_Modal_Content } from "../../../shared/consts";
-import { addressApi, IAddress, IAddressResponse } from "../../../shared";
+import { IAddress } from "../../../shared";
 import { useFormStore } from "../../../widgets/FilterForm/model/formStore";
-import { ModalUpdateLayout } from "../../../entities/ModalFormLayout/ui/modalUpdateLayout";
 
 export const AddressCreateModal = () => {
   const masters = useFormStore((state) => state.Masters);
@@ -16,9 +15,9 @@ export const AddressCreateModal = () => {
   const createAddress = useModalStore((state) => state.createAddress);
 
   // excluding masters with address
-  let mastersWithoutAddress = masters.filter(
-    (master) => !master?.addresses[0]?.id
-  );
+  let mastersWithoutAddress = masters.filter((master) => {
+    if (master.addresses) !master?.addresses[0]?.id;
+  });
 
   // create functions
   function handleChange(
