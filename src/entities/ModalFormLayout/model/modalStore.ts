@@ -72,6 +72,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
 
     createAddress: async (data: IAddress) => {
       try {
+        data = { ...data, masterId: Number(data.masterId) };
         const address = await addressApi.create(data);
         if (address.success) {
           window.location.reload();
@@ -91,7 +92,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
         const result = await educationApi.create(data);
         if (result.success) {
           window.location.reload();
-          alert("O`TM qo`shildi");
+          alert("OTM qo`shildi");
           return;
         }
         alert("Qaytadan urinib ko`ring");
@@ -101,10 +102,12 @@ export const useModalStore = create<IModalStore>((set, _) => {
     },
     createFaculty: async (data: ICreateFacultyProps) => {
       try {
+        data = { ...data, masterId: Number(data.masterId) };
+
         let result = await facultyApi.findOrCreate(data);
         if (result.success) {
           window.location.reload();
-          alert("Fakultet qo`shildi ✅");
+          alert("Mutaxassislik qo`shildi ✅");
           return;
         }
         alert("Masterni tanlang va qayta urinib ko`ring");
@@ -120,7 +123,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
         if (!result.success) return alert(result?.message);
         if (result.success) {
           window.location.reload();
-          alert("Maqolalar O`TM qo`shildi ✅");
+          alert("Maqola qo`shildi ✅");
         }
       } catch (error) {
         console.log(error);
@@ -136,7 +139,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
         if (!result.success) return alert(result?.message);
         if (result.success) {
           window.location.reload();
-          alert("Tugatilgan O`TM qo`shildi ✅");
+          alert("Tugatilgan OTM qo`shildi ✅");
         }
       } catch (error) {
         alert(error);

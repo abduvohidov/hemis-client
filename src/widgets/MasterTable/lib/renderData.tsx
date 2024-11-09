@@ -1,12 +1,13 @@
 import React from "react";
-import { IBachelorResponse, IEducation, IFaculty } from "../../../shared";
 import { IArticle } from "../../../shared/api/article/article.types";
+import { IBachelorResponse, IEducation, IFaculty } from "../../../shared";
 
 export function renderMasterEducation(education) {
   if (education && education.length > 0) {
     return education.map((edu: IEducation, index) => (
       <React.Fragment key={index}>
         <td>{edu.academicLeave}</td>
+        <td>{edu.scientificInternshipPlace}</td>
         <td>{edu.course}</td>
         <td>{edu.currentSpecialization}</td>
         <td>{edu.educationForm}</td>

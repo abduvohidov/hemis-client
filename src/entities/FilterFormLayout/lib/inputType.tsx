@@ -67,7 +67,7 @@ export function inputType(
     return (
       <InputMask
         name={name}
-        mask="999 999 999 999"
+        mask="9999 9999 999 999"
         maskChar="_"
         className="form-control"
         onChange={(e) => {

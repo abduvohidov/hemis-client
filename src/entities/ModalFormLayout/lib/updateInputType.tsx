@@ -48,7 +48,7 @@ export function updateInputType(
     return (
       <InputMask
         name={name}
-        mask="999 999 999 999"
+        mask="9999 9999 999 999"
         maskChar="_"
         value={value}
         className="form-control"

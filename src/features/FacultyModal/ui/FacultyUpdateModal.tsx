@@ -33,7 +33,7 @@ export const FacultyUpdateModal = () => {
         if (typeof updatedResult === "string") alert(updatedResult);
         else {
           window.location.reload();
-          alert("Fakultet malumotlari o'zgartirildi ✅");
+          alert("Mutaxassislik malumotlari o'zgartirildi ✅");
         }
       }
     } catch (error) {
@@ -44,7 +44,7 @@ export const FacultyUpdateModal = () => {
     <Modal
       onSave={handleUpdate}
       modalId="facultyUpdateModal"
-      title="Fakultet o'zgartirish"
+      title="Mutaxassislik o'zgartirish"
     >
       <ModalUpdateLayout
         content={updatingFaculty}

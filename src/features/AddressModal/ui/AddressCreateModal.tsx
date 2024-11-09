@@ -3,9 +3,9 @@ import {
   ModalFormLayout,
   useModalStore,
 } from "../../../entities/ModalFormLayout";
+import { IAddress } from "../../../shared";
 import { Modal } from "../../../shared/ui/Modal/ui/Modal";
 import { Address_Modal_Content } from "../../../shared/consts";
-import { IAddress } from "../../../shared";
 import { useFormStore } from "../../../widgets/FilterForm/model/formStore";
 
 export const AddressCreateModal = () => {
@@ -15,9 +15,7 @@ export const AddressCreateModal = () => {
   const createAddress = useModalStore((state) => state.createAddress);
 
   // excluding masters with address
-  let mastersWithoutAddress = masters.filter((master) => {
-    if (master.addresses) !master?.addresses[0]?.id;
-  });
+  let mastersWithoutAddress = masters.filter((master) => !master?.addresses[0]);
 
   // create functions
   function handleChange(

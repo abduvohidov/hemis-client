@@ -1,11 +1,11 @@
 import { tableHead } from "../model/tableHead.ts";
 import React, { useEffect, useState } from "react";
 import { Table } from "../../../shared/ui/Table/index.ts";
-import { ButtonModal } from "../../../entities/ButtonsModal";
 import { Button, IMasterReponse } from "../../../shared/index.ts";
 import { useFormStore } from "../../FilterForm/model/formStore.ts";
 import { useModalStore } from "../../../entities/ModalFormLayout/index.ts";
 import { removeMaster, findMasters, generateXlsxFile } from "../lib/index.ts";
+import { UpdateButtonModal } from "../../../entities/ButtonsModal/UpdateButtonModal.tsx";
 import {
   AddressCreateModal,
   AddressUpdateModal,
@@ -37,6 +37,7 @@ import {
   EducationUpdateModal,
   EducationCreateModal,
 } from "../../../features/EducationModal";
+import { CreateButtonModal } from "../../../entities/ButtonsModal/CreateButtonModal.tsx";
 
 export const MasterTable: React.FC = () => {
   const masters = useFormStore((state) => state.Masters);
@@ -56,6 +57,10 @@ export const MasterTable: React.FC = () => {
 
   function openUpdateModal(master, modalId) {
     setMaster(master);
+    const modal = new Modal(document.getElementById(modalId));
+    modal.show();
+  }
+  function openCreateModal(modalId) {
     const modal = new Modal(document.getElementById(modalId));
     modal.show();
   }
@@ -138,7 +143,7 @@ export const MasterTable: React.FC = () => {
       return (
         <tr>
           <td colSpan={13} className="text-center">
-            No data found!
+            Malumotlar topilmadi
           </td>
         </tr>
       );
@@ -167,9 +172,9 @@ export const MasterTable: React.FC = () => {
       <div className="my-3 d-flex gap-4 align-items-center">
         <Button
           color="light"
-          toggleMasterModal="modal"
-          targetMasterModal="#triggerCreateButtons"
           children="Yaratish"
+          toggleMasterModal="modal"
+          onClick={() => openCreateModal("triggerCreateButtons")}
         />
 
         <Button
@@ -186,6 +191,8 @@ export const MasterTable: React.FC = () => {
 
       <MasterCreateModal />
       <MasterUpdateModal />
+      <UpdateButtonModal />
+      <CreateButtonModal />
       <ArticleCreateModal />
       <ArticleUpdateModal />
       <FacultyCreateModal />
@@ -196,8 +203,6 @@ export const MasterTable: React.FC = () => {
       <BachelorUpdateModal />
       <EducationCreateModal />
       <EducationUpdateModal />
-      <ButtonModal type="create" />
-      <ButtonModal type="update" />
     </>
   );
 };

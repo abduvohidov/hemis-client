@@ -21,7 +21,7 @@ export const BachelorUpdateModal = () => {
           alert(updatedResult);
         else {
           window.location.reload();
-          alert("Tugatkan O`TM malumotlari o'zgartirildi ✅");
+          alert("Tugatkan OTM malumotlari o'zgartirildi ✅");
         }
       }
     } catch (error) {
@@ -33,7 +33,7 @@ export const BachelorUpdateModal = () => {
     <Modal
       onSave={handleUpdate}
       modalId="bachelorUpdateModal"
-      title="Tugatgan O`TM o'zgartirish"
+      title="Tugatgan OTM o'zgartirish"
     >
       <ModalUpdateLayout
         content={updatingBachelor}

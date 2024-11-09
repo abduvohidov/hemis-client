@@ -7,6 +7,7 @@ export interface ButtonProps {
   type?: "submit" | "reset" | "button" | undefined;
   toggleMasterModal?: string;
   targetMasterModal?: string;
+  closeModal?: string;
   onChange?: () => void;
   onClick?: () => void;
 }
