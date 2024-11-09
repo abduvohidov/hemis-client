@@ -9,7 +9,7 @@ export const FILTER_Master_CONTENT = [
     value: "",
     type: "text",
     name: "middleName",
-    placeholder: "Otasini ismini kiriting",
+    placeholder: "Otasining ismini kiriting",
   },
   {
     value: "",

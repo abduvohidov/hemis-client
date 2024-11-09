@@ -3,7 +3,7 @@ export const FILTER_FACULTY_CONTENT = [
     value: "",
     type: "select",
     name: "facultyName",
-    placeholder: "Fakultetni tanlang",
+    placeholder: "Mutaxassislikni tanlang",
     options: [
       "Matematik analiz",
       "Algebra va funksional analiz",

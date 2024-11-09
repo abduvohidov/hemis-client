@@ -41,7 +41,7 @@ export const AddressCreateModal = () => {
       title="Yashash manzili yaratish"
     >
       <ModalFormLayout
-        masters={mastersWithoutAddress}
+        masters={masters}
         handleChange={handleChange}
         content={Address_Modal_Content}
       />

@@ -16,11 +16,6 @@ export const FacultyCreateModal = () => {
   const createFaculty = useModalStore((state) => state.createFaculty);
   const [modalContent, setModalContent] = useState(Faculty_Modal_Content);
 
-  // excluding masters with faculty
-  let masterWithoutFaculty = masters.filter((master) => {
-    if (master.education) !master?.education[0]?.facultyId;
-  });
-
   //create function
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -54,11 +49,11 @@ export const FacultyCreateModal = () => {
     }
   }, [selectedMasterId]);
   return (
-    <Modal modalId="facultyModal" title="Fakultet yaratish" onSave={handleSave}>
+    <Modal modalId="facultyModal" title="Mutaxassislik yaratish" onSave={handleSave}>
       <ModalFormLayout
         content={modalContent}
         handleChange={handleChange}
-        masters={masterWithoutFaculty}
+        masters={masters}
       />
     </Modal>
   );

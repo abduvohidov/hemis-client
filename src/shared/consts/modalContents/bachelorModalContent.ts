@@ -9,7 +9,7 @@ export const Bachelor_Modal_Content: Array<BachelorModalContentProps> = [
   {
     isSelect: false,
     name: "previousUniversity",
-    placeholder: "Tugatgan OTM nomi",
+    placeholder: "Tugatgan O`TM nomi",
   },
   {
     isSelect: true,

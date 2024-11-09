@@ -10,8 +10,12 @@ export const Education_Modal_Content: Array<EducationModalContentProps> = [
   {
     isSelect: true,
     name: "currentSpecialization",
-    placeholder: "Sohani tanlang",
-    options: ["Matematika", "Amaliy matematika va intellektual texnologiyalar", "Fizika"],
+    placeholder: "Fakultetni tanlang",
+    options: [
+      "Matematika",
+      "Amaliy matematika va intellektual texnologiyalar",
+      "Fizika",
+    ],
   },
   {
     isSelect: true,
@@ -23,7 +27,7 @@ export const Education_Modal_Content: Array<EducationModalContentProps> = [
     isSelect: true,
     name: "paymentType",
     placeholder: "Tolov turini tanlang",
-    options: ["Kredit", "Nasiya", "Naxt", "Qarz", "Grant"],
+    options: ["Ko`ntrakt", "Grant"],
   },
   {
     isSelect: true,
@@ -35,19 +39,19 @@ export const Education_Modal_Content: Array<EducationModalContentProps> = [
     isSelect: true,
     name: "educationForm",
     placeholder: "Ta'lim turi",
-    options: ["Sirtqi", "Kundizgi", "Ertalapki"],
+    options: ["Sirtqi", "Kunduzgi", "Kechgi"],
   },
   {
     isSelect: true,
     name: "languageCertificate",
     placeholder: "Til sertificat",
-    options: ["IELTS", "TOIFEL", "DUALINGO"],
+    options: ["IELTS", "TOIFEL", "DUALINGO", "CEFR"],
   },
   {
     isSelect: true,
     name: "semester",
-    placeholder: "Oqiyotgan semestr",
-    options: ["1", "2", "3", "4", "5", "6"],
+    placeholder: "O`qiyotgan semestr",
+    options: ["1", "2", "3", "4", "5", "6", "tugatgan"],
   },
   {
     isSelect: false,
@@ -67,17 +71,17 @@ export const Education_Modal_Content: Array<EducationModalContentProps> = [
   {
     isSelect: false,
     name: "internalReviewer",
-    placeholder: "Ichiki taqsischi",
+    placeholder: "Ichki taqrizchi",
   },
   {
     isSelect: false,
     name: "externamReviewer",
-    placeholder: "Tashqi taqsischi",
+    placeholder: "Tashqi taqrizchi",
   },
   {
     isSelect: false,
     name: "thesisTopic",
-    placeholder: "Thesis Topic",
+    placeholder: "Dissertatsiya mavzusi",
   },
   {
     isSelect: true,
@@ -88,6 +92,6 @@ export const Education_Modal_Content: Array<EducationModalContentProps> = [
   {
     isSelect: false,
     name: "scientificInternshipPlace",
-    placeholder: "Ilmit amaliyot o'tash joyi",
+    placeholder: "Ilmiy amaliyot o'tash joyi",
   },
 ];

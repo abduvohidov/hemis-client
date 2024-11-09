@@ -35,7 +35,7 @@ export const ArticleCreateModal = () => {
     <Modal modalId="articleModal" title="Maqola yaratish" onSave={handleSave}>
       <ModalFormLayout
         handleChange={handleChange}
-        masters={masterWithoutArtcle}
+        masters={masters}
         content={Article_Modal_Content}
       />
     </Modal>

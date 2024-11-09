@@ -9,7 +9,7 @@ export const Article_Modal_Content: Array<ArticleModalContentProps> = [
   {
     isSelect: false,
     name: "firstArticle",
-    placeholder: "Birinchi maqola tezis nomi",
+    placeholder: "Birinchi maqola nomi",
   },
   {
     isSelect: false,
@@ -25,7 +25,7 @@ export const Article_Modal_Content: Array<ArticleModalContentProps> = [
   {
     isSelect: false,
     name: "secondArticle",
-    placeholder: "Ikkinchi maqola tezis nomi",
+    placeholder: "Ikkinchi maqol nomi",
   },
 
   {

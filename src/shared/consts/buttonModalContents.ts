@@ -21,7 +21,7 @@ export const Button_Modal_Create_Contents = [
   },
   {
     targetMasterModal: "#facultyModal",
-    content: "Fakultet qo'shish",
+    content: "Mutaxassislik qo'shish",
   },
 ];
 export const Button_Modal_Update_Contents = [
@@ -47,6 +47,6 @@ export const Button_Modal_Update_Contents = [
   },
   {
     targetMasterModal: "#facultyUpdateModal",
-    content: "Fakultet o'zgartirish",
+    content: "Mutaxassislik o'zgartirish",
   },
 ];

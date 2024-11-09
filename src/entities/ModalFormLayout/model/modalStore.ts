@@ -104,7 +104,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
         let result = await facultyApi.findOrCreate(data);
         if (result.success) {
           window.location.reload();
-          alert("Fakultet qo`shildi ✅");
+          alert("Mutaxassislik qo`shildi ✅");
           return;
         }
         alert("Masterni tanlang va qayta urinib ko`ring");
@@ -120,7 +120,7 @@ export const useModalStore = create<IModalStore>((set, _) => {
         if (!result.success) return alert(result?.message);
         if (result.success) {
           window.location.reload();
-          alert("Maqolalar O`TM qo`shildi ✅");
+          alert("Maqola qo`shildi ✅");
         }
       } catch (error) {
         console.log(error);

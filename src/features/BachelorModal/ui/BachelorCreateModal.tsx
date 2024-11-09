@@ -41,7 +41,7 @@ export const BachelorCreateModal = () => {
     >
       <ModalFormLayout
         handleChange={handleChange}
-        masters={masterWithoutBachelor}
+        masters={masters}
         content={Bachelor_Modal_Content}
       />
     </Modal>

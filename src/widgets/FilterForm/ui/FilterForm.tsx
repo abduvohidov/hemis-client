@@ -75,7 +75,7 @@ export const FilterForm = () => {
           content={FILTER_ARTICLES_CONTENT}
         />
         <FilterFormLayout
-          title="Fakultet bo'yicha izlash"
+          title="Mutaxassislik bo'yicha izlash"
           submitForm={submitForm}
           handleChange={handleChange}
           content={FILTER_FACULTY_CONTENT}
