@@ -14,6 +14,10 @@ export const EducationCreateModal = () => {
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createEducation = useModalStore((state) => state.createEducation);
 
+  let masterWithoutEducation = masters.filter(
+    (master) => !master?.education[0]
+  );
+
   // create function
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -38,7 +42,7 @@ export const EducationCreateModal = () => {
     >
       <ModalFormLayout
         handleChange={handleChange}
-        masters={masters}
+        masters={masterWithoutEducation}
         content={Education_Modal_Content}
       />
     </Modal>

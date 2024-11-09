@@ -18,6 +18,7 @@ export interface IEducation {
   thesisTopic: string;
   articlesId?: number;
   academicLeave: string;
+  scientificInternshipPlace: string;
   bachelor?: any[];
   articles?: any[];
   faculty?: any[];

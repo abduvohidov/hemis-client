@@ -29,13 +29,14 @@ export const FormAuthorization: React.FC<FormAuthorizationProps> = ({
   }
 
   return (
-    <form className={`w-25 ${className}`} onSubmit={handleSubmit}>
+    <form className={`login-form ${className}`} onSubmit={handleSubmit}>
       <div className={"mb-3"}>
         <Label children={"Email"} />
         <Input
           placeholder={"Enter your email address"}
           type={"email"}
           value={email}
+
           handleChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setEmail(e.target.value);
           }}

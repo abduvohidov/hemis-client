@@ -3,7 +3,7 @@ export const FILTER_BACHELOR_CONTENT = [
         value: "",
         type: "text",
         name: "previousUniversity",
-        placeholder: "Tugatgan O`TM nomi",
+        placeholder: "Tugatgan OTM nomi",
     },
     {
         value: "",

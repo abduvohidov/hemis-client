@@ -14,9 +14,9 @@ export const ArticleCreateModal = () => {
   const modalData = useModalStore((state) => state.modalData);
   const setInputValue = useModalStore((state) => state.setInputValue);
   const createArticle = useModalStore((state) => state.createArticle);
-  let masterWithoutArtcle = masters.filter((master) => {
-    if (master.education) !master?.education[0]?.articles;
-  });
+  let masterWithoutArtcle = masters.filter(
+    (master) => !master?.education[0]?.articles
+  );
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -35,7 +35,7 @@ export const ArticleCreateModal = () => {
     <Modal modalId="articleModal" title="Maqola yaratish" onSave={handleSave}>
       <ModalFormLayout
         handleChange={handleChange}
-        masters={masters}
+        masters={masterWithoutArtcle}
         content={Article_Modal_Content}
       />
     </Modal>

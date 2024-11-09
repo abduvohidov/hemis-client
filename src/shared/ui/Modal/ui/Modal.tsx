@@ -7,13 +7,13 @@ export const Modal: React.FC<ModalProps> = (props) => {
 
   return (
     <div
-      className={`modal fade ${className}`}
+      className={`modal fade ${className ? className : ""}`}
       id={modalId}
       tabIndex={-1}
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      aria-labelledby="staticBackdropLabel"
       aria-hidden="false"
+      data-bs-keyboard="false"
+      data-bs-backdrop="static"
+      aria-labelledby="staticBackdropLabel"
     >
       <div className="modal-dialog">
         <div className="modal-content">
@@ -32,7 +32,11 @@ export const Modal: React.FC<ModalProps> = (props) => {
             <div className="modal-body">{children}</div>
 
             <div className="modal-footer">
-              <Button color="light" toggleMasterModal="modal">
+              <Button
+                color="light"
+                type="button"
+                closeModal="modal"
+              >
                 Yopish
               </Button>
               <Button color="primary" type="submit">
