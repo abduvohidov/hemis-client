@@ -77,7 +77,7 @@ export const useFormStore = create<FormState>((set, get) => {
     filterByFaculty: async (
       formData: Record<string, string>
     ): Promise<IFaculty[]> => {
-      const result = await facultyApi.getByName(formData.name);
+      const result = await facultyApi.getByName(formData.facultyName);
       return result;
     },
     filterByAddress: async (

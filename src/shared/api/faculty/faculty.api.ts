@@ -33,12 +33,12 @@ export const facultyApi = {
     return result?.message?.data;
   },
   getByName: async (name: string): Promise<IFaculty[]> => {
-    const result = await baseApi.post<IFacultyResponse, any>(
+    const result = await baseApi.post<IFacultyResponse, { name: string }>(
       "/faculties/filter",
-      {
-        name,
-      }
+      { name }
     );
+    console.log(result);
+
     return result?.message?.data;
   },
   findByName: async (name: string): Promise<IFaculty> => {
