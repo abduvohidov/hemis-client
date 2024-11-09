@@ -122,9 +122,17 @@ export const useFormStore = create<FormState>((set, get) => {
           ...addressResults,
           ...articleResults,
         ];
+        const seenIds = new Set();
+        const uniqueMasters = allResults.filter((master) => {
+          if (seenIds.has(master.id)) {
+            return false;
+          }
+          seenIds.add(master.id);
+          return true;
+        });
         // Update the state with the merged results
         set((state) => ({
-          Masters: [...allResults],
+          Masters: [...uniqueMasters],
         }));
       } catch (error) {
         console.error("Error filtering data", error);

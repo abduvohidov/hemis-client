@@ -10,7 +10,6 @@ import { IArticleModal } from "../../../shared/api/article/article.types";
 
 export const ArticleCreateModal = () => {
   const masters = useFormStore((state) => state.Masters);
-  console.log(masters);
 
   const modalData = useModalStore((state) => state.modalData);
   const setInputValue = useModalStore((state) => state.setInputValue);
