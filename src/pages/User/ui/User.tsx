@@ -8,21 +8,15 @@ import { UserArticleForm } from "../../../widgets/UserArticleForm/UserArticleFor
 export const User = () => {
   const logout = useLoginStore((state) => state.logout);
   const Master = useLoginStore((state) => state.MasterInfo);
-  function isArticleExists(): IArticle | null {
-    const article = Master?.education[0]?.articles;
-    if (article) {
-      return article;
-    } else {
-      return null;
-    }
-  }
+  const article = useLoginStore((state) => state.ArticleInfo);
+
   return (
     <div className="container">
       <div className="profile-wrapper">
         <ProfileForm Master={Master as IMaster} logout={logout} />
         <div>
           <img className="profile-image" src={Master?.avatarUrl} alt="img" />
-          <UserArticleForm article={isArticleExists()} />
+          <UserArticleForm article={article} />
         </div>
       </div>
     </div>

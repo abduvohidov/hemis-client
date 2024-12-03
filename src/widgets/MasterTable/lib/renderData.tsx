@@ -72,9 +72,29 @@ export function renderMasterArticle(article) {
     return article.map((art: IArticle, index) => (
       <React.Fragment key={index}>
         <td>{art?.firstArticle}</td>
+        <td>
+          <a
+            href={
+              `http://localhost:9000/articles/download/` +
+              art?.firstArticleFilename
+            }
+          >
+            {art?.firstArticleFilename}
+          </a>
+        </td>
         <td>{art?.firstArticleDate?.slice(0, 10)}</td>
         <td>{art?.firstArticleJournal}</td>
         <td>{art?.secondArticle}</td>
+        <td>
+          <a
+            href={
+              `http://localhost:9000/articles/download/` +
+              art?.secondArticleFilename
+            }
+          >
+            {art?.secondArticleFilename}
+          </a>
+        </td>
         <td>{art?.secondArticleJournal}</td>
         <td>{art?.secondArticleDate?.slice(0, 10)}</td>
       </React.Fragment>
