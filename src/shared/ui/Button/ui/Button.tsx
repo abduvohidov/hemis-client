@@ -12,12 +12,14 @@ export const Button: React.FC<ButtonProps> = (props) => {
     closeModal,
     toggleMasterModal,
     targetMasterModal,
+    disabled,
   } = props;
   return (
     <>
       <button
         type={type}
         onClick={onClick}
+        disabled={disabled}
         onChange={onChange}
         data-bs-dismiss={closeModal}
         data-bs-toggle={toggleMasterModal}

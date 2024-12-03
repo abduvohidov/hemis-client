@@ -30,7 +30,9 @@ export function updateInputType(
   } else if (
     inputType === "dateOfBirth" ||
     inputType === "secondArticleDate" ||
-    inputType === "firstArticleDate"
+    inputType === "firstArticleDate" ||
+    inputType === "firstArticleFilename" ||
+    inputType === "secondArticleFilename"
   ) {
     return (
       <DateInput

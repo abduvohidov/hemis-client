@@ -1,5 +1,5 @@
 .profile-wrapper{
-    width: 50%;
+    width: 65%;
     display: flex;
     margin: 50px auto;
     align-items: start;
@@ -10,7 +10,8 @@
 .profile-image {
   width: 138px;
   height: auto;
-  max-height: 177px;
   padding: 5px;
+  margin-left: 100px;
+  max-height: 177px;
   border: 2px dotted gray;
 }
