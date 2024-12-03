@@ -44,7 +44,6 @@ export const handleUpload = async (firstArticle, secondArticle, article , update
     });
     updateArticle(response.data.message);
     window.location.reload();
-    alert("Файлы успешно загружены!");
   } catch (error) {
     console.error("Ошибка при загрузке файлов:", error);
     alert("Ошибка при загрузке файлов.");

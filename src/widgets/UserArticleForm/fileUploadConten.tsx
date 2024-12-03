@@ -27,17 +27,19 @@ export const FileUploadContent = ({
         </div>
       );
     } else {
-      <div className="d-flex flex-column gap-2">
-        <label htmlFor="firstArticle">
-          <strong>Birinchi maqolani yuklang</strong>
-        </label>
-        <input
-          type="file"
-          id="firstArticle"
-          className="form-control"
-          onChange={(e) => handleFileChange(e, setFirstArticle)}
-        />
-      </div>;
+      return (
+        <div className="d-flex flex-column gap-2">
+          <label htmlFor="firstArticle">
+            <strong>Birinchi maqolani yuklang</strong>
+          </label>
+          <input
+            type="file"
+            id="firstArticle"
+            className="form-control"
+            onChange={(e) => handleFileChange(e, setFirstArticle)}
+          />
+        </div>
+      );
     }
   }
   function renderSecondArticle() {
@@ -56,17 +58,19 @@ export const FileUploadContent = ({
         </div>
       );
     } else {
-      <div className="d-flex flex-column gap-2">
-        <label htmlFor="secondArticle">
-          <strong>Ikkinchi maqolani yuklang</strong>
-        </label>
-        <input
-          type="file"
-          id="secondArticle"
-          className="form-control"
-          onChange={(e) => handleFileChange(e, setSecondArticle)}
-        />
-      </div>;
+      return (
+        <div className="d-flex flex-column gap-2">
+          <label htmlFor="secondArticle">
+            <strong>Ikkinchi maqolani yuklang</strong>
+          </label>
+          <input
+            type="file"
+            id="secondArticle"
+            className="form-control"
+            onChange={(e) => handleFileChange(e, setSecondArticle)}
+          />
+        </div>
+      );
     }
   }
   if (article === null) {

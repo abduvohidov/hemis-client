@@ -1,12 +1,6 @@
 import { create } from "zustand";
 import { removeToken, setToken } from "../lib/cookie";
-import {
-  IArticle,
-  IMaster,
-  LoginRequest,
-  LoginResponse,
-  loginApi,
-} from "./../../../shared";
+import { IArticle, IMaster, LoginRequest, loginApi } from "./../../../shared";
 
 interface ILoginState {
   error: string | null;
@@ -29,7 +23,6 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
 
   login: async (data: LoginRequest) => {
     const result: any = await loginApi.login(data);
-    console.log(result?.message?.result?.education[0]?.articles);
 
     if (typeof result.message === "string" || !result.success) {
       alert(result.message);
@@ -37,20 +30,24 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
       setToken(result?.message.jwt);
       localStorage.setItem("role", result.message.redirectTo);
 
-      // Extract ArticleInfo if education exists
-      const articleInfo =
-        result?.message?.result?.education?.[0]?.articles || null;
-
       set({
         error: null,
         MasterInfo: result.message.result,
-        ArticleInfo: articleInfo,
+        ...(result?.message?.result?.education && {
+          ArticleInfo: result?.message?.result?.education[0]?.articles || null,
+        }),
       });
 
       // Save MasterInfo and ArticleInfo to localStorage
       localStorage.setItem("Master", JSON.stringify(result.message.result));
-      if (articleInfo) {
-        localStorage.setItem("ArticleInfo", JSON.stringify(articleInfo));
+
+      if (result?.message?.result?.education) {
+        if (result?.message?.result?.education[0]?.articles) {
+          localStorage.setItem(
+            "ArticleInfo",
+            JSON.stringify(result?.message?.result?.education[0]?.articles)
+          );
+        }
       }
 
       window.location.href = `/${result.message.redirectTo}`;
@@ -76,6 +73,6 @@ export const useLoginStore = create<ILoginState>((set: Function) => ({
 
       return { ArticleInfo: updatedArticleInfo };
     });
-    alert("Article info updated successfully ✅");
+    alert("Maqola o'zgartirildi ✅");
   },
 }));
