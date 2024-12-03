@@ -10,4 +10,5 @@ export interface ButtonProps {
   closeModal?: string;
   onChange?: () => void;
   onClick?: () => void;
+  disabled?: boolean;
 }

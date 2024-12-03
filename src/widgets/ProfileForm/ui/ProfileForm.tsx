@@ -163,7 +163,7 @@ export const ProfileForm: FC<IProfileForm> = ({ Master, logout }) => {
         />
       </div>
       <Button onClick={handleClick}>{btnContent}</Button>
-      <button className="logout-btn" onClick={handleLogout}>
+      <button className="logout-btn form-control" onClick={handleLogout}>
         Profildan chiqish
       </button>
     </form>

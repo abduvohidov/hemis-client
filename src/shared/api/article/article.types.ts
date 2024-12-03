@@ -6,6 +6,8 @@ export interface IArticle {
   secondArticle: string;
   secondArticleDate: string;
   secondArticleJournal: string;
+  firstArticleFilename?: string;
+  secondArticleFilename?: string;
   education?: any[];
 }
 export interface IArticleReponse {
