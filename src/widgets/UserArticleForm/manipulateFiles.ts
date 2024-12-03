@@ -1,28 +1,5 @@
 import axios from "axios";
 
-export async function updateFile(
-  targetedArticleName,
-  targetedArticleFile,
-  articleId,
-  updateArticle
-) {
-  try {
-    const formData = new FormData();
-    formData.append(targetedArticleName, targetedArticleFile); // Поле для первого файла
-    const url = `http://localhost:9000/articles/file-upload/${articleId}`;
-    const response = await axios.post(url, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
-    updateArticle(response.data.message);
-    window.location.reload();
-    alert("Maqola yangilandi ✅");
-  } catch (error) {
-    console.error("Ошибка при загрузке файлов:", error);
-    alert("Ошибка при загрузке файлов.");
-  }
-}
 export async function deleteFile(
   targetedArticleName,
   articleId,
@@ -43,3 +20,33 @@ export async function deleteFile(
     alert("Ошибка при загрузке файлов.");
   }
 }
+
+export const handleUpload = async (firstArticle, secondArticle, article , updateArticle) => {
+  if (!firstArticle && !secondArticle) {
+    alert("Пожалуйста, выберите хотя бы один файл для загрузки.");
+    return;
+  }
+
+  const formData = new FormData();
+  if (firstArticle) {
+    formData.append("firstArticle", firstArticle); // Поле для первого файла
+  }
+  if (secondArticle) {
+    formData.append("secondArticle", secondArticle); // Поле для второго файла
+  }
+
+  try {
+    const url = `http://localhost:9000/articles/file-upload/${article?.id}`;
+    const response = await axios.post(url, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+    updateArticle(response.data.message);
+    window.location.reload();
+    alert("Файлы успешно загружены!");
+  } catch (error) {
+    console.error("Ошибка при загрузке файлов:", error);
+    alert("Ошибка при загрузке файлов.");
+  }
+};
