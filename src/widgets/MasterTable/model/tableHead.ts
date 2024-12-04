@@ -38,11 +38,11 @@ export const tableHead: Array<string> = [
   "Tugatgan mutaxasisligi",
   // article
   "Birinchi maqola nomi",
-  "Birinchi maqola file nomi",
+  "Birinchi maqola fayli",
   "Birinchi maqola chop etilgan sana",
   "Birinchi maqola chop etilgan jurnal",
   "Ikkinchi maqola nomi",
-  "Ikkinchi maqola file nomi",
+  "Ikkinchi maqola fayli",
   "Ikkinchi maqolani chop etilgan jurnal",
   "Ikkinchi maqola chop etilgan sana",
   // fakultet
